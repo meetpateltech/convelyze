@@ -1,6 +1,6 @@
 {
-  "name": "chatgpt",
-  "version": "0.1.0",
+  "name": "convelyze",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -42,5 +42,6 @@
     "tailwindcss": "^3.4.1",
     "eslint": "^8",
     "eslint-config-next": "14.2.11"
-  }
+  },
+  "resolutions": { "string-width": "4.2.3" }
 }
