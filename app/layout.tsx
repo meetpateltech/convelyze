@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     description: 'See your ChatGPT conversations in a whole new way. Our simple and easy-to-use dashboard shows you how you are using ChatGPT',
     images: [
       {
-        url: 'https://cdn.jsdelivr.net/gh/meetpateltech/convelyze@main/public/og.png',
+        url: 'https://cdn.jsdelivr.net/gh/meetpateltech/convelyze@main/public/convolyze-og.png',
         width: 1200,
         height: 630,
         alt: 'Convelyze Open Graph Image',
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Convelyze - Your ChatGPT usage, visualized',
     description: 'See your ChatGPT conversations in a whole new way. Our simple and easy-to-use dashboard shows you how you are using ChatGPT',
-    images: ['https://cdn.jsdelivr.net/gh/meetpateltech/convelyze@main/public/og.png'],
+    images: ['https://cdn.jsdelivr.net/gh/meetpateltech/convelyze@main/public/convolyze-og.png'],
   },
 };
 
