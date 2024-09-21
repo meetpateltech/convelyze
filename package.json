@@ -7,7 +7,7 @@
     "build": "next build && next export",
     "start": "next start",
     "lint": "next lint",
-    "pages:build": "npx @cloudflare/next-on-pages"
+    "pages:build": "bunx @cloudflare/next-on-pages"
   },
   "dependencies": {
     "@cloudflare/next-on-pages": "^1.13.2",
