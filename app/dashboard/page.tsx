@@ -26,7 +26,7 @@ import Link from 'next/link';
 import Confetti from 'react-confetti'
 import useWindowSize from 'react-use/lib/useWindowSize'
 import { toast } from 'sonner';
-import { useRouter } from 'next/navigation';
+// import { useRouter } from 'next/navigation';
 
 export default function Dashboard() {
   const [mode, setMode] = useState('normal');
@@ -37,7 +37,7 @@ export default function Dashboard() {
   const [showConfetti, setShowConfetti] = useState(false);
   const { width, height } = useWindowSize()
 
-  const router = useRouter();
+  // const router = useRouter();
 
   const onDrop = useCallback(async (acceptedFiles: File[]) => {
     try {
@@ -78,12 +78,12 @@ export default function Dashboard() {
       setShowConfetti(true);
       setTimeout(() => setShowConfetti(false), 5000);
 
-      router.push('?success=true', { scroll: false });
+      /* router.push('?success=true', { scroll: false }); */
     } catch (error) {
       console.error('Error processing file:', error);
       toast.error('Error processing file. Please upload the correct file. If you still face issues, create an issue on GitHub.');
     }
-  }, [router]);
+  }, []);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop, accept: { 'application/json': ['.json'] },
     multiple: false, });
