@@ -1,0 +1,2067 @@
+{
+    "regions": [
+        {
+            "region": "Africa",
+            "locations": [
+                {
+                    "city": "Accra",
+                    "country": "Ghana",
+                    "countryCode": "GH",
+                    "code": "ACC"
+                },
+                {
+                    "city": "Algiers",
+                    "country": "Algeria",
+                    "countryCode": "DZ",
+                    "code": "ALG"
+                },
+                {
+                    "city": "Annaba",
+                    "country": "Algeria",
+                    "countryCode": "DZ",
+                    "code": "AAE"
+                },
+                {
+                    "city": "Antananarivo",
+                    "country": "Madagascar",
+                    "countryCode": "MG",
+                    "code": "TNR"
+                },
+                {
+                    "city": "Cape Town",
+                    "country": "South Africa",
+                    "countryCode": "ZA",
+                    "code": "CPT"
+                },
+                {
+                    "city": "Dakar",
+                    "country": "Senegal",
+                    "countryCode": "SN",
+                    "code": "DKR"
+                },
+                {
+                    "city": "Dar Es Salaam",
+                    "country": "Tanzania",
+                    "countryCode": "TZ",
+                    "code": "DAR"
+                },
+                {
+                    "city": "Djibouti City",
+                    "country": "Djibouti",
+                    "countryCode": "DJ",
+                    "code": "JIB"
+                },
+                {
+                    "city": "Durban",
+                    "country": "South Africa",
+                    "countryCode": "ZA",
+                    "code": "DUR"
+                },
+                {
+                    "city": "Gaborone",
+                    "country": "Botswana",
+                    "countryCode": "BW",
+                    "code": "GBE"
+                },
+                {
+                    "city": "Harare",
+                    "country": "Zimbabwe",
+                    "countryCode": "ZW",
+                    "code": "HRE"
+                },
+                {
+                    "city": "Johannesburg",
+                    "country": "South Africa",
+                    "countryCode": "ZA",
+                    "code": "JNB"
+                },
+                {
+                    "city": "Kigali",
+                    "country": "Rwanda",
+                    "countryCode": "RW",
+                    "code": "KGL"
+                },
+                {
+                    "city": "Lagos",
+                    "country": "Nigeria",
+                    "countryCode": "NG",
+                    "code": "LOS"
+                },
+                {
+                    "city": "Luanda",
+                    "country": "Angola",
+                    "countryCode": "AO",
+                    "code": "LAD"
+                },
+                {
+                    "city": "Maputo",
+                    "country": "Mozambique",
+                    "countryCode": "MZ",
+                    "code": "MPM"
+                },
+                {
+                    "city": "Mombasa",
+                    "country": "Kenya",
+                    "countryCode": "KE",
+                    "code": "MBA"
+                },
+                {
+                    "city": "Nairobi",
+                    "country": "Kenya",
+                    "countryCode": "KE",
+                    "code": "NBO"
+                },
+                {
+                    "city": "Oran",
+                    "country": "Algeria",
+                    "countryCode": "DZ",
+                    "code": "ORN"
+                },
+                {
+                    "city": "Ouagadougou",
+                    "country": "Burkina Faso",
+                    "countryCode": "BF",
+                    "code": "OUA"
+                },
+                {
+                    "city": "Port Louis",
+                    "country": "Mauritius",
+                    "countryCode": "MU",
+                    "code": "MRU"
+                },
+                {
+                    "city": "Réunion",
+                    "country": "France",
+                    "countryCode": "FR",
+                    "code": "RUN"
+                },
+                {
+                    "city": "Tunis",
+                    "country": "Tunisia",
+                    "countryCode": "TN",
+                    "code": "TUN"
+                },
+                {
+                    "city": "Kinshasa",
+                    "country": "DR Congo",
+                    "countryCode": "CD",
+                    "code": "FIH"
+                },
+                {
+                    "city": "Cairo",
+                    "country": "Egypt",
+                    "countryCode": "EG",
+                    "code": "CAI"
+                },
+                {
+                    "city": "Windhoek",
+                    "country": "Namibia",
+                    "countryCode": "NA",
+                    "code": "WDH"
+                },
+                {
+                    "city": "Yamoussoukro",
+                    "country": "Ivory Coast",
+                    "countryCode": "CI",
+                    "code": "ASK"
+                },
+                {
+                    "city": "Abidjan",
+                    "country": "Ivory Coast",
+                    "countryCode": "CI",
+                    "code": "ABJ"
+                },
+                {
+                    "city": "Kampala",
+                    "country": "Uganda",
+                    "countryCode": "UG",
+                    "code": "EBB"
+                },
+                {
+                    "city": "Saint-Denis",
+                    "country": "France",
+                    "countryCode": "FR",
+                    "code": "RUN"
+                }
+            ]
+        },
+        {
+            "region": "Asia",
+            "locations": [
+                {
+                    "city": "Ahmedabad",
+                    "country": "India",
+                    "countryCode": "IN",
+                    "code": "AMD"
+                },
+                {
+                    "city": "Almaty",
+                    "country": "Kazakhstan",
+                    "countryCode": "KZ",
+                    "code": "ALA"
+                },
+                {
+                    "city": "Bangalore",
+                    "country": "India",
+                    "countryCode": "IN",
+                    "code": "BLR"
+                },
+                {
+                    "city": "Bangkok",
+                    "country": "Thailand",
+                    "countryCode": "TH",
+                    "code": "BKK"
+                },
+                {
+                    "city": "Bandar Seri Begawan",
+                    "country": "Brunei",
+                    "countryCode": "BN",
+                    "code": "BWN"
+                },
+                {
+                    "city": "Bhubaneswar",
+                    "country": "India",
+                    "countryCode": "IN",
+                    "code": "BBI"
+                },
+                {
+                    "city": "Cebu",
+                    "country": "Philippines",
+                    "countryCode": "PH",
+                    "code": "CEB"
+                },
+                {
+                    "city": "Chandigarh",
+                    "country": "India",
+                    "countryCode": "IN",
+                    "code": "IXC"
+                },
+                {
+                    "city": "Changde",
+                    "country": "China",
+                    "countryCode": "CN",
+                    "code": "CGD"
+                },
+                {
+                    "city": "Chennai",
+                    "country": "India",
+                    "countryCode": "IN",
+                    "code": "MAA"
+                },
+                {
+                    "city": "Chittagong",
+                    "country": "Bangladesh",
+                    "countryCode": "BD",
+                    "code": "CGP"
+                },
+                {
+                    "city": "Colombo",
+                    "country": "Sri Lanka",
+                    "countryCode": "LK",
+                    "code": "CMB"
+                },
+                {
+                    "city": "Dhaka",
+                    "country": "Bangladesh",
+                    "countryCode": "BD",
+                    "code": "DAC"
+                },
+                {
+                    "city": "Foshan",
+                    "country": "China",
+                    "countryCode": "CN",
+                    "code": "FUO"
+                },
+                {
+                    "city": "Fukuoka",
+                    "country": "Japan",
+                    "countryCode": "JP",
+                    "code": "FUK"
+                },
+                {
+                    "city": "Fuzhou",
+                    "country": "China",
+                    "countryCode": "CN",
+                    "code": "FOC"
+                },
+                {
+                    "city": "Guangzhou",
+                    "country": "China",
+                    "countryCode": "CN",
+                    "code": "CAN"
+                },
+                {
+                    "city": "Haikou",
+                    "country": "China",
+                    "countryCode": "CN",
+                    "code": "HAK"
+                },
+                {
+                    "city": "Hanoi",
+                    "country": "Vietnam",
+                    "countryCode": "VN",
+                    "code": "HAN"
+                },
+                {
+                    "city": "Hengshui",
+                    "country": "China",
+                    "countryCode": "CN",
+                    "code": "SJW"
+                },
+                {
+                    "city": "Ho Chi Minh City",
+                    "country": "Vietnam",
+                    "countryCode": "VN",
+                    "code": "SGN"
+                },
+                {
+                    "city": "Hong Kong",
+                    "country": "China",
+                    "countryCode": "CN",
+                    "code": "HKG"
+                },
+                {
+                    "city": "Hyderabad",
+                    "country": "India",
+                    "countryCode": "IN",
+                    "code": "HYD"
+                },
+                {
+                    "city": "Islamabad",
+                    "country": "Pakistan",
+                    "countryCode": "PK",
+                    "code": "ISB"
+                },
+                {
+                    "city": "Jakarta",
+                    "country": "Indonesia",
+                    "countryCode": "ID",
+                    "code": "CGK"
+                },
+                {
+                    "city": "Jashore",
+                    "country": "Bangladesh",
+                    "countryCode": "BD",
+                    "code": "JSR"
+                },
+                {
+                    "city": "Jinan",
+                    "country": "China",
+                    "countryCode": "CN",
+                    "code": "TNA"
+                },
+                {
+                    "city": "Johor Bahru",
+                    "country": "Malaysia",
+                    "countryCode": "MY",
+                    "code": "JHB"
+                },
+                {
+                    "city": "Kanpur",
+                    "country": "India",
+                    "countryCode": "IN",
+                    "code": "KNU"
+                },
+                {
+                    "city": "Kaohsiung City",
+                    "country": "Taiwan",
+                    "countryCode": "TW",
+                    "code": "KHH"
+                },
+                {
+                    "city": "Karachi",
+                    "country": "Pakistan",
+                    "countryCode": "PK",
+                    "code": "KHI"
+                },
+                {
+                    "city": "Kathmandu",
+                    "country": "Nepal",
+                    "countryCode": "NP",
+                    "code": "KTM"
+                },
+                {
+                    "city": "Kolkata",
+                    "country": "India",
+                    "countryCode": "IN",
+                    "code": "CCU"
+                },
+                {
+                    "city": "Krasnoyarsk",
+                    "country": "Russia",
+                    "countryCode": "RU",
+                    "code": "KJA"
+                },
+                {
+                    "city": "Kuala Lumpur",
+                    "country": "Malaysia",
+                    "countryCode": "MY",
+                    "code": "KUL"
+                },
+                {
+                    "city": "Lahore",
+                    "country": "Pakistan",
+                    "countryCode": "PK",
+                    "code": "LHE"
+                },
+                {
+                    "city": "Langfang",
+                    "country": "China",
+                    "countryCode": "CN",
+                    "code": "PKX"
+                },
+                {
+                    "city": "Lanzhou",
+                    "country": "China",
+                    "countryCode": "CN",
+                    "code": "LHW"
+                },
+                {
+                    "city": "Macau",
+                    "country": "China",
+                    "countryCode": "CN",
+                    "code": "MFM"
+                },
+                {
+                    "city": "Malé",
+                    "country": "Maldives",
+                    "countryCode": "MV",
+                    "code": "MLE"
+                },
+                {
+                    "city": "Mandalay",
+                    "country": "Myanmar",
+                    "countryCode": "MM",
+                    "code": "MDL"
+                },
+                {
+                    "city": "Manila",
+                    "country": "Philippines",
+                    "countryCode": "PH",
+                    "code": "MNL"
+                },
+                {
+                    "city": "Mumbai",
+                    "country": "India",
+                    "countryCode": "IN",
+                    "code": "BOM"
+                },
+                {
+                    "city": "Nagpur",
+                    "country": "India",
+                    "countryCode": "IN",
+                    "code": "NAG"
+                },
+                {
+                    "city": "Naha",
+                    "country": "Japan",
+                    "countryCode": "JP",
+                    "code": "OKA"
+                },
+                {
+                    "city": "New Delhi",
+                    "country": "India",
+                    "countryCode": "IN",
+                    "code": "DEL"
+                },
+                {
+                    "city": "Osaka",
+                    "country": "Japan",
+                    "countryCode": "JP",
+                    "code": "KIX"
+                },
+                {
+                    "city": "Patna",
+                    "country": "India",
+                    "countryCode": "IN",
+                    "code": "PAT"
+                },
+                {
+                    "city": "Phnom Penh",
+                    "country": "Cambodia",
+                    "countryCode": "KH",
+                    "code": "PNH"
+                },
+                {
+                    "city": "Qingdao",
+                    "country": "China",
+                    "countryCode": "CN",
+                    "code": "TAO"
+                },
+                {
+                    "city": "Seoul",
+                    "country": "South Korea",
+                    "countryCode": "KR",
+                    "code": "ICN"
+                },
+                {
+                    "city": "Shanghai",
+                    "country": "China",
+                    "countryCode": "CN",
+                    "code": "SHA"
+                },
+                {
+                    "city": "Singapore",
+                    "country": "Singapore",
+                    "countryCode": "SG",
+                    "code": "SIN"
+                },
+                {
+                    "city": "Surat Thani",
+                    "country": "Thailand",
+                    "countryCode": "TH",
+                    "code": "URT"
+                },
+                {
+                    "city": "Taipei",
+                    "country": "Taiwan",
+                    "countryCode": "TW",
+                    "code": "TPE"
+                },
+                {
+                    "city": "Tashkent",
+                    "country": "Uzbekistan",
+                    "countryCode": "UZ",
+                    "code": "TAS"
+                },
+                {
+                    "city": "Tianjin",
+                    "country": "China",
+                    "countryCode": "CN",
+                    "code": "TSN"
+                },
+                {
+                    "city": "Tokyo",
+                    "country": "Japan",
+                    "countryCode": "JP",
+                    "code": "NRT"
+                },
+                {
+                    "city": "Ulaanbaatar",
+                    "country": "Mongolia",
+                    "countryCode": "MN",
+                    "code": "ULN"
+                },
+                {
+                    "city": "Vientiane",
+                    "country": "Laos",
+                    "countryCode": "LA",
+                    "code": "VTE"
+                },
+                {
+                    "city": "Xinyu",
+                    "country": "China",
+                    "countryCode": "CN",
+                    "code": "KHN"
+                },
+                {
+                    "city": "Yangon",
+                    "country": "Myanmar",
+                    "countryCode": "MM",
+                    "code": "RGN"
+                },
+                {
+                    "city": "Yerevan",
+                    "country": "Armenia",
+                    "countryCode": "AM",
+                    "code": "EVN"
+                },
+                {
+                    "city": "Yogyakarta",
+                    "country": "Indonesia",
+                    "countryCode": "ID",
+                    "code": "JOG"
+                },
+                {
+                    "city": "Zhongshan",
+                    "country": "China",
+                    "countryCode": "CN",
+                    "code": "ZGN"
+                },
+                {
+                    "city": "Cagayan de Oro",
+                    "country": "Philippines",
+                    "countryCode": "PH",
+                    "code": "CGY"
+                },
+                {
+                    "city": "Wuhu",
+                    "country": "China",
+                    "countryCode": "CN",
+                    "code": "WHU"
+                },
+                {
+                    "city": "Taizhou",
+                    "country": "China",
+                    "countryCode": "CN",
+                    "code": "HYN"
+                },
+                {
+                    "city": "Kochi",
+                    "country": "India",
+                    "countryCode": "IN",
+                    "code": "COK"
+                },
+                {
+                    "city": "Denpasar",
+                    "country": "Indonesia",
+                    "countryCode": "ID",
+                    "code": "DPS"
+                },
+                {
+                    "city": "Kannur",
+                    "country": "India",
+                    "countryCode": "IN",
+                    "code": "CNN"
+                },
+                {
+                    "city": "Shenzhen",
+                    "country": "China",
+                    "countryCode": "CN",
+                    "code": "SZX"
+                },
+                {
+                    "city": "Guiyang",
+                    "country": "China",
+                    "countryCode": "CN",
+                    "code": "KWE"
+                },
+                {
+                    "city": "Shaoxing",
+                    "country": "China",
+                    "countryCode": "CN",
+                    "code": "HGH"
+                },
+                {
+                    "city": "Changzhou",
+                    "country": "China",
+                    "countryCode": "CN",
+                    "code": "CZX"
+                },
+                {
+                    "city": "Kunming",
+                    "country": "China",
+                    "countryCode": "CN",
+                    "code": "KMG"
+                },
+                {
+                    "city": "Chiang Mai",
+                    "country": "Thailand",
+                    "countryCode": "TH",
+                    "code": "CNX"
+                },
+                {
+                    "city": "Zhengzhou",
+                    "country": "China",
+                    "countryCode": "CN",
+                    "code": "CGO"
+                },
+                {
+                    "city": "Yangquan",
+                    "country": "China",
+                    "countryCode": "CN",
+                    "code": "TYN"
+                },
+                {
+                    "city": "Changsha",
+                    "country": "China",
+                    "countryCode": "CN",
+                    "code": "CSX"
+                },
+                {
+                    "city": "Dalian",
+                    "country": "China",
+                    "countryCode": "CN",
+                    "code": "DLC"
+                },
+                {
+                    "city": "Beihai",
+                    "country": "China",
+                    "countryCode": "CN",
+                    "code": "BHY"
+                },
+                {
+                    "city": "Chongqing",
+                    "country": "China",
+                    "countryCode": "CN",
+                    "code": "CKG"
+                },
+                {
+                    "city": "Huainan",
+                    "country": "China",
+                    "countryCode": "CN",
+                    "code": "HFE"
+                },
+                {
+                    "city": "Xiangyang",
+                    "country": "China",
+                    "countryCode": "CN",
+                    "code": "XFN"
+                },
+                {
+                    "city": "Xining",
+                    "country": "China",
+                    "countryCode": "CN",
+                    "code": "XNN"
+                },
+                {
+                    "city": "Da Nang",
+                    "country": "Vietnam",
+                    "countryCode": "VN",
+                    "code": "DAD"
+                },
+                {
+                    "city": "Jiaxing",
+                    "country": "China",
+                    "countryCode": "CN",
+                    "code": "JXG"
+                },
+                {
+                    "city": "Tarlac City",
+                    "country": "Philippines",
+                    "countryCode": "PH",
+                    "code": "CRK"
+                },
+                {
+                    "city": "Thimphu",
+                    "country": "Bhutan",
+                    "countryCode": "BT",
+                    "code": "PBH"
+                },
+                {
+                    "city": "Baoji",
+                    "country": "China",
+                    "countryCode": "CN",
+                    "code": "XIY"
+                },
+                {
+                    "city": "Chengdu",
+                    "country": "China",
+                    "countryCode": "CN",
+                    "code": "CTU"
+                },
+                {
+                    "city": "Astana",
+                    "country": "Kazakhstan",
+                    "countryCode": "KZ",
+                    "code": "NQZ"
+                },
+                {
+                    "city": "Nanning",
+                    "country": "China",
+                    "countryCode": "CN",
+                    "code": "NNG"
+                },
+                {
+                    "city": "Zibo",
+                    "country": "China",
+                    "countryCode": "CN",
+                    "code": "TNA"
+                }
+            ]
+        },
+        {
+            "region": "Europe",
+            "locations": [
+                {
+                    "city": "Amsterdam",
+                    "country": "Netherlands",
+                    "countryCode": "NL",
+                    "code": "AMS"
+                },
+                {
+                    "city": "Athens",
+                    "country": "Greece",
+                    "countryCode": "GR",
+                    "code": "ATH"
+                },
+                {
+                    "city": "Barcelona",
+                    "country": "Spain",
+                    "countryCode": "ES",
+                    "code": "BCN"
+                },
+                {
+                    "city": "Belgrade",
+                    "country": "Serbia",
+                    "countryCode": "RS",
+                    "code": "BEG"
+                },
+                {
+                    "city": "Berlin",
+                    "country": "Germany",
+                    "countryCode": "DE",
+                    "code": "TXL"
+                },
+                {
+                    "city": "Bratislava",
+                    "country": "Slovakia",
+                    "countryCode": "SK",
+                    "code": "BTS"
+                },
+                {
+                    "city": "Brussels",
+                    "country": "Belgium",
+                    "countryCode": "BE",
+                    "code": "BRU"
+                },
+                {
+                    "city": "Bucharest",
+                    "country": "Romania",
+                    "countryCode": "RO",
+                    "code": "OTP"
+                },
+                {
+                    "city": "Budapest",
+                    "country": "Hungary",
+                    "countryCode": "HU",
+                    "code": "BUD"
+                },
+                {
+                    "city": "Chișinău",
+                    "country": "Moldova",
+                    "countryCode": "MD",
+                    "code": "KIV"
+                },
+                {
+                    "city": "Copenhagen",
+                    "country": "Denmark",
+                    "countryCode": "DK",
+                    "code": "CPH"
+                },
+                {
+                    "city": "Cork",
+                    "country": "Ireland",
+                    "countryCode": "IE",
+                    "code": "ORK"
+                },
+                {
+                    "city": "Dublin",
+                    "country": "Ireland",
+                    "countryCode": "IE",
+                    "code": "DUB"
+                },
+                {
+                    "city": "Düsseldorf",
+                    "country": "Germany",
+                    "countryCode": "DE",
+                    "code": "DUS"
+                },
+                {
+                    "city": "Edinburgh",
+                    "country": "United Kingdom",
+                    "countryCode": "GB",
+                    "code": "EDI"
+                },
+                {
+                    "city": "Frankfurt",
+                    "country": "Germany",
+                    "countryCode": "DE",
+                    "code": "FRA"
+                },
+                {
+                    "city": "Geneva",
+                    "country": "Switzerland",
+                    "countryCode": "CH",
+                    "code": "GVA"
+                },
+                {
+                    "city": "Gothenburg",
+                    "country": "Sweden",
+                    "countryCode": "SE",
+                    "code": "GOT"
+                },
+                {
+                    "city": "Hamburg",
+                    "country": "Germany",
+                    "countryCode": "DE",
+                    "code": "HAM"
+                },
+                {
+                    "city": "Helsinki",
+                    "country": "Finland",
+                    "countryCode": "FI",
+                    "code": "HEL"
+                },
+                {
+                    "city": "Istanbul",
+                    "country": "Turkey",
+                    "countryCode": "TR",
+                    "code": "IST"
+                },
+                {
+                    "city": "Izmir",
+                    "country": "Turkey",
+                    "countryCode": "TR",
+                    "code": "ADB"
+                },
+                {
+                    "city": "Kyiv",
+                    "country": "Ukraine",
+                    "countryCode": "UA",
+                    "code": "KBP"
+                },
+                {
+                    "city": "Lisbon",
+                    "country": "Portugal",
+                    "countryCode": "PT",
+                    "code": "LIS"
+                },
+                {
+                    "city": "London",
+                    "country": "United Kingdom",
+                    "countryCode": "GB",
+                    "code": "LHR"
+                },
+                {
+                    "city": "Luxembourg City",
+                    "country": "Luxembourg",
+                    "countryCode": "LU",
+                    "code": "LUX"
+                },
+                {
+                    "city": "Madrid",
+                    "country": "Spain",
+                    "countryCode": "ES",
+                    "code": "MAD"
+                },
+                {
+                    "city": "Manchester",
+                    "country": "United Kingdom",
+                    "countryCode": "GB",
+                    "code": "MAN"
+                },
+                {
+                    "city": "Marseille",
+                    "country": "France",
+                    "countryCode": "FR",
+                    "code": "MRS"
+                },
+                {
+                    "city": "Milan",
+                    "country": "Italy",
+                    "countryCode": "IT",
+                    "code": "MXP"
+                },
+                {
+                    "city": "Minsk",
+                    "country": "Belarus",
+                    "countryCode": "BY",
+                    "code": "MSQ"
+                },
+                {
+                    "city": "Moscow",
+                    "country": "Russia",
+                    "countryCode": "RU",
+                    "code": "DME"
+                },
+                {
+                    "city": "Munich",
+                    "country": "Germany",
+                    "countryCode": "DE",
+                    "code": "MUC"
+                },
+                {
+                    "city": "Nicosia",
+                    "country": "Cyprus",
+                    "countryCode": "CY",
+                    "code": "LCA"
+                },
+                {
+                    "city": "Oslo",
+                    "country": "Norway",
+                    "countryCode": "NO",
+                    "code": "OSL"
+                },
+                {
+                    "city": "Palermo",
+                    "country": "Italy",
+                    "countryCode": "IT",
+                    "code": "PMO"
+                },
+                {
+                    "city": "Paris",
+                    "country": "France",
+                    "countryCode": "FR",
+                    "code": "CDG"
+                },
+                {
+                    "city": "Prague",
+                    "country": "Czech Republic",
+                    "countryCode": "CZ",
+                    "code": "PRG"
+                },
+                {
+                    "city": "Reykjavík",
+                    "country": "Iceland",
+                    "countryCode": "IS",
+                    "code": "KEF"
+                },
+                {
+                    "city": "Riga",
+                    "country": "Latvia",
+                    "countryCode": "LV",
+                    "code": "RIX"
+                },
+                {
+                    "city": "Rome",
+                    "country": "Italy",
+                    "countryCode": "IT",
+                    "code": "FCO"
+                },
+                {
+                    "city": "Saint Petersburg",
+                    "country": "Russia",
+                    "countryCode": "RU",
+                    "code": "LED"
+                },
+                {
+                    "city": "Sofia",
+                    "country": "Bulgaria",
+                    "countryCode": "BG",
+                    "code": "SOF"
+                },
+                {
+                    "city": "Stockholm",
+                    "country": "Sweden",
+                    "countryCode": "SE",
+                    "code": "ARN"
+                },
+                {
+                    "city": "Stuttgart",
+                    "country": "Germany",
+                    "countryCode": "DE",
+                    "code": "STR"
+                },
+                {
+                    "city": "Tallinn",
+                    "country": "Estonia",
+                    "countryCode": "EE",
+                    "code": "TLL"
+                },
+                {
+                    "city": "Tbilisi",
+                    "country": "Georgia",
+                    "countryCode": "GE",
+                    "code": "TBS"
+                },
+                {
+                    "city": "Thessaloniki",
+                    "country": "Greece",
+                    "countryCode": "GR",
+                    "code": "SKG"
+                },
+                {
+                    "city": "Tirana",
+                    "country": "Albania",
+                    "countryCode": "AL",
+                    "code": "TIA"
+                },
+                {
+                    "city": "Tver",
+                    "country": "Russia",
+                    "countryCode": "RU",
+                    "code": "KLD"
+                },
+                {
+                    "city": "Vienna",
+                    "country": "Austria",
+                    "countryCode": "AT",
+                    "code": "VIE"
+                },
+                {
+                    "city": "Vilnius",
+                    "country": "Lithuania",
+                    "countryCode": "LT",
+                    "code": "VNO"
+                },
+                {
+                    "city": "Warsaw",
+                    "country": "Poland",
+                    "countryCode": "PL",
+                    "code": "WAW"
+                },
+                {
+                    "city": "Yekaterinburg",
+                    "country": "Russia",
+                    "countryCode": "RU",
+                    "code": "SVX"
+                },
+                {
+                    "city": "Zagreb",
+                    "country": "Croatia",
+                    "countryCode": "HR",
+                    "code": "ZAG"
+                },
+                {
+                    "city": "Zürich",
+                    "country": "Switzerland",
+                    "countryCode": "CH",
+                    "code": "ZRH"
+                },
+                {
+                    "city": "Lyon",
+                    "country": "France",
+                    "countryCode": "FR",
+                    "code": "LYS"
+                },
+                {
+                    "city": "Bordeaux",
+                    "country": "France",
+                    "countryCode": "FR",
+                    "code": "BOD"
+                },
+                {
+                    "city": "Skopje",
+                    "country": "North Macedonia",
+                    "countryCode": "MK",
+                    "code": "SKP"
+                }
+            ]
+        },
+        {
+            "region": "Latin America & the Caribbean",
+            "locations": [
+                {
+                    "city": "Americana",
+                    "country": "Brazil",
+                    "countryCode": "BR",
+                    "code": "QWJ"
+                },
+                {
+                    "city": "Arica",
+                    "country": "Chile",
+                    "countryCode": "CL",
+                    "code": "ARI"
+                },
+                {
+                    "city": "Asunción",
+                    "country": "Paraguay",
+                    "countryCode": "PY",
+                    "code": "ASU"
+                },
+                {
+                    "city": "Belém",
+                    "country": "Brazil",
+                    "countryCode": "BR",
+                    "code": "BEL"
+                },
+                {
+                    "city": "Belo Horizonte",
+                    "country": "Brazil",
+                    "countryCode": "BR",
+                    "code": "CNF"
+                },
+                {
+                    "city": "Blumenau",
+                    "country": "Brazil",
+                    "countryCode": "BR",
+                    "code": "BNU"
+                },
+                {
+                    "city": "Bogotá",
+                    "country": "Colombia",
+                    "countryCode": "CO",
+                    "code": "BOG"
+                },
+                {
+                    "city": "Brasilia",
+                    "country": "Brazil",
+                    "countryCode": "BR",
+                    "code": "BSB"
+                },
+                {
+                    "city": "Buenos Aires",
+                    "country": "Argentina",
+                    "countryCode": "AR",
+                    "code": "EZE"
+                },
+                {
+                    "city": "Caçador",
+                    "country": "Brazil",
+                    "countryCode": "BR",
+                    "code": "CFC"
+                },
+                {
+                    "city": "Campinas",
+                    "country": "Brazil",
+                    "countryCode": "BR",
+                    "code": "VCP"
+                },
+                {
+                    "city": "Córdoba",
+                    "country": "Argentina",
+                    "countryCode": "AR",
+                    "code": "COR"
+                },
+                {
+                    "city": "Cuiabá",
+                    "country": "Brazil",
+                    "countryCode": "BR",
+                    "code": "CGB"
+                },
+                {
+                    "city": "Curitiba",
+                    "country": "Brazil",
+                    "countryCode": "BR",
+                    "code": "CWB"
+                },
+                {
+                    "city": "Florianopolis",
+                    "country": "Brazil",
+                    "countryCode": "BR",
+                    "code": "FLN"
+                },
+                {
+                    "city": "Fortaleza",
+                    "country": "Brazil",
+                    "countryCode": "BR",
+                    "code": "FOR"
+                },
+                {
+                    "city": "Georgetown",
+                    "country": "Guyana",
+                    "countryCode": "GY",
+                    "code": "GEO"
+                },
+                {
+                    "city": "Goiânia",
+                    "country": "Brazil",
+                    "countryCode": "BR",
+                    "code": "GYN"
+                },
+                {
+                    "city": "Guatemala City",
+                    "country": "Guatemala",
+                    "countryCode": "GT",
+                    "code": "GUA"
+                },
+                {
+                    "city": "Guayaquil",
+                    "country": "Ecuador",
+                    "countryCode": "EC",
+                    "code": "GYE"
+                },
+                {
+                    "city": "Itajaí",
+                    "country": "Brazil",
+                    "countryCode": "BR",
+                    "code": "ITJ"
+                },
+                {
+                    "city": "Joinville",
+                    "country": "Brazil",
+                    "countryCode": "BR",
+                    "code": "JOI"
+                },
+                {
+                    "city": "Juazeiro do Norte",
+                    "country": "Brazil",
+                    "countryCode": "BR",
+                    "code": "JDO"
+                },
+                {
+                    "city": "Lima",
+                    "country": "Peru",
+                    "countryCode": "PE",
+                    "code": "LIM"
+                },
+                {
+                    "city": "Manaus",
+                    "country": "Brazil",
+                    "countryCode": "BR",
+                    "code": "MAO"
+                },
+                {
+                    "city": "Medellín",
+                    "country": "Colombia",
+                    "countryCode": "CO",
+                    "code": "MDE"
+                },
+                {
+                    "city": "Neuquén",
+                    "country": "Argentina",
+                    "countryCode": "AR",
+                    "code": "NQN"
+                },
+                {
+                    "city": "Panama City",
+                    "country": "Panama",
+                    "countryCode": "PA",
+                    "code": "PTY"
+                },
+                {
+                    "city": "Paramaribo",
+                    "country": "Suriname",
+                    "countryCode": "SR",
+                    "code": "PBM"
+                },
+                {
+                    "city": "Porto Alegre",
+                    "country": "Brazil",
+                    "countryCode": "BR",
+                    "code": "POA"
+                },
+                {
+                    "city": "Quito",
+                    "country": "Ecuador",
+                    "countryCode": "EC",
+                    "code": "UIO"
+                },
+                {
+                    "city": "Recife",
+                    "country": "Brazil",
+                    "countryCode": "BR",
+                    "code": "REC"
+                },
+                {
+                    "city": "Ribeirao Preto",
+                    "country": "Brazil",
+                    "countryCode": "BR",
+                    "code": "RAO"
+                },
+                {
+                    "city": "Rio de Janeiro",
+                    "country": "Brazil",
+                    "countryCode": "BR",
+                    "code": "GIG"
+                },
+                {
+                    "city": "San José",
+                    "country": "Costa Rica",
+                    "countryCode": "CR",
+                    "code": "SJO"
+                },
+                {
+                    "city": "Santiago",
+                    "country": "Chile",
+                    "countryCode": "CL",
+                    "code": "SCL"
+                },
+                {
+                    "city": "Santo Domingo",
+                    "country": "Dominican Republic",
+                    "countryCode": "DO",
+                    "code": "SDQ"
+                },
+                {
+                    "city": "São José do Rio Preto",
+                    "country": "Brazil",
+                    "countryCode": "BR",
+                    "code": "SJP"
+                },
+                {
+                    "city": "São José dos Campos",
+                    "country": "Brazil",
+                    "countryCode": "BR",
+                    "code": "SJK"
+                },
+                {
+                    "city": "São Paulo",
+                    "country": "Brazil",
+                    "countryCode": "BR",
+                    "code": "GRU"
+                },
+                {
+                    "city": "Sorocaba",
+                    "country": "Brazil",
+                    "countryCode": "BR",
+                    "code": "SOD"
+                },
+                {
+                    "city": "Tegucigalpa",
+                    "country": "Honduras",
+                    "countryCode": "HN",
+                    "code": "TGU"
+                },
+                {
+                    "city": "Timbó",
+                    "country": "Brazil",
+                    "countryCode": "BR",
+                    "code": "NVT"
+                },
+                {
+                    "city": "Uberlândia",
+                    "country": "Brazil",
+                    "countryCode": "BR",
+                    "code": "UDI"
+                },
+                {
+                    "city": "Vitoria",
+                    "country": "Brazil",
+                    "countryCode": "BR",
+                    "code": "VIX"
+                },
+                {
+                    "city": "Campos dos Goytacazes",
+                    "country": "Brazil",
+                    "countryCode": "BR",
+                    "code": "CAW"
+                },
+                {
+                    "city": "Chapeco",
+                    "country": "Brazil",
+                    "countryCode": "BR",
+                    "code": "XAP"
+                },
+                {
+                    "city": "Bridgetown",
+                    "country": "Barbados",
+                    "countryCode": "BB",
+                    "code": "BGI"
+                },
+                {
+                    "city": "St. George's",
+                    "country": "Grenada",
+                    "countryCode": "GD",
+                    "code": "GND"
+                },
+                {
+                    "city": "Santiago de los Caballeros",
+                    "country": "Dominican Republic",
+                    "countryCode": "DO",
+                    "code": "STI"
+                },
+                {
+                    "city": "La Paz",
+                    "country": "Bolivia",
+                    "countryCode": "BO",
+                    "code": "LPB"
+                },
+                {
+                    "city": "San Juan",
+                    "country": "Puerto Rico",
+                    "countryCode": "PR",
+                    "code": "SJU"
+                },
+                {
+                    "city": "Barranquilla",
+                    "country": "Colombia",
+                    "countryCode": "CO",
+                    "code": "BAQ"
+                },
+                {
+                    "city": "Palmas",
+                    "country": "Brazil",
+                    "countryCode": "BR",
+                    "code": "PMW"
+                },
+                {
+                    "city": "Aracatuba",
+                    "country": "Brazil",
+                    "countryCode": "BR",
+                    "code": "ARU"
+                },
+                {
+                    "city": "Port of Spain",
+                    "country": "Trinidad and Tobago",
+                    "countryCode": "TT",
+                    "code": "POS"
+                },
+                {
+                    "city": "Salvador",
+                    "country": "Brazil",
+                    "countryCode": "BR",
+                    "code": "SSA"
+                },
+                {
+                    "city": "Timbo",
+                    "country": "Brazil",
+                    "countryCode": "BR",
+                    "code": "NVT"
+                },
+                {
+                    "city": "Neuquen",
+                    "country": "Argentina",
+                    "countryCode": "AR",
+                    "code": "NQN"
+                }
+            ]
+        },
+        {
+            "region": "Middle East",
+            "locations": [
+                {
+                    "city": "Amman",
+                    "country": "Jordan",
+                    "countryCode": "JO",
+                    "code": "AMM"
+                },
+                {
+                    "city": "Astara",
+                    "country": "Azerbaijan",
+                    "countryCode": "AZ",
+                    "code": "LLK"
+                },
+                {
+                    "city": "Baghdad",
+                    "country": "Iraq",
+                    "countryCode": "IQ",
+                    "code": "BGW"
+                },
+                {
+                    "city": "Baku",
+                    "country": "Azerbaijan",
+                    "countryCode": "AZ",
+                    "code": "GYD"
+                },
+                {
+                    "city": "Basra",
+                    "country": "Iraq",
+                    "countryCode": "IQ",
+                    "code": "BSR"
+                },
+                {
+                    "city": "Beirut",
+                    "country": "Lebanon",
+                    "countryCode": "LB",
+                    "code": "BEY"
+                },
+                {
+                    "city": "Dammam",
+                    "country": "Saudi Arabia",
+                    "countryCode": "SA",
+                    "code": "DMM"
+                },
+                {
+                    "city": "Doha",
+                    "country": "Qatar",
+                    "countryCode": "QA",
+                    "code": "DOH"
+                },
+                {
+                    "city": "Dubai",
+                    "country": "United Arab Emirates",
+                    "countryCode": "AE",
+                    "code": "DXB"
+                },
+                {
+                    "city": "Erbil",
+                    "country": "Iraq",
+                    "countryCode": "IQ",
+                    "code": "EBL"
+                },
+                {
+                    "city": "Haifa",
+                    "country": "Israel",
+                    "countryCode": "IL",
+                    "code": "HFA"
+                },
+                {
+                    "city": "Jeddah",
+                    "country": "Saudi Arabia",
+                    "countryCode": "SA",
+                    "code": "JED"
+                },
+                {
+                    "city": "Kuwait City",
+                    "country": "Kuwait",
+                    "countryCode": "KW",
+                    "code": "KWI"
+                },
+                {
+                    "city": "Manama",
+                    "country": "Bahrain",
+                    "countryCode": "BH",
+                    "code": "BAH"
+                },
+                {
+                    "city": "Muscat",
+                    "country": "Oman",
+                    "countryCode": "OM",
+                    "code": "MCT"
+                },
+                {
+                    "city": "Najaf",
+                    "country": "Iraq",
+                    "countryCode": "IQ",
+                    "code": "NJF"
+                },
+                {
+                    "city": "Nasiriyah",
+                    "country": "Iraq",
+                    "countryCode": "IQ",
+                    "code": "XNH"
+                },
+                {
+                    "city": "Ramallah",
+                    "country": "Palestine",
+                    "countryCode": "PS",
+                    "code": "ZDM"
+                },
+                {
+                    "city": "Riyadh",
+                    "country": "Saudi Arabia",
+                    "countryCode": "SA",
+                    "code": "RUH"
+                },
+                {
+                    "city": "Sulaymaniyah",
+                    "country": "Iraq",
+                    "countryCode": "IQ",
+                    "code": "ISU"
+                },
+                {
+                    "city": "Tel Aviv",
+                    "country": "Israel",
+                    "countryCode": "IL",
+                    "code": "TLV"
+                }
+            ]
+        },
+        {
+            "region": "North America",
+            "locations": [
+                {
+                    "city": "Ashburn",
+                    "country": "United States",
+                    "countryCode": "US",
+                    "code": "IAD"
+                },
+                {
+                    "city": "Atlanta",
+                    "country": "United States",
+                    "countryCode": "US",
+                    "code": "ATL"
+                },
+                {
+                    "city": "Boston",
+                    "country": "United States",
+                    "countryCode": "US",
+                    "code": "BOS"
+                },
+                {
+                    "city": "Buffalo",
+                    "country": "United States",
+                    "countryCode": "US",
+                    "code": "BUF"
+                },
+                {
+                    "city": "Calgary",
+                    "country": "Canada",
+                    "countryCode": "CA",
+                    "code": "YYC"
+                },
+                {
+                    "city": "Charlotte",
+                    "country": "United States",
+                    "countryCode": "US",
+                    "code": "CLT"
+                },
+                {
+                    "city": "Chicago",
+                    "country": "United States",
+                    "countryCode": "US",
+                    "code": "ORD"
+                },
+                {
+                    "city": "Columbus",
+                    "country": "United States",
+                    "countryCode": "US",
+                    "code": "CMH"
+                },
+                {
+                    "city": "Dallas",
+                    "country": "United States",
+                    "countryCode": "US",
+                    "code": "DFW"
+                },
+                {
+                    "city": "Denver",
+                    "country": "United States",
+                    "countryCode": "US",
+                    "code": "DEN"
+                },
+                {
+                    "city": "Detroit",
+                    "country": "United States",
+                    "countryCode": "US",
+                    "code": "DTW"
+                },
+                {
+                    "city": "Honolulu",
+                    "country": "United States",
+                    "countryCode": "US",
+                    "code": "HNL"
+                },
+                {
+                    "city": "Houston",
+                    "country": "United States",
+                    "countryCode": "US",
+                    "code": "IAH"
+                },
+                {
+                    "city": "Indianapolis",
+                    "country": "United States",
+                    "countryCode": "US",
+                    "code": "IND"
+                },
+                {
+                    "city": "Jacksonville",
+                    "country": "United States",
+                    "countryCode": "US",
+                    "code": "JAX"
+                },
+                {
+                    "city": "Kansas City",
+                    "country": "United States",
+                    "countryCode": "US",
+                    "code": "MCI"
+                },
+                {
+                    "city": "Las Vegas",
+                    "country": "United States",
+                    "countryCode": "US",
+                    "code": "LAS"
+                },
+                {
+                    "city": "Los Angeles",
+                    "country": "United States",
+                    "countryCode": "US",
+                    "code": "LAX"
+                },
+                {
+                    "city": "McAllen",
+                    "country": "United States",
+                    "countryCode": "US",
+                    "code": "MFE"
+                },
+                {
+                    "city": "Memphis",
+                    "country": "United States",
+                    "countryCode": "US",
+                    "code": "MEM"
+                },
+                {
+                    "city": "Mexico City",
+                    "country": "Mexico",
+                    "countryCode": "MX",
+                    "code": "MEX"
+                },
+                {
+                    "city": "Miami",
+                    "country": "United States",
+                    "countryCode": "US",
+                    "code": "MIA"
+                },
+                {
+                    "city": "Minneapolis",
+                    "country": "United States",
+                    "countryCode": "US",
+                    "code": "MSP"
+                },
+                {
+                    "city": "Montgomery",
+                    "country": "United States",
+                    "countryCode": "US",
+                    "code": "MGM"
+                },
+                {
+                    "city": "Montréal",
+                    "country": "Canada",
+                    "countryCode": "CA",
+                    "code": "YUL"
+                },
+                {
+                    "city": "Nashville",
+                    "country": "United States",
+                    "countryCode": "US",
+                    "code": "BNA"
+                },
+                {
+                    "city": "Newark",
+                    "country": "United States",
+                    "countryCode": "US",
+                    "code": "EWR"
+                },
+                {
+                    "city": "Norfolk",
+                    "country": "United States",
+                    "countryCode": "US",
+                    "code": "ORF"
+                },
+                {
+                    "city": "Omaha",
+                    "country": "United States",
+                    "countryCode": "US",
+                    "code": "OMA"
+                },
+                {
+                    "city": "Ottawa",
+                    "country": "Canada",
+                    "countryCode": "CA",
+                    "code": "YOW"
+                },
+                {
+                    "city": "Philadelphia",
+                    "country": "United States",
+                    "countryCode": "US",
+                    "code": "PHL"
+                },
+                {
+                    "city": "Phoenix",
+                    "country": "United States",
+                    "countryCode": "US",
+                    "code": "PHX"
+                },
+                {
+                    "city": "Pittsburgh",
+                    "country": "United States",
+                    "countryCode": "US",
+                    "code": "PIT"
+                },
+                {
+                    "city": "Portland",
+                    "country": "United States",
+                    "countryCode": "US",
+                    "code": "PDX"
+                },
+                {
+                    "city": "Queretaro",
+                    "country": "Mexico",
+                    "countryCode": "MX",
+                    "code": "QRO"
+                },
+                {
+                    "city": "Richmond",
+                    "country": "United States",
+                    "countryCode": "US",
+                    "code": "RIC"
+                },
+                {
+                    "city": "Sacramento",
+                    "country": "United States",
+                    "countryCode": "US",
+                    "code": "SMF"
+                },
+                {
+                    "city": "Salt Lake City",
+                    "country": "United States",
+                    "countryCode": "US",
+                    "code": "SLC"
+                },
+                {
+                    "city": "San Diego",
+                    "country": "United States",
+                    "countryCode": "US",
+                    "code": "SAN"
+                },
+                {
+                    "city": "San Jose",
+                    "country": "United States",
+                    "countryCode": "US",
+                    "code": "SJC"
+                },
+                {
+                    "city": "Saskatoon",
+                    "country": "Canada",
+                    "countryCode": "CA",
+                    "code": "YXE"
+                },
+                {
+                    "city": "Seattle",
+                    "country": "United States",
+                    "countryCode": "US",
+                    "code": "SEA"
+                },
+                {
+                    "city": "Sioux Falls",
+                    "country": "United States",
+                    "countryCode": "US",
+                    "code": "FSD"
+                },
+                {
+                    "city": "St. Louis",
+                    "country": "United States",
+                    "countryCode": "US",
+                    "code": "STL"
+                },
+                {
+                    "city": "Tallahassee",
+                    "country": "United States",
+                    "countryCode": "US",
+                    "code": "TLH"
+                },
+                {
+                    "city": "Toronto",
+                    "country": "Canada",
+                    "countryCode": "CA",
+                    "code": "YYZ"
+                },
+                {
+                    "city": "Vancouver",
+                    "country": "Canada",
+                    "countryCode": "CA",
+                    "code": "YVR"
+                },
+                {
+                    "city": "Winnipeg",
+                    "country": "Canada",
+                    "countryCode": "CA",
+                    "code": "YWG"
+                },
+                {
+                    "city": "San Francisco",
+                    "country": "United States",
+                    "countryCode": "US",
+                    "code": "SFO"
+                },
+                {
+                    "city": "Kingston",
+                    "country": "Jamaica",
+                    "countryCode": "JM",
+                    "code": "KIN"
+                },
+                {
+                    "city": "Bangor",
+                    "country": "United States",
+                    "countryCode": "US",
+                    "code": "BGR"
+                },
+                {
+                    "city": "Austin",
+                    "country": "United States",
+                    "countryCode": "US",
+                    "code": "AUS"
+                },
+                {
+                    "city": "Albuquerque",
+                    "country": "United States",
+                    "countryCode": "US",
+                    "code": "ABQ"
+                },
+                {
+                    "city": "Guadalajara",
+                    "country": "Mexico",
+                    "countryCode": "MX",
+                    "code": "GDL"
+                },
+                {
+                    "city": "San Antonio",
+                    "country": "United States",
+                    "countryCode": "US",
+                    "code": "SAT"
+                },
+                {
+                    "city": "Cleveland",
+                    "country": "United States",
+                    "countryCode": "US",
+                    "code": "CLE"
+                },
+                {
+                    "city": "Durham",
+                    "country": "United States",
+                    "countryCode": "US",
+                    "code": "RDU"
+                },
+                {
+                    "city": "Oklahoma City",
+                    "country": "United States",
+                    "countryCode": "US",
+                    "code": "OKC"
+                },
+                {
+                    "city": "Tampa",
+                    "country": "United States",
+                    "countryCode": "US",
+                    "code": "TPA"
+                },
+                {
+                    "city": "Anchorage",
+                    "country": "United States",
+                    "countryCode": "US",
+                    "code": "ANC"
+                },
+                {
+                    "city": "Halifax",
+                    "country": "Canada",
+                    "countryCode": "CA",
+                    "code": "YHZ"
+                }
+            ]
+        },
+        {
+            "region": "Oceania",
+            "locations": [
+                {
+                    "city": "Adelaide",
+                    "country": "Australia",
+                    "countryCode": "AU",
+                    "code": "ADL"
+                },
+                {
+                    "city": "Auckland",
+                    "country": "New Zealand",
+                    "countryCode": "NZ",
+                    "code": "AKL"
+                },
+                {
+                    "city": "Brisbane",
+                    "country": "Australia",
+                    "countryCode": "AU",
+                    "code": "BNE"
+                },
+                {
+                    "city": "Canberra",
+                    "country": "Australia",
+                    "countryCode": "AU",
+                    "code": "CBR"
+                },
+                {
+                    "city": "Christchurch",
+                    "country": "New Zealand",
+                    "countryCode": "NZ",
+                    "code": "CHC"
+                },
+                {
+                    "city": "Hagatna",
+                    "country": "Guam",
+                    "countryCode": "GU",
+                    "code": "GUM"
+                },
+                {
+                    "city": "Melbourne",
+                    "country": "Australia",
+                    "countryCode": "AU",
+                    "code": "MEL"
+                },
+                {
+                    "city": "Noumea",
+                    "country": "New Caledonia",
+                    "countryCode": "NC",
+                    "code": "NOU"
+                },
+                {
+                    "city": "Perth",
+                    "country": "Australia",
+                    "countryCode": "AU",
+                    "code": "PER"
+                },
+                {
+                    "city": "Sydney",
+                    "country": "Australia",
+                    "countryCode": "AU",
+                    "code": "SYD"
+                },
+                {
+                    "city": "Tahiti",
+                    "country": "French Polynesia",
+                    "countryCode": "PF",
+                    "code": "PPT"
+                },
+                {
+                    "city": "Suva",
+                    "country": "Fiji",
+                    "countryCode": "FJ",
+                    "code": "SUV"
+                },
+                {
+                    "city": "Hobart",
+                    "country": "Australia",
+                    "countryCode": "AU",
+                    "code": "HBA"
+                }
+            ]
+        }
+    ]
+}
