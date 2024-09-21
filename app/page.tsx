@@ -92,6 +92,11 @@ function HeroSection() {
             Get Started <ArrowRight className="ml-2" />
           </Button>
         </Link>
+        <Link href="https://github.com/meetpateltech/convelyze">
+          <Button size="lg" className="rounded-full px-6 sm:px-8 py-4 sm:py-6 text-base text-white sm:text-lg mb-12 bg-gradient-to-r from-cyan-600 to-teal-600 hover:from-cyan-700 hover:to-teal-700 transition-all duration-300 shadow-lg hover:shadow-xl">
+            Source Code <Github className="ml-2" />
+          </Button>
+        </Link>
       </div>
       <div className="relative w-full h-auto sm:h-120 mb-12">
         <img 
