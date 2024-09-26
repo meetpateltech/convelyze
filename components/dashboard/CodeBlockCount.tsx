@@ -44,6 +44,7 @@ const languageIconMap: Record<string, keyof typeof DevIcons> = {
 
 const LanguageBox: React.FC<{ language: string; count: number }> = ({ language, count }) => {
   const iconName = languageIconMap[language.toLowerCase()] || `${language.charAt(0).toUpperCase() + language.slice(1)}Original`
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const IconComponent = (DevIcons as any)[iconName]
 
   const displayName = language
