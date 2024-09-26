@@ -501,6 +501,21 @@ export class ChatGPTDataAnalysis {
     return locationCodeCount;
   }
 
+  public getRequestedModelCount(): Record<string, number> {
+    const modelMessageCount: Record<string, number> = {};
+
+    this.data.forEach(conversation => {
+      Object.values(conversation.mapping).forEach(node => {
+        if (node.message !== null && node.message.author.role === 'assistant' && node.message.metadata.requested_model_slug) {
+          const modelSlug = node.message.metadata.requested_model_slug;
+          modelMessageCount[modelSlug] = (modelMessageCount[modelSlug] || 0) + 1;
+        }
+      });
+    });
+
+    return modelMessageCount;
+  }
+
   public getDefaultAndSpecificModelMessageCount(): { defaultModelCount: number, specificModelCount: number } {
     let defaultModelCount = 0;
     let specificModelCount = 0;

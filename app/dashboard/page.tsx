@@ -11,6 +11,7 @@ import GlassCard from '@/components/cards/GlassCard';
 import RoleBasedMessageCount from '@/components/dashboard/RoleBasedMessageCount';
 import ShiftWiseMessageCount from '@/components/dashboard/ShiftWiseMessageCount';
 import ModelWiseMessageCount from '@/components/dashboard/ModelWiseMessageCount';
+import RequestedModelCount from '@/components/dashboard/RequestedModelCount';
 import UsageTimeline from '@/components/dashboard/UsageTimeline';
 import DefaultModelSlugCount from '@/components/dashboard/DefaultModelSlugCount';
 import AIMessageStatus from '@/components/dashboard/AIMessageStatus';
@@ -71,7 +72,8 @@ export default function Dashboard() {
         userAttachmentMimeTypeCount: newAnalysis.getUserAttachmentMimeTypeCount(),
         toolUsageData: newAnalysis.getToolNameCount(),
         locationData: newAnalysis.getLocationCodes(),
-        finishDetailData: newAnalysis.getFinishDetailsTypeCount()
+        finishDetailData: newAnalysis.getFinishDetailsTypeCount(),
+        requestedModelData: newAnalysis.getRequestedModelCount()
       };
 
       setDashboardData(newDashboardData);
@@ -304,6 +306,7 @@ export default function Dashboard() {
                   <RoleBasedMessageCount data={dashboardData.roleBasedMessageData} />
                   <ShiftWiseMessageCount data={dashboardData.shiftWiseMessageData} />
                   <ModelWiseMessageCount data={dashboardData.modelWiseMessageData} />
+                  <RequestedModelCount data={dashboardData.requestedModelData} />
                   <UsageTimeline data={dashboardData.usageTimelineData} />
                   <DefaultModelSlugCount data={dashboardData.defaultModelSlugData} />
                   <AIMessageStatus data={dashboardData.aiMessageStatusData} />
