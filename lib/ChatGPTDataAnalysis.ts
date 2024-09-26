@@ -516,6 +516,27 @@ export class ChatGPTDataAnalysis {
     return modelMessageCount;
   }
 
+  public getAssistantGeneratedCodeBlockCount(): Record<string, number> {
+    const codeBlockCount: Record<string, number> = {};
+  
+    this.data.forEach(conversation => {
+      Object.values(conversation.mapping).forEach(node => {
+        if (node.message !== null && node.message.author.role === 'assistant' && node.message.content.parts) {
+          node.message.content.parts.forEach(part => {
+            const codeBlockRegex = /```(\w+)/g;
+            let match;
+            while ((match = codeBlockRegex.exec(part)) !== null) {
+              const langName = match[1];
+              codeBlockCount[langName] = (codeBlockCount[langName] || 0) + 1;
+            }
+          });
+        }
+      });
+    });
+  
+    return codeBlockCount;
+  }
+
   public getDefaultAndSpecificModelMessageCount(): { defaultModelCount: number, specificModelCount: number } {
     let defaultModelCount = 0;
     let specificModelCount = 0;

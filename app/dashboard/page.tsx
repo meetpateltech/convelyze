@@ -15,6 +15,7 @@ import RequestedModelCount from '@/components/dashboard/RequestedModelCount';
 import UsageTimeline from '@/components/dashboard/UsageTimeline';
 import DefaultModelSlugCount from '@/components/dashboard/DefaultModelSlugCount';
 import AIMessageStatus from '@/components/dashboard/AIMessageStatus';
+import AICodeStatsCard from '@/components/dashboard/CodeBlockCount';
 import UsageCard from '@/components/dashboard/UsageCard';
 import ToolUsageCard from '@/components/dashboard/ToolUsageCard';
 import Background from '@/components/ui/background';
@@ -73,7 +74,8 @@ export default function Dashboard() {
         toolUsageData: newAnalysis.getToolNameCount(),
         locationData: newAnalysis.getLocationCodes(),
         finishDetailData: newAnalysis.getFinishDetailsTypeCount(),
-        requestedModelData: newAnalysis.getRequestedModelCount()
+        requestedModelData: newAnalysis.getRequestedModelCount(),
+        codeBlockCount: newAnalysis.getAssistantGeneratedCodeBlockCount()
       };
 
       setDashboardData(newDashboardData);
@@ -310,7 +312,11 @@ export default function Dashboard() {
                   <UsageTimeline data={dashboardData.usageTimelineData} />
                   <DefaultModelSlugCount data={dashboardData.defaultModelSlugData} />
                   <AIMessageStatus data={dashboardData.aiMessageStatusData} />
-                
+
+                  <div className="col-span-full">
+                  <AICodeStatsCard codeBlockCount={dashboardData.codeBlockCount} />
+                  </div>
+                  
                   <div className="col-span-full">
                     <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Usage Statistics</h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
