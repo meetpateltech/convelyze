@@ -3,6 +3,7 @@ import { ArrowRight, Shield, Sun, BarChart2, Github, Twitter } from 'lucide-reac
 import { Button } from '@/components/ui/button'
 import { ModeToggle } from '@/components/ModeToggle'
 import Background from '@/components/ui/background'
+import DashboardCarousel from '@/components/DashboardCarousel'
 import Link from 'next/link'
 
 export default function CoolLandingPage() {
@@ -31,7 +32,7 @@ export default function CoolLandingPage() {
           <HowToUseSection />
         </main>
         
-        <footer className="mt-16 p-6 text-center">
+        <footer className="mt-4 p-6 text-center">
       <h2 className="text-3xl font-bold mb-8 text-gray-800 dark:text-gray-200">
         Built with
       </h2>
@@ -72,7 +73,6 @@ export default function CoolLandingPage() {
     </footer>
 
       </div>
-      {/* <Particles /> */}
     </div>
   )
 }
@@ -87,6 +87,7 @@ function HeroSection() {
         <p className="text-lg sm:text-xl text-gray-700 dark:text-gray-300 mb-8 max-w-3xl mx-auto">
         See your ChatGPT conversations in a whole new way. Our simple and easy-to-use dashboard shows you how you&apos;re using ChatGPT, so you can get more out of it.
         </p>
+        <div className="flex justify-center space-x-4">
         <Link href="/dashboard">
           <Button size="lg" className="rounded-full px-6 sm:px-8 py-4 sm:py-6 text-base text-white sm:text-lg mb-12 bg-gradient-to-r from-cyan-600 to-teal-600 hover:from-cyan-700 hover:to-teal-700 transition-all duration-300 shadow-lg hover:shadow-xl">
             Get Started <ArrowRight className="ml-2" />
@@ -97,13 +98,10 @@ function HeroSection() {
             Source Code <Github className="ml-2" />
           </Button>
         </Link>
+        </div>
       </div>
       <div className="relative w-full h-auto sm:h-120 mb-12">
-        <img 
-          src="https://cdn.jsdelivr.net/gh/meetpateltech/convelyze@main/public/dashboard.png" 
-          alt="Dashboard Preview" 
-          className="rounded-3xl shadow-2xl object-cover w-full h-full"
-        />
+      <DashboardCarousel/>
       </div>
     </section>
   )
@@ -154,18 +152,49 @@ interface FeatureCardProps {
 
 function FeatureCard({ icon, title, description, color }: FeatureCardProps) {
   return (
-    <div className={`bg-white dark:bg-gray-800 rounded-3xl p-6 sm:p-8 shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden`}>
-      <div className="relative">
-        <div className={`absolute -top-10 -right-10 w-24 sm:w-32 h-24 sm:h-32 bg-gradient-to-br ${color} rounded-full opacity-20`}></div>
-        <div className="text-3xl sm:text-4xl mb-4 sm:mb-6 relative z-10">
-          <div>{icon}</div>
+    <div
+      className={`relative bg-white dark:bg-gray-900 rounded-3xl p-8 shadow-xl transition-all transform hover:scale-105 hover:shadow-2xl duration-500 ease-out overflow-hidden group`}
+    >
+      {/* Glassy gradient background */}
+      <div
+        className={`absolute inset-0 z-0 bg-gradient-to-br ${color} opacity-25 blur-lg transform scale-110 transition-transform group-hover:rotate-6 group-hover:scale-125`}
+      />
+
+      {/* Glowing decorative circles */}
+      <div
+        className={`absolute -top-14 -right-14 w-36 h-36 bg-gradient-to-br ${color} rounded-full opacity-30 transform group-hover:scale-125 group-hover:blur-md transition-all duration-500 animate-pulse`}
+      />
+
+      <div className="relative z-10">
+        {/* Icon stays in place on hover */}
+        <div className="text-4xl sm:text-5xl mb-6 transition-transform duration-500">
+          {icon}
         </div>
+
+        {/* Title with gradient mask */}
+        <h3 className="text-2xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-300 mb-4">
+          {title}
+        </h3>
+
+        {/* Description */}
+        <p className="text-gray-600 dark:text-gray-300 text-base sm:text-lg">
+          {description}
+        </p>
       </div>
-      <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-white mb-3 sm:mb-4">{title}</h3>
-      <p className="text-gray-600 dark:text-gray-300 text-base sm:text-lg">{description}</p>
+
+      {/* Floating glowing background element */}
+      <div
+        className={`absolute -bottom-12 -left-12 w-36 h-36 bg-gradient-to-br ${color} opacity-40 rounded-full transform rotate-45 scale-110 blur-2xl transition-transform group-hover:scale-125`}
+      />
+
+      {/* Light shine effect on hover */}
+      <div
+        className="absolute inset-0 bg-gradient-to-t from-transparent to-white opacity-10 rounded-3xl transition-opacity duration-500 group-hover:opacity-20"
+      />
     </div>
   );
 }
+
 
 function HowToUseSection() {
   return (
@@ -174,7 +203,6 @@ function HowToUseSection() {
         Three Simple Steps to Insights
       </h2>
       <div className="relative">
-        <div className="absolute top-0 bottom-0 left-1/2 w-0.5 bg-gradient-to-b from-green-600 to-cyan-600 hidden sm:block"></div>
         <StepCard 
           number={1}
           title="Export Your ChatGPT Data"
@@ -208,37 +236,22 @@ interface StepCardProps {
 function StepCard({ number, title, description, imageSrc }: StepCardProps) {
   return (
     <div className="flex flex-col sm:flex-row items-center mb-16 sm:mb-24 relative">
+      {/* Content Area */}
       <div className={`w-full sm:w-1/2 ${number % 2 === 0 ? 'sm:order-2 sm:pl-8' : 'sm:pr-8'} mb-6 sm:mb-0`}>
-        <div className="bg-white dark:bg-gray-800 rounded-3xl p-6 sm:p-8 shadow-xl">
-          <div className="text-3xl sm:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-green-600 mb-4">{number}</div>
+        {/* Glassmorphism Effect */}
+        <div className="backdrop-blur-lg bg-white/30 dark:bg-gray-800/30 rounded-3xl p-6 sm:p-8 shadow-xl border border-gray-200 dark:border-gray-700">
+          <div className="text-3xl sm:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-teal-600 mb-4">
+            {number}
+          </div>
           <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-white mb-4">{title}</h3>
           <p className="text-gray-600 dark:text-gray-300 text-base sm:text-lg">{description}</p>
         </div>
       </div>
+
+      {/* Image Area */}
       <div className={`w-full sm:w-1/2 ${number % 2 === 0 ? 'sm:order-1' : ''} mt-6 sm:mt-0`}>
         <img src={imageSrc} alt={title} className="w-full h-fit sm:h-70 object-cover rounded-3xl shadow-lg" />
       </div>
-      <div className="absolute left-1/2 -top-6 sm:top-1/2 transform -translate-x-1/2 sm:-translate-y-1/2 w-12 h-12 bg-gradient-to-r from-green-600 to-teal-600 rounded-full flex items-center justify-center text-white text-2xl font-bold z-10">
-        {number}
-      </div>
     </div>
-  )
+  );
 }
-
-/* function Particles() {
-  return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {[...Array(50)].map((_, i) => (
-        <div
-          key={i}
-          className="absolute w-2 h-2 bg-cyan-500 rounded-full"
-          style={{
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
-            animation: `float ${Math.random() * 10 + 5}s infinite ease-in-out`,
-          }}
-        />
-      ))}
-    </div>
-  )
-} */
