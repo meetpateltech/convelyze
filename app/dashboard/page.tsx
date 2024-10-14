@@ -1,8 +1,8 @@
 'use client'
 
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { useDropzone } from 'react-dropzone';
-import { MessageCircle, MessageSquare, Image as ImageIcon, Mic, Calendar, Users, Archive, BarChart2, ChartColumn, FileText, Video, Brain, Code, Globe, Download, Upload, ScanSearch, CircleStop } from 'lucide-react';
+import { MessageCircle, MessageSquare, Image as ImageIcon, Mic, Calendar, Users, Archive, BarChart2, ChartColumn, FileText, Video, Brain, Code, Globe, Download, Upload, ScanSearch, CircleStop, Loader } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import ActivityCalendar from '@/components/dashboard/ActivityCalendar';
 import NetworkLocationCard from '@/components/dashboard/NetworkLocationCard';
@@ -29,6 +29,42 @@ import Confetti from 'react-confetti'
 import useWindowSize from 'react-use/lib/useWindowSize'
 import { toast } from 'sonner';
 // import { useRouter } from 'next/navigation';
+import { TokenUsageCard } from '@/components/dashboard/TokenUsageCard';
+import { SummaryCard } from '@/components/dashboard/SummaryCard';
+import { formatCurrency } from '@/components/dashboard/TokenDisplay';
+import { calculateCost, getPricing } from '@/utils/pricing';
+import { TokenUsageBarChart } from '@/components/dashboard/TokenUsageBarChart';
+import { CostLineChart } from '@/components/dashboard/CostLineChart';
+
+interface TokenUsage {
+  userTokens: number;
+  assistantTokens: number;
+}
+
+interface MonthlyData {
+  [modelName: string]: TokenUsage;
+}
+
+interface TokenUsageData {
+  [month: string]: MonthlyData;
+}
+
+interface TotalTokens {
+  input: number;
+  output: number;
+  total: number;
+}
+
+interface TotalCost {
+  input: string;
+  output: string;
+  total: string;
+}
+
+interface Totals {
+  tokens: TotalTokens;
+  cost: TotalCost;
+}
 
 export default function Dashboard() {
   const [mode, setMode] = useState('normal');
@@ -38,6 +74,11 @@ export default function Dashboard() {
   const [analysis, setAnalysis] = useState<ChatGPTDataAnalysis | null>(null);
   const [showConfetti, setShowConfetti] = useState(false);
   const { width, height } = useWindowSize()
+  const [tokenUsageData, setTokenUsageData] = useState<TokenUsageData>({});
+  const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
+  const [totals, setTotals] = useState<Totals | null>(null);
+  const [isTokenLoading, setIsTokenLoading] = useState(false);
+  const [tokenDataCalculated, setTokenDataCalculated] = useState(false);
 
   // const router = useRouter();
 
@@ -118,6 +159,70 @@ export default function Dashboard() {
     }
   }, []);
 
+  const calculateTotals = (data: TokenUsageData): Totals => {
+    let totalInputTokens = 0;
+    let totalOutputTokens = 0;
+    let totalInputCost = 0;
+    let totalOutputCost = 0;
+
+    Object.values(data).forEach(monthData => {
+      Object.entries(monthData).forEach(([modelName, usage]) => {
+        totalInputTokens += usage.userTokens;
+        totalOutputTokens += usage.assistantTokens;
+        const pricing = getPricing(modelName);
+        totalInputCost += calculateCost(usage.userTokens, pricing.inputCost);
+        totalOutputCost += calculateCost(usage.assistantTokens, pricing.outputCost);
+      });
+    });
+
+    return {
+      tokens: {
+        input: totalInputTokens,
+        output: totalOutputTokens,
+        total: totalInputTokens + totalOutputTokens
+      },
+      cost: {
+        input: formatCurrency(totalInputCost),
+        output: formatCurrency(totalOutputCost),
+        total: formatCurrency(totalInputCost + totalOutputCost)
+      }
+    };
+  };
+
+  const handleYearChange = (year: number) => {
+    setSelectedYear(year);
+  };
+
+  useEffect(() => {
+    if (mode === 'token' && analysis && !tokenDataCalculated) {
+      setIsTokenLoading(true);
+      // Delay the token calculations to prevent UI lag
+      const timer = setTimeout(() => {
+        try {
+          const newTokenUsageData = analysis.getMonthlyModelWiseTokenUsage();
+          setTokenUsageData(newTokenUsageData);
+          const newTotals: Totals = calculateTotals(newTokenUsageData);
+          setTotals(newTotals);
+          setTokenDataCalculated(true);
+        } catch (error) {
+          console.error('Error calculating token usage:', error);
+          toast.error('Error counting tokens. Please try again.');
+        } finally {
+          setIsTokenLoading(false);
+        }
+      }, 100); // 100ms delay
+  
+      return () => clearTimeout(timer);
+    }
+  }, [mode, analysis, tokenDataCalculated]);
+
+  const handleModeChange = (newMode: string) => {
+    setMode(newMode);
+    if (newMode === 'token' && !tokenDataCalculated) {
+      setIsTokenLoading(true);
+    }
+  };
+
   return (
     <>
       <Background />
@@ -161,6 +266,13 @@ export default function Dashboard() {
                       onClick={() => setMode('advanced')}
                     >
                       Advanced
+                    </Button>
+                    <Button
+                      variant={mode === 'token' ? 'secondary' : 'ghost'}
+                      className={`rounded-full px-3 py-1 ${mode === 'token' ? 'bg-white dark:bg-gray-800 text-gray-900 dark:text-white' : 'text-gray-800 dark:text-white'}`}
+                      onClick={() => handleModeChange('token')}
+                    >
+                      Tokens
                     </Button>
                   </div>
                 </>
@@ -389,6 +501,43 @@ export default function Dashboard() {
                     </div>
                   </div>
                 </div>
+              )}
+
+              {mode === 'token' && (
+                <>
+                  {isTokenLoading ? (
+                    <div className="flex flex-col items-center justify-center h-64">
+                      <Loader className="w-8 h-8 animate-spin text-primary" />
+                      <p className="mt-4 text-lg font-semibold text-gray-700 dark:text-gray-300">
+                        Calculating token usage...
+                      </p>
+                    </div>
+                  ) : totals ? (
+                    <>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                        <SummaryCard title="Tokens" data={totals.tokens} />
+                        <SummaryCard title="Cost" data={totals.cost} />
+                      </div>
+                      
+                      <div className="grid grid-cols-1 gap-8 md:grid-cols-2 mb-8">
+                        <div>
+                          <TokenUsageBarChart data={tokenUsageData} year={selectedYear} onYearChange={handleYearChange} />
+                        </div>
+                        
+                        <div>
+                          <CostLineChart data={tokenUsageData} year={selectedYear} onYearChange={handleYearChange} />
+                        </div>
+                      </div>
+                      
+                      {/* Monthly Token Usage Cards */}
+                      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                        {Object.entries(tokenUsageData).map(([month, data]) => (
+                          <TokenUsageCard key={month} month={month} data={data} />
+                        ))}
+                      </div>
+                    </>
+                  ) : null}
+                </>
               )}
             </>
           )}

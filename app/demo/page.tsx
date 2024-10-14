@@ -19,7 +19,25 @@ import ToolUsageCard from '@/components/dashboard/ToolUsageCard';
 import Background from '@/components/ui/background';
 import { ModeToggle } from '@/components/ModeToggle';
 import Link from 'next/link';
+import { TokenUsageCard } from '@/components/dashboard/TokenUsageCard';
+import { SummaryCard } from '@/components/dashboard/SummaryCard';
+import { formatCurrency } from '@/components/dashboard/TokenDisplay';
+import { calculateCost, getPricing } from '@/utils/pricing';
+import { TokenUsageBarChart } from '@/components/dashboard/TokenUsageBarChart';
+import { CostLineChart } from '@/components/dashboard/CostLineChart';
 
+interface TokenUsage {
+  userTokens: number;
+  assistantTokens: number;
+}
+
+interface MonthlyData {
+  [modelName: string]: TokenUsage;
+}
+
+interface TokenUsageData {
+  [month: string]: MonthlyData;
+}
 
 export default function Dashboard() {
   const [mode, setMode] = useState('normal');
@@ -149,6 +167,158 @@ export default function Dashboard() {
     assistant: { SFO: 2544, LAS: 702, MEX: 1, LHR: 1, TXL: 184, BOM: 1, SIN: 15, FRA: 17 }
   }
 
+  const tokenUsageData: TokenUsageData = {
+    'Oct-24': {
+      'o1-preview': { userTokens: 101345, assistantTokens: 191824 },
+      'o1-mini': { userTokens: 247382, assistantTokens: 342193 },
+      'gpt-4o': { userTokens: 95422, assistantTokens: 99693 },
+      'gpt-4o-mini': { userTokens: 234345, assistantTokens: 234545 },
+    },
+    'Sep-24': {
+      'gpt-4o': { userTokens: 195422, assistantTokens: 196693 },
+      'gpt-4o-mini': { userTokens: 73353, assistantTokens: 115323 },
+      'o1-preview': { userTokens: 58978, assistantTokens: 120323 },
+      'o1-mini': {userTokens: 134544, assistantTokens: 223434}
+    },
+    'Aug-24': {
+      'gpt-4o': { userTokens: 298422, assistantTokens: 297693 },
+      'gpt-4o-mini': { userTokens: 83353, assistantTokens: 115323 },
+      'gpt-4': { userTokens: 76778, assistantTokens: 106693 },
+    },
+    'Jul-24': {
+      'gpt-4o': { userTokens: 330738, assistantTokens: 247852 },
+      'gpt-4o-mini': { userTokens: 149258, assistantTokens: 156448 },
+      'text-davinci-002-render': { userTokens: 564645, assistantTokens: 675644}
+    },
+    'Jun-24': {
+      'gpt-4o': { userTokens: 219123, assistantTokens: 231419 },
+      'gpt-4': { userTokens: 191542, assistantTokens: 141639 },
+      'gpt-3.5-turbo': { userTokens: 229951, assistantTokens: 408219 }
+    },
+    'May-24': {
+      'gpt-4o': { userTokens: 130738, assistantTokens: 247852 },
+      'gpt-3.5-turbo': { userTokens: 341911, assistantTokens: 395197 },
+      'gpt-4': { userTokens: 179876, assistantTokens: 134635 },
+      'text-davinci-002-render': { userTokens: 65787, assistantTokens: 67564}
+    },
+    'Apr-24': {
+      'gpt-3.5-turbo': { userTokens: 241911, assistantTokens: 295197 },
+      'gpt-4': { userTokens: 179876, assistantTokens: 184635 },
+      'text-davinci-002-render': { userTokens: 46319, assistantTokens: 64118 }
+    },
+    'Mar-24': {
+      'gpt-4': { userTokens: 179876, assistantTokens: 184635 },
+      'gpt-3.5-turbo': { userTokens: 478219, assistantTokens: 394635 },
+      'gpt-4-turbo': { userTokens: 149876, assistantTokens: 144635 },
+
+    },
+    'Feb-24': {
+      'gpt-4': { userTokens: 219387, assistantTokens: 270851 },
+      'gpt-3.5-turbo': { userTokens: 195621, assistantTokens: 199189 },
+      'text-davinci-002-render': { userTokens: 278195, assistantTokens: 200982 }
+    },
+    'Jan-24': {
+      'gpt-4': { userTokens: 170953, assistantTokens: 197521 },
+      'gpt-3.5-turbo': { userTokens: 182451, assistantTokens: 189621 },
+      'text-davinci-002-render': { userTokens: 94382, assistantTokens: 62719 }
+    },
+    'Dec-23': {
+      'gpt-4-turbo': { userTokens: 185938, assistantTokens: 196119 },
+      'gpt-4': { userTokens: 149278, assistantTokens: 130509 },
+      'gpt-3.5-turbo': { userTokens: 164658, assistantTokens: 165983 },
+      'text-davinci-002-render': { userTokens: 85938, assistantTokens: 60611 },
+    },
+    'Nov-23': {
+      'gpt-4-turbo': { userTokens: 198422, assistantTokens: 194693 },
+      'gpt-4': { userTokens: 165778, assistantTokens: 156693 },
+      'gpt-3.5-turbo': { userTokens: 176788, assistantTokens: 146693 },
+    },
+    'Oct-23': {
+      'gpt-4': { userTokens: 195422, assistantTokens: 196693 },
+      'gpt-4-vision-preview': { userTokens: 15422, assistantTokens: 19669 },
+      'gpt-3.5-turbo': { userTokens: 154220, assistantTokens: 196693 },
+      'text-davinci-002-render': { userTokens: 97879, assistantTokens: 96693 },
+    }, 
+    'Sep-23': {
+      'gpt-4-vision-preview': { userTokens: 95422, assistantTokens: 96693 },
+      'gpt-3.5-turbo': { userTokens: 95422, assistantTokens: 96693 },
+      'text-davinci-002-render': { userTokens: 65422, assistantTokens: 46693 },
+    },
+    'Aug-23': {
+      'gpt-3.5-turbo': { userTokens: 187482, assistantTokens: 129851 },
+      'gpt-4': { userTokens: 146735, assistantTokens: 162319 },
+      'text-davinci-002-render': { userTokens: 121043, assistantTokens: 98392 }
+    },
+    'Jul-23': {
+      'gpt-3.5-turbo': { userTokens: 145213, assistantTokens: 167621 },
+      'gpt-4': { userTokens: 121043, assistantTokens: 178392 }
+    },
+    'Jun-23': {
+      'gpt-3.5-turbo': { userTokens: 217812, assistantTokens: 195654},
+      'gpt-4': { userTokens: 278517, assistantTokens: 128421},
+    },
+    'May-23': {
+      'gpt-3.5-turbo': { userTokens: 825431, assistantTokens: 916182},
+      'gpt-4': { userTokens: 315928, assistantTokens: 225675},
+    },
+    'Apr-23': {
+      'gpt-3.5-turbo': { userTokens: 287976, assistantTokens: 289877},
+      'gpt-4': { userTokens: 335645, assistantTokens: 347879},
+    },
+    'Mar-23': {
+      'gpt-3.5-turbo': { userTokens: 335645, assistantTokens: 397879},
+      'gpt-4': { userTokens: 135645, assistantTokens: 147879},
+      'text-davinci-002-render': { userTokens: 48095, assistantTokens: 47685}
+    },
+    'Feb-23': {
+      'gpt-3.5-turbo': { userTokens: 335645, assistantTokens: 397879},
+      'text-davinci-002-render': { userTokens: 98095, assistantTokens: 97685}
+    },
+    'Jan-23': {
+      'gpt-3.5-turbo': { userTokens: 135645, assistantTokens: 197879},
+      'text-davinci-002-render': { userTokens: 235645, assistantTokens: 297879}
+    },
+    'Dec-22': {
+      'text-davinci-002-render-sha': { userTokens: 364645, assistantTokens: 375644}
+    },
+    'Nov-22': {
+      'text-davinci-002-render-sha': { userTokens: 142342, assistantTokens: 109332}
+    },
+  };
+  const calculateTotals = (data: TokenUsageData) => {
+    let totalInputTokens = 0;
+    let totalOutputTokens = 0;
+    let totalInputCost = 0;
+    let totalOutputCost = 0;
+
+    Object.values(data).forEach(monthData => {
+      Object.entries(monthData).forEach(([modelName, usage]) => {
+        totalInputTokens += usage.userTokens;
+        totalOutputTokens += usage.assistantTokens;
+        const pricing = getPricing(modelName);
+        totalInputCost += calculateCost(usage.userTokens, pricing.inputCost);
+        totalOutputCost += calculateCost(usage.assistantTokens, pricing.outputCost);
+      });
+    });
+
+    return {
+      tokens: {
+        input: totalInputTokens,
+        output: totalOutputTokens,
+        total: totalInputTokens + totalOutputTokens
+      },
+      cost: {
+        input: formatCurrency(totalInputCost),
+        output: formatCurrency(totalOutputCost),
+        total: formatCurrency(totalInputCost + totalOutputCost)
+      }
+    };
+  };
+
+  const totals = calculateTotals(tokenUsageData);
+
+  const [selectedYear, setSelectedYear] = useState(2024);
+
   return (
     <>
       <Background />
@@ -178,6 +348,13 @@ export default function Dashboard() {
                   onClick={() => setMode('advanced')}
                 >
                   Advanced {mode === 'advanced' && '🔒'}
+                </Button>
+                <Button
+                  variant={mode === 'token' ? 'secondary' : 'ghost'}
+                  className={`rounded-full px-3 py-1 ${mode === 'token' ? 'bg-white dark:bg-gray-800 text-gray-900 dark:text-white' : 'text-gray-800 dark:text-white'}`}
+                  onClick={() => setMode('token')}
+                >
+                  Tokens
                 </Button>
               </div>
             </div>
@@ -333,6 +510,41 @@ export default function Dashboard() {
               </div>
             </div>
           )}
+          {mode === 'token' && (
+            <>
+              {/* Summary Cards for Tokens and Cost */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                <SummaryCard title="Tokens" data={totals.tokens} />
+                <SummaryCard title="Cost" data={totals.cost} />
+              </div>
+
+                {/* Token Usage Bar Chart and Cost Line Chart */}
+                <div className="grid grid-cols-1 gap-8 md:grid-cols-2 mb-8">
+                  <div>
+                    <TokenUsageBarChart 
+                      data={tokenUsageData} 
+                      year={selectedYear} 
+                      onYearChange={setSelectedYear} 
+                    />
+                  </div>
+
+                  <div>
+                    <CostLineChart 
+                      data={tokenUsageData} 
+                      year={selectedYear} 
+                      onYearChange={setSelectedYear} 
+                    />
+                  </div>
+                </div>
+
+                {/* Monthly Token Usage Cards */}
+                <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                  {Object.entries(tokenUsageData).map(([month, data]) => (
+                    <TokenUsageCard key={month} month={month} data={data} />
+                  ))}
+                </div>
+              </>
+            )}
         </div>
       </div>
     </>
