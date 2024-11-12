@@ -227,15 +227,15 @@ export default function Dashboard() {
     <>
       <Background />
       {showConfetti && (
-        <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', zIndex: 9999 }}>
-        <Confetti
-          width={width}
-          height={height}
-          recycle={false}
-          numberOfPieces={300}
-        />
-      </div>
-      )}
+          <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', zIndex: 9999 }}>
+           <Confetti
+            width={width}
+            height={height}
+            recycle={false}
+            numberOfPieces={300}
+            />
+          </div>
+        )}
       <div className="relative z-20 min-h-screen transition-colors duration-300 p-4 sm:p-6 md:p-8">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-wrap justify-between items-center mb-8 space-y-4 sm:space-y-0">
@@ -451,8 +451,7 @@ export default function Dashboard() {
                         value={Object.entries(dashboardData.userAttachmentMimeTypeCount)
                           .filter(([key]) => key.startsWith('video/'))
                           .reduce((sum, [, value]) => sum + (value as number), 0)}
-                        subtitle="video(s) attached to the promptweb
-                        
+                        subtitle="video(s) attached to the promptweb"
                         icon={<Video className="w-8 h-8 text-cyan-500 dark:text-cyan-400" />}
                       />
                       <UsageCard
