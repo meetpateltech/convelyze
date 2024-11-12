@@ -1,4 +1,4 @@
-'use client'
+se'use client'
 
 import React, { useState, useCallback, useEffect } from 'react';
 import { useDropzone } from 'react-dropzone';
@@ -451,7 +451,8 @@ export default function Dashboard() {
                         value={Object.entries(dashboardData.userAttachmentMimeTypeCount)
                           .filter(([key]) => key.startsWith('video/'))
                           .reduce((sum, [, value]) => sum + (value as number), 0)}
-                        subtitle="video(s) attached to the prompt"
+                        subtitle="video(s) attached to the promptweb
+                        
                         icon={<Video className="w-8 h-8 text-cyan-500 dark:text-cyan-400" />}
                       />
                       <UsageCard
@@ -495,7 +496,7 @@ export default function Dashboard() {
                       <ToolUsageCard
                         icon={<Globe className="w-8 h-8" />}
                         title="ChatGPT browsed the internet"
-                        value={dashboardData.toolUsageData['browser'] || 0}
+                        value={(dashboardData.toolUsageData['browser'] || 0) + (dashboardData.toolUsageData['web'] || 0)}
                         subtitle="times for response"
                       />
                     </div>
