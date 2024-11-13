@@ -511,6 +511,9 @@ export default function Dashboard() {
                       <p className="mt-4 text-lg font-semibold text-gray-700 dark:text-gray-300">
                         Calculating token usage...
                       </p>
+                      <p className="mt-2 text-sm italic text-gray-500 dark:text-gray-400">
+                        this might take a little time, thanks for your patience!
+                      </p>
                     </div>
                   ) : totals ? (
                     <>

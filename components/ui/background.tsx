@@ -5,7 +5,7 @@ export default function Background() {
       <div 
         className="absolute inset-0 z-10 opacity-40 filter invert dark:invert-0"
         style={{
-          backgroundImage: "url(/burst-bg.svg)"
+          backgroundImage: "url(/burst-bg-optimized.svg)"
         }}
       />
       <div 

@@ -9,6 +9,7 @@ Convelyze is a powerful web application that visualizes your ChatGPT usage, prov
 ## Key Features
 
 - 📊 **Comprehensive Analytics**: Track conversations, messages, GPT usage, model usage, and more.
+- 🧩 **Monthly Model Breakdowns & Cost Estimation**: View ChatGPT token usage with monthly model breakdowns, estimated costs, and compare API pricing.
 - 🔒 **Privacy First**: All data is processed client-side for maximum security. Your conversations stay private.
 - 🖥️ **Open Source**: The project is open source, allowing for community contributions and transparency.
 - 🌓 **Light & Dark Mode**: Seamlessly switch between light and dark themes for comfortable viewing in any environment.

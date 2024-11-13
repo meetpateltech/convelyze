@@ -1,5 +1,5 @@
 import React from 'react'
-import { ArrowRight, Shield, Sun, BarChart2, Github, Twitter } from 'lucide-react'
+import { ArrowRight, Shield, Sun, BarChart2, Github, Twitter, BadgeCheck } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { ModeToggle } from '@/components/ModeToggle'
 import Background from '@/components/ui/background'
@@ -81,24 +81,29 @@ export default function CoolLandingPage() {
 function HeroSection() {
   return (
     <section className="text-center mb-16 sm:mb-32 relative">
-      <div>
+      <div className="flex flex-col items-center">
+        {/* New Feature Badge */}
+        <div className="flex items-center space-x-2 mb-4 bg-yellow-100 text-yellow-800 dark:bg-yellow-800 dark:text-yellow-200 px-4 py-1 rounded-full">
+          <BadgeCheck className="w-5 h-5" />
+          <span className="font-semibold">New Feature: Token Usage & Estimated Cost</span>
+        </div>
         <h1 className="text-4xl sm:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-sky-600 mb-6 leading-tight py-2">
          Your ChatGPT usage, visualized
         </h1>
         <p className="text-lg sm:text-xl text-gray-700 dark:text-gray-300 mb-8 max-w-3xl mx-auto">
-        See your ChatGPT conversations in a whole new way. Our simple and easy-to-use dashboard shows you how you&apos;re using ChatGPT, so you can get more out of it.
+         See your ChatGPT conversations in a whole new way. Our simple and easy-to-use dashboard shows you how you&apos;re using ChatGPT, so you can get more out of it.
         </p>
         <div className="flex justify-center space-x-4">
-        <Link href="/dashboard">
-          <Button size="lg" className="rounded-full px-6 sm:px-8 py-4 sm:py-6 text-base text-white sm:text-lg mb-12 bg-gradient-to-r from-cyan-600 to-teal-600 hover:from-cyan-700 hover:to-teal-700 transition-all duration-300 shadow-lg hover:shadow-xl">
-            Get Started <ArrowRight className="ml-2" />
-          </Button>
-        </Link>
-        <Link href="https://github.com/meetpateltech/convelyze">
-          <Button size="lg" className="rounded-full px-6 sm:px-8 py-4 sm:py-6 text-base text-white sm:text-lg mb-12 bg-gradient-to-r from-cyan-600 to-teal-600 hover:from-cyan-700 hover:to-teal-700 transition-all duration-300 shadow-lg hover:shadow-xl">
-            Source Code <Github className="ml-2" />
-          </Button>
-        </Link>
+          <Link href="/dashboard">
+            <Button size="lg" className="rounded-full px-6 sm:px-8 py-4 sm:py-6 text-base text-white sm:text-lg mb-12 bg-gradient-to-r from-cyan-600 to-teal-600 hover:from-cyan-700 hover:to-teal-700 transition-all duration-300 shadow-lg hover:shadow-xl">
+              Get Started <ArrowRight className="ml-2" />
+            </Button>
+          </Link>
+          <Link href="https://github.com/meetpateltech/convelyze">
+            <Button size="lg" className="rounded-full px-6 sm:px-8 py-4 sm:py-6 text-base text-white sm:text-lg mb-12 bg-gradient-to-r from-cyan-600 to-teal-600 hover:from-cyan-700 hover:to-teal-700 transition-all duration-300 shadow-lg hover:shadow-xl">
+              Source Code <Github className="ml-2" />
+            </Button>
+          </Link>
         </div>
       </div>
       <div className="relative w-full h-auto sm:h-120 mb-12">
