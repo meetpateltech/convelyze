@@ -5,6 +5,7 @@ import { ModeToggle } from '@/components/ModeToggle'
 import Background from '@/components/ui/background'
 import DashboardCarousel from '@/components/DashboardCarousel'
 import Link from 'next/link'
+import Image from 'next/image'
 
 export default function CoolLandingPage() {
   return (
@@ -250,7 +251,13 @@ function StepCard({ number, title, description, imageSrc }: StepCardProps) {
 
       {/* Image Area */}
       <div className={`w-full sm:w-1/2 ${number % 2 === 0 ? 'sm:order-1' : ''} mt-6 sm:mt-0`}>
-        <img src={imageSrc} alt={title} className="w-full h-fit sm:h-70 object-cover rounded-3xl shadow-lg" />
+        <Image 
+          src={imageSrc} 
+          alt={title} 
+          width={800}
+          height={600}
+          className="w-full h-fit sm:h-70 object-cover rounded-3xl shadow-lg" 
+        />
       </div>
     </div>
   );

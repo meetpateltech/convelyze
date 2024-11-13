@@ -16,6 +16,9 @@ const nextConfig = {
 
     return config;
   },
+  images: {
+    domains: ['cdn.jsdelivr.net'],
+  },
 };
 
 if (process.env.NODE_ENV === 'development') {

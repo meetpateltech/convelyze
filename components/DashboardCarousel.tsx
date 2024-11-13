@@ -3,6 +3,7 @@
 import React from 'react';
 import Autoplay from "embla-carousel-autoplay";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import Image from 'next/image';
 
 interface DashboardImage {
   src: string;
@@ -45,10 +46,13 @@ const DashboardCarousel: React.FC = () => {
       <CarouselContent>
         {dashboardImages.map((image, index) => (
           <CarouselItem key={index}>
-            <img 
+            <Image 
               src={image.src} 
               alt={image.alt} 
+              width={1920}
+              height={1080}
               className="rounded-3xl shadow-2xl object-cover w-full h-full"
+              priority={index === 0} 
             />
           </CarouselItem>
         ))}
