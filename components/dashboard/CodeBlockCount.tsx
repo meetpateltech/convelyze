@@ -40,6 +40,8 @@ const languageIconMap: Record<string, keyof typeof DevIcons> = {
   yaml: 'YamlPlain',
   json: 'JsonOriginal',
   markdown: 'MarkdownOriginal',
+  sh: 'BashOriginal',
+  ts: 'TypescriptOriginal',
 }
 
 const LanguageBox: React.FC<{ language: string; count: number }> = ({ language, count }) => {

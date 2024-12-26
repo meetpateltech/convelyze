@@ -59,5 +59,31 @@ const config: Config = {
   	}
   },
   plugins: [require("tailwindcss-animate")],
+  safelist: [
+    'text-blue-500',
+    'text-green-500',
+    'text-teal-500',
+    'text-amber-500',
+    'bg-blue-500/20',
+    'bg-green-500/20',
+    'bg-teal-500/20',
+    'bg-amber-500/20',
+    'from-blue-500/10',
+    'from-green-500/10',
+    'from-teal-500/10',
+    'from-amber-500/10',
+    'text-blue-500/90',
+    'text-green-500/90',
+    'text-teal-500/90',
+    'text-amber-500/90',
+    'dark:text-blue-400/90',
+    'dark:text-green-400/90',
+    'dark:text-teal-400/90',
+    'dark:text-amber-400/90',
+    'bg-blue-500/5',
+    'bg-green-500/5',
+    'bg-teal-500/5',
+    'bg-amber-500/5'
+  ],
 };
 export default config;

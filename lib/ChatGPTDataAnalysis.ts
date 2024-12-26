@@ -59,6 +59,7 @@ interface MonthlyUsage {
 
 // Define the model to Tiktoken models mapping
 const modelSlugToTiktokenModel: Record<string, TiktokenModel> = {
+  "o1": "o1-preview",
   "o1-preview": "o1-preview",
   "o1-mini": "o1-mini",
   "gpt-4o": "gpt-4o",
@@ -686,6 +687,46 @@ public getMonthlyModelWiseTokenUsage(): MonthlyUsage {
 public cleanup(): void {
     this.tokenCounter.freeEncoders();
 }
+
+  public getCustomInstructionMessageCount(): number {
+    const customInstructionCount = this.data.reduce((count, conversation) => 
+        count + Object.values(conversation.mapping)
+            .filter(node => 
+                node.message?.author?.role === 'user' && 
+                node.message?.metadata?.is_user_system_message === true
+            ).length
+    , 0);
+    
+    return customInstructionCount;
+  }
+
+  public getUserTargetedReplyCount(): number {
+    const targetedReplyCount = this.data.reduce((count, conversation) => 
+        count + Object.values(conversation.mapping)
+            .filter(node => 
+                node.message?.author?.role === 'user' && 
+                node.message?.metadata?.targeted_reply
+            ).length
+    , 0);
+
+    return targetedReplyCount;
+  }
+
+  public getUserSystemHintsCount(): Record<string, number> {
+    const systemHintsCount: Record<string, number> = {};
+  
+    this.data.forEach(conversation => {
+      Object.values(conversation.mapping).forEach(node => {
+        if (node.message !== null && node.message.author.role === 'user' && node.message.metadata.system_hints) {
+          node.message.metadata.system_hints.forEach((hint: string) => { // Explicit type annotation
+            systemHintsCount[hint] = (systemHintsCount[hint] || 0) + 1;
+          });
+        }
+      });
+    });
+  
+    return systemHintsCount;
+  }
 
   public getDefaultAndSpecificModelMessageCount(): { defaultModelCount: number, specificModelCount: number } {
     let defaultModelCount = 0;

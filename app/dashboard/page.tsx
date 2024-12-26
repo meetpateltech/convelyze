@@ -2,7 +2,7 @@
 
 import React, { useState, useCallback, useEffect } from 'react';
 import { useDropzone } from 'react-dropzone';
-import { MessageCircle, MessageSquare, Image as ImageIcon, Mic, Calendar, Users, Archive, BarChart2, ChartColumn, FileText, Video, Brain, Code, Globe, Download, Upload, ScanSearch, CircleStop, Loader } from 'lucide-react';
+import { MessageCircle, MessageSquare, Image as ImageIcon, Mic, Calendar, Users, Archive, BarChart2, ChartColumn, FileText, Video, Brain, Code, Globe, Download, Upload, ScanSearch, CircleStop, Loader, UserCog, MessageCircleReply } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import ActivityCalendar from '@/components/dashboard/ActivityCalendar';
 import NetworkLocationCard from '@/components/dashboard/NetworkLocationCard';
@@ -35,6 +35,7 @@ import { formatCurrency } from '@/components/dashboard/TokenDisplay';
 import { calculateCost, getPricing } from '@/utils/pricing';
 import { TokenUsageBarChart } from '@/components/dashboard/TokenUsageBarChart';
 import { CostLineChart } from '@/components/dashboard/CostLineChart';
+import UserSystemHintsCard from '@/components/dashboard/UserSystemHintsCard';
 
 interface TokenUsage {
   userTokens: number;
@@ -116,7 +117,10 @@ export default function Dashboard() {
         locationData: newAnalysis.getLocationCodes(),
         finishDetailData: newAnalysis.getFinishDetailsTypeCount(),
         requestedModelData: newAnalysis.getRequestedModelCount(),
-        codeBlockCount: newAnalysis.getAssistantGeneratedCodeBlockCount()
+        codeBlockCount: newAnalysis.getAssistantGeneratedCodeBlockCount(),
+        customInstructionCount: newAnalysis.getCustomInstructionMessageCount(),
+        targetedReplyCount: newAnalysis.getUserTargetedReplyCount(),
+        systemsHintCount: newAnalysis.getUserSystemHintsCount(),
       };
 
       setDashboardData(newDashboardData);
@@ -428,7 +432,11 @@ export default function Dashboard() {
                   <div className="col-span-full">
                   <AICodeStatsCard codeBlockCount={dashboardData.codeBlockCount} />
                   </div>
-                  
+
+                  <div className="col-span-full">
+                  <UserSystemHintsCard data={dashboardData.systemsHintCount} />
+                  </div>
+                   
                   <div className="col-span-full">
                     <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Usage Statistics</h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -471,6 +479,18 @@ export default function Dashboard() {
                         value={dashboardData.finishDetailData['interrupted'] || 0}
                         subtitle="times you stopped the AI's response"
                         icon={<CircleStop className="w-8 h-8 text-red-500 dark:text-red-400" />}
+                      />
+                      <UsageCard
+                        title="You've"
+                        value={dashboardData.customInstructionCount || 0}
+                        subtitle="messages with custom instructions feauture"
+                        icon={<UserCog className="w-8 h-8 text-indigo-500 dark:text-indigo-400" />}
+                      />
+                      <UsageCard
+                        title="You've"
+                        value={dashboardData.targetedReplyCount || 0}
+                        subtitle="times quoted AI reply"
+                        icon={<MessageCircleReply className="w-8 h-8 text-teal-500 dark:text-teal-400" />}
                       />
                     </div>
                     <br/>
