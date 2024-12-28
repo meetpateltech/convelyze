@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react';
-import { MessageCircle, MessageSquare, Image as ImageIcon, Mic, Calendar, Users, Archive, BarChart2, ChartColumn, FileText, Video, Brain, Code, Globe } from 'lucide-react';
+import { MessageCircle, MessageSquare, Image as ImageIcon, Mic, Calendar, Users, Archive, BarChart2, ChartColumn, FileText, Video, Brain, Code, Globe, ScanSearch, CircleStop, UserCog, MessageCircleReply, LinkIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import ActivityCalendar from '@/components/dashboard/ActivityCalendar';
 import { activityData } from '@/lib/activityData';
@@ -25,6 +25,7 @@ import { formatCurrency } from '@/components/dashboard/TokenDisplay';
 import { calculateCost, getPricing } from '@/utils/pricing';
 import { TokenUsageBarChart } from '@/components/dashboard/TokenUsageBarChart';
 import { CostLineChart } from '@/components/dashboard/CostLineChart';
+import UserSystemHintsCard from '@/components/dashboard/UserSystemHintsCard';
 
 interface TokenUsage {
   userTokens: number;
@@ -54,6 +55,12 @@ export default function Dashboard() {
     totalArchivedConversations: 50,
     totalVoiceMessages: 69,
     totalImagesGenerated: 143, // Sum of DALL·E images with and without Gizmo
+    systemsHintCount: {
+      search: 420,
+      picture: 123,
+      reason: 333,
+      canvas: 150,
+    },
   };
 
   const getTimeSpentValue = () => {
@@ -159,7 +166,8 @@ export default function Dashboard() {
   const toolUsageData = {
     bio: 224,
     python: 360,
-    browser: 278
+    browser: 278,
+    webpage: 435
   }
 
   const locationData = {
@@ -450,6 +458,10 @@ export default function Dashboard() {
               <UsageTimeline data={usageTimelineData} />
               <DefaultModelSlugCount data={defaultModelSlugData} />
               <AIMessageStatus data={aiMessageStatusData} />
+
+              <div className="col-span-full">
+              <UserSystemHintsCard data={dashboardData.systemsHintCount} />
+              </div>
             
               {/* Existing usage cards */}
               <div className="col-span-full">
@@ -479,7 +491,31 @@ export default function Dashboard() {
                     subtitle="PDF(s) attached with the prompt"
                     icon={<FileText className="w-8 h-8 text-yellow-500 dark:text-yellow-400" />}
                   />
-                </div>
+                  <UsageCard
+                    title="You've"
+                    value={5}
+                    subtitle="image captured (within app) and attached to the prompts"
+                    icon={<ScanSearch className="w-8 h-8 text-orange-500 dark:text-orange-400" />}
+                  />
+                  <UsageCard
+                    title="You've"
+                    value={123} 
+                    subtitle="times you stopped the AI's response"
+                    icon={<CircleStop className="w-8 h-8 text-red-500 dark:text-red-400" />}
+                  />
+                  <UsageCard
+                    title="You've"
+                    value={10} 
+                    subtitle="messages with custom instructions feature"
+                    icon={<UserCog className="w-8 h-8 text-indigo-500 dark:text-indigo-400" />}
+                  />
+                  <UsageCard
+                    title="You've"
+                    value={7} 
+                    subtitle="times quoted AI reply"
+                    icon={<MessageCircleReply className="w-8 h-8 text-teal-500 dark:text-teal-400" />}
+                  />
+                  </div>
                 <br/>
                 <NetworkLocationCard locationData={locationData} />
               </div>
@@ -505,6 +541,12 @@ export default function Dashboard() {
                     title="ChatGPT browsed the internet"
                     value={toolUsageData.browser}
                     subtitle="times for response"
+                  />
+                  <ToolUsageCard
+                    icon={<LinkIcon className="w-8 h-8" />}
+                    title="ChatGPT Accessed"
+                    value={toolUsageData.webpage}
+                    subtitle="webpages for search response"
                   />
                 </div>
               </div>
