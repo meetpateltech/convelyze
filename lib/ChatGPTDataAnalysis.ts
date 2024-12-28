@@ -728,6 +728,20 @@ public cleanup(): void {
     return systemHintsCount;
   }
 
+  public getWebpageCount(): number {
+    let webpageCount = 0;
+
+    for (const conversation of this.data) {
+        for (const node of Object.values(conversation.mapping)) {
+            const metadataList = node.message?.metadata?._cite_metadata?.metadata_list;
+            if (node.message?.author?.role === 'tool' && Array.isArray(metadataList)) {
+                webpageCount += metadataList.filter(item => item?.type === 'webpage').length;
+            }
+        }
+    }
+    return webpageCount;
+  }
+
   public getDefaultAndSpecificModelMessageCount(): { defaultModelCount: number, specificModelCount: number } {
     let defaultModelCount = 0;
     let specificModelCount = 0;

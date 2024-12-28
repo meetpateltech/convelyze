@@ -2,7 +2,7 @@
 
 import React, { useState, useCallback, useEffect } from 'react';
 import { useDropzone } from 'react-dropzone';
-import { MessageCircle, MessageSquare, Image as ImageIcon, Mic, Calendar, Users, Archive, BarChart2, ChartColumn, FileText, Video, Brain, Code, Globe, Download, Upload, ScanSearch, CircleStop, Loader, UserCog, MessageCircleReply } from 'lucide-react';
+import { MessageCircle, MessageSquare, Image as ImageIcon, Mic, Calendar, Users, Archive, BarChart2, ChartColumn, FileText, Video, Brain, Code, Globe, Download, Upload, ScanSearch, CircleStop, Loader, UserCog, MessageCircleReply, LinkIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import ActivityCalendar from '@/components/dashboard/ActivityCalendar';
 import NetworkLocationCard from '@/components/dashboard/NetworkLocationCard';
@@ -121,6 +121,7 @@ export default function Dashboard() {
         customInstructionCount: newAnalysis.getCustomInstructionMessageCount(),
         targetedReplyCount: newAnalysis.getUserTargetedReplyCount(),
         systemsHintCount: newAnalysis.getUserSystemHintsCount(),
+        webpageCount: newAnalysis.getWebpageCount(),
       };
 
       setDashboardData(newDashboardData);
@@ -517,6 +518,12 @@ export default function Dashboard() {
                         title="ChatGPT browsed the internet"
                         value={(dashboardData.toolUsageData['browser'] || 0) + (dashboardData.toolUsageData['web'] || 0)}
                         subtitle="times for response"
+                      />
+                      <ToolUsageCard
+                        icon={<LinkIcon className="w-8 h-8" />}
+                        title="ChatGPT Accessed"
+                        value={dashboardData.webpageCount || 0}
+                        subtitle="webpages for search response"
                       />
                     </div>
                   </div>
