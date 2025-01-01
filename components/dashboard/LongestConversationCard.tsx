@@ -1,5 +1,5 @@
 import React from 'react';
-import { MessageSquare, Calendar, User, Bot, Wrench, ArrowUpRight } from 'lucide-react';
+import { MessageSquare, Calendar, User, Bot, Wrench, ArrowUpRight, LucideIcon } from 'lucide-react';
 import GlassCard from '../cards/GlassCard';
 
 interface LongestConversationCardProps {
@@ -11,6 +11,12 @@ interface LongestConversationCardProps {
     firstUsed: Date;
     lastUsed: Date;
   } | null;
+}
+
+interface RoleIconConfig {
+  icon: LucideIcon;
+  color: string;
+  bgColor: string;
 }
 
 const LongestConversationCard: React.FC<LongestConversationCardProps> = ({ data }) => {
@@ -33,7 +39,7 @@ const LongestConversationCard: React.FC<LongestConversationCardProps> = ({ data 
     });
   };
 
-  const roleIcons: Record<string, { icon: any; color: string; bgColor: string }> = {
+  const roleIcons: Record<string, RoleIconConfig> = {
     system: { icon: Bot, color: 'text-blue-500', bgColor: 'bg-blue-500/10' },
     user: { icon: User, color: 'text-green-500', bgColor: 'bg-green-500/10' },
     assistant: { icon: MessageSquare, color: 'text-purple-500', bgColor: 'bg-purple-500/10' },
