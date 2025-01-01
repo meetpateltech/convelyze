@@ -437,9 +437,11 @@ export class ChatGPTDataAnalysis {
     this.data.forEach(conversation => {
       Object.values(conversation.mapping).forEach(node => {
         if (node.message !== null && node.message.author.role === 'assistant' && node.message.metadata.gizmo_id === dalleGizmoId) {
-          const parts = node.message.content.parts;
-          if (parts.some(part => part.toLowerCase().includes('prompt'))) {
-            dalleImageCount++;
+          if(node.message.content && node.message.content.parts && Array.isArray(node.message.content.parts)) { // Added null check for content and checks for parts to be an array
+            const parts = node.message.content.parts;
+            if (parts.some(part => typeof part === 'string' && part.toLowerCase().includes('prompt'))) { // Added safety check for part being a string
+              dalleImageCount++;
+            }
           }
         }
       });
@@ -456,10 +458,11 @@ export class ChatGPTDataAnalysis {
         if (node.message !== null && 
             node.message.author.role === 'tool' && 
             node.message.author.name === 'dalle.text2im') {
-          const parts = node.message.content.parts;
-          if (Array.isArray(parts)) {
+          if (node.message.content && node.message.content.parts && Array.isArray(node.message.content.parts)) { // Added safety check for parts to be an array
+            const parts = node.message.content.parts;
             const dallePart = parts.find(part => 
               part && 
+              typeof part === 'object' &&
               part.metadata && 
               part.metadata.dalle && 
               part.metadata.dalle.gen_id && 
