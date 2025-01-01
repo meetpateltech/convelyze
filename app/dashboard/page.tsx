@@ -36,6 +36,7 @@ import { calculateCost, getPricing } from '@/utils/pricing';
 import { TokenUsageBarChart } from '@/components/dashboard/TokenUsageBarChart';
 import { CostLineChart } from '@/components/dashboard/CostLineChart';
 import UserSystemHintsCard from '@/components/dashboard/UserSystemHintsCard';
+import LongestConversationCard from '@/components/dashboard/LongestConversationCard';
 
 interface TokenUsage {
   userTokens: number;
@@ -122,6 +123,7 @@ export default function Dashboard() {
         targetedReplyCount: newAnalysis.getUserTargetedReplyCount(),
         systemsHintCount: newAnalysis.getUserSystemHintsCount(),
         webpageCount: newAnalysis.getWebpageCount(),
+        longestConversationData: newAnalysis.getLongestConversation(),
       };
 
       setDashboardData(newDashboardData);
@@ -429,6 +431,7 @@ export default function Dashboard() {
                   <UsageTimeline data={dashboardData.usageTimelineData} />
                   <DefaultModelSlugCount data={dashboardData.defaultModelSlugData} />
                   <AIMessageStatus data={dashboardData.aiMessageStatusData} />
+                  <LongestConversationCard data={dashboardData.longestConversationData} />
 
                   <div className="col-span-full">
                   <AICodeStatsCard codeBlockCount={dashboardData.codeBlockCount} />

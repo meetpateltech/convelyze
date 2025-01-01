@@ -33,6 +33,7 @@ interface ConversationNode {
 }
 
 interface ConversationData {
+  id: string;
   title: string;
   create_time: number;
   update_time: number;
@@ -740,6 +741,66 @@ public cleanup(): void {
         }
     }
     return webpageCount;
+  }
+
+  public getLongestConversation(): { 
+    id: string, 
+    title: string, 
+    messageCount: number, 
+    roleDistribution: Record<string, number>, 
+    firstUsed: Date, 
+    lastUsed: Date 
+  } | null {
+    let longestConversation: { 
+      id: string, 
+      title: string, 
+      messageCount: number, 
+      roleDistribution: Record<string, number>, 
+      firstUsed: Date, 
+      lastUsed: Date 
+    } | null = null;
+
+    for (const conversation of this.data) {
+      const messageCount = Object.values(conversation.mapping)
+        .filter(node => node.message !== null).length;
+      
+      if (messageCount === 0) continue;
+
+      const roleDistribution: Record<string, number> = {};
+      const allTimestamps: number[] = [];
+
+      Object.values(conversation.mapping).forEach(node => {
+        if (node.message !== null) {
+          const role = node.message.author.role;
+          roleDistribution[role] = (roleDistribution[role] || 0) + 1;
+
+          if (node.message.create_time !== null) {
+            allTimestamps.push(node.message.create_time);
+          }
+          if (node.message.update_time !== null) {
+            allTimestamps.push(node.message.update_time);
+          }
+        }
+      });
+
+      if (allTimestamps.length > 0) {
+        const firstUsed = new Date(Math.min(...allTimestamps) * 1000);
+        const lastUsed = new Date(Math.max(...allTimestamps) * 1000);
+
+        if (longestConversation === null || messageCount > longestConversation.messageCount) {
+          longestConversation = {
+            id: conversation.id,
+            title: conversation.title,
+            messageCount,
+            roleDistribution,
+            firstUsed,
+            lastUsed
+          };
+        }
+      }
+    }
+
+    return longestConversation;
   }
 
   public getDefaultAndSpecificModelMessageCount(): { defaultModelCount: number, specificModelCount: number } {
