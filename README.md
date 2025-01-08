@@ -39,6 +39,10 @@ Convelyze is a powerful web application that visualizes your ChatGPT usage, prov
   - 🌐 Browser Tool Usage
 - 🌍 Network Location Data
 - 🛑 Interrupted Response Count
+- 📝 Canvas Stats:
+  - 📄 Text Doc Canvas Usage
+  - 💻 Code Canvas Usage
+- </> Generated Code Blocks Count
 
 ## How to Use
 

@@ -806,6 +806,315 @@ public cleanup(): void {
     return longestConversation;
   }
 
+  public getDocumentCanvasStats(): {
+    emoji: { total: number, words: number, sections: number, lists: number, remove: number },
+    suggestEdits: { totalSuggestEdits: number, totalCommentsAdded: number },
+    polish: number,
+    readingLevel: { total: number, graduate: number, college: number, highSchool: number, middleSchool: number, kindergarten: number },
+    length: { total: number, longest: number, longer: number, shorter: number, shortest: number }
+    } {
+    // Emoji Stats
+    let totalEmojiEdits = 0;
+    let wordsEmojiEdits = 0;
+    let sectionsEmojiEdits = 0;
+    let listsEmojiEdits = 0;
+    let removeEmojiEdits = 0;
+
+    // Suggest Edit Stats
+    let totalSuggestEdits = 0;
+    let totalCommentsAdded = 0;
+
+    // Final Polish
+    let finalPolishCount = 0;
+
+
+    // Reading Level
+    let totalReadingLevelEdits = 0;
+    let graduateLevelEdits = 0;
+    let collegeLevelEdits = 0;
+    let highSchoolLevelEdits = 0;
+    let middleSchoolLevelEdits = 0;
+    let kindergartenLevelEdits = 0;
+
+
+    // Length
+    let totalLengthEdits = 0;
+    let longestEdits = 0;
+    let longerEdits = 0;
+    let shorterEdits = 0;
+    let shortestEdits = 0;
+
+
+    this.data.forEach(conversation => {
+        Object.values(conversation.mapping).forEach(node => {
+           if (node.message && node.message.metadata?.canvas?.textdoc_type === 'document') {
+            // Emoji
+            if (node.message.author.role === 'user' && node.message.metadata?.canvas?.accelerator_metadata?.id === 'emoji') {
+                const canvasMeta = node.message.metadata.canvas;
+                if (canvasMeta && canvasMeta.accelerator_metadata) {
+                    const prompt = canvasMeta.accelerator_metadata.prompt;
+
+                        totalEmojiEdits++;
+
+                    if (prompt === "Replace as many words as possible with emojis.") {
+                        wordsEmojiEdits++;
+                    } else if (prompt === "Add three emojis at the start or end of every major section or paragraph to give subtle decoration. Do not change the structure of the original text. Do not add emojis to lists.") {
+                        sectionsEmojiEdits++;
+                    } else if (prompt === "Add emojis to lists for visual flair. Do not change the structure of the original text.") {
+                        listsEmojiEdits++;
+                    } else if (prompt === "Remove emojis") {
+                        removeEmojiEdits++;
+                    }
+                }
+            }
+
+           // Suggest Edits and comments
+           if (node.message) {
+            // Count Suggest Edits (only for textdoc_type: "document")
+            if (node.message.author.role === 'user' &&
+                node.message.metadata?.canvas?.accelerator_metadata?.id === 'suggest') {
+                totalSuggestEdits++;
+            }
+
+            // Count Comments (only for textdoc_type: "document")
+            if (node.message.author.role === 'tool' &&
+                node.message.author.name === 'canmore.comment_textdoc' &&
+                node.message.metadata?.canvas?.comment_ids) {
+                totalCommentsAdded += node.message.metadata.canvas.comment_ids.length;
+            }
+          }
+
+          // Final Polish
+          if(node.message &&
+            node.message.author.role === 'user' &&
+            node.message.metadata?.canvas?.accelerator_metadata?.id === 'polish'){
+            finalPolishCount++;
+            }
+
+
+           //Reading level
+            if (node.message.author.role === 'user' && node.message.metadata?.canvas?.accelerator_metadata?.id === 'reading-level') {
+                const canvasMeta = node.message.metadata.canvas;
+                if (canvasMeta && canvasMeta.accelerator_metadata) {
+                    const prompt = canvasMeta.accelerator_metadata.prompt;
+
+                        totalReadingLevelEdits++;
+
+                    if (prompt === "Rewrite this text at the reading level of a doctoral writer in this subject. You may reply that you adjusted the text to reflect a graduate school reading level, but do not mention the prompt.") {
+                        graduateLevelEdits++;
+                    } else if (prompt === "Rewrite this text at the reading level of a college student majoring in this subject") {
+                        collegeLevelEdits++;
+                    } else if (prompt === "Rewrite this text at the reading level of a high school student who has taken a couple of classes in this subject.") {
+                        highSchoolLevelEdits++;
+                    } else if (prompt === "Rewrite this text at the reading level of a middle schooler.") {
+                        middleSchoolLevelEdits++;
+                    } else if (prompt === "Rewrite this text at the reading level of a kindergartener.") {
+                        kindergartenLevelEdits++;
+                    }
+                }
+            }
+
+           // Length Adjustments
+            if (node.message.author.role === 'user' && node.message.metadata?.canvas?.accelerator_metadata?.id === 'length') {
+                const canvasMeta = node.message.metadata.canvas;
+                if (canvasMeta && canvasMeta.accelerator_metadata) {
+                    const prompt = canvasMeta.accelerator_metadata.prompt;
+
+                        totalLengthEdits++;
+
+                    if (prompt === "Make this text 75% longer.") {
+                        longestEdits++;
+                    } else if (prompt === "Make this text 50% longer.") {
+                        longerEdits++;
+                    } else if (prompt === "Make this text 50% shorter.") {
+                        shorterEdits++;
+                    } else if (prompt === "Make this text 75% shorter.") {
+                       shortestEdits++;
+                    }
+                }
+              }
+           }
+        });
+    });
+
+    return {
+       emoji: {
+           total: totalEmojiEdits,
+           words: wordsEmojiEdits,
+           sections: sectionsEmojiEdits,
+           lists: listsEmojiEdits,
+           remove: removeEmojiEdits
+       },
+       suggestEdits: {
+        totalSuggestEdits,
+        totalCommentsAdded
+      },
+      polish: finalPolishCount,
+      readingLevel: {
+          total: totalReadingLevelEdits,
+          graduate: graduateLevelEdits,
+          college: collegeLevelEdits,
+          highSchool: highSchoolLevelEdits,
+          middleSchool: middleSchoolLevelEdits,
+          kindergarten: kindergartenLevelEdits
+      },
+       length: {
+         total: totalLengthEdits,
+         longest: longestEdits,
+         longer: longerEdits,
+         shorter: shorterEdits,
+         shortest: shortestEdits
+    }
+  };
+}
+
+public getCodeCanvasStats(): {
+    comments: { total: number; [lang: string]: number };
+    logs: { total: number; [lang: string]: number };
+    fixBugs: { total: number; [lang: string]: number };
+    review: {
+        total: { reviews: number; comments: number };
+        [lang: string]: { reviews: number; comments: number };
+    };
+    port: { total: number, php: number, cpp: number, python: number, javascript: number, typescript: number, java: number };
+  } {
+    // Code Comment Stats
+    const codeCommentCounts: { total: number; [lang: string]: number } = { total: 0 };
+
+    // Code Log Stats
+    const codeLogCounts: { total: number; [lang: string]: number } = { total: 0 };
+
+    // Code Fix Bug Stats
+    const codeFixBugCounts: { total: number; [lang: string]: number } = { total: 0 };
+    
+      // Code Review Stats
+    const codeReviewAndCommentCounts: {
+      total: { reviews: number; comments: number };
+      [lang: string]: { reviews: number; comments: number };
+  } = { total: { reviews: 0, comments: 0 } };
+
+
+  // Code Port Stats
+    let totalCodePortEdits = 0;
+    let phpEdits = 0;
+    let cppEdits = 0;
+    let pythonEdits = 0;
+    let javascriptEdits = 0;
+    let typescriptEdits = 0;
+    let javaEdits = 0;
+
+    this.data.forEach(conversation => {
+        Object.values(conversation.mapping).forEach(node => {
+            if (node.message && node.message.metadata?.canvas?.textdoc_type?.startsWith('code/')) {
+              // Code Comment
+               if (node.message.author.role === 'user' &&
+                node.message.metadata?.canvas?.accelerator_metadata?.id === 'comments') {
+                    codeCommentCounts.total++;
+                    const lang = node.message.metadata.canvas.textdoc_type.split('/').pop() as string;
+                    codeCommentCounts[lang] = (codeCommentCounts[lang] || 0) + 1;
+                }
+
+              // Code Log
+              if (node.message.author.role === 'user' &&
+                  node.message.metadata?.canvas?.accelerator_metadata?.id === 'logs') {
+                      codeLogCounts.total++;
+                      const lang = node.message.metadata.canvas.textdoc_type.split('/').pop() as string;
+                      codeLogCounts[lang] = (codeLogCounts[lang] || 0) + 1;
+                  }
+
+               // Code Fix Bug
+                if (node.message.author.role === 'user' &&
+                    node.message.metadata?.canvas?.accelerator_metadata?.id === 'bugs') {
+                      codeFixBugCounts.total++;
+                      const lang = node.message.metadata.canvas.textdoc_type.split('/').pop() as string;
+                      codeFixBugCounts[lang] = (codeFixBugCounts[lang] || 0) + 1;
+                    }
+                
+               // Code Review & Comments
+                if (node.message) {
+                    // Count Code Reviews
+                    if (node.message.author.role === 'user' &&
+                      node.message.metadata?.canvas?.accelerator_metadata?.id === 'review') {
+                        codeReviewAndCommentCounts.total.reviews++;
+                        const lang = node.message.metadata.canvas.textdoc_type.split('/').pop() as string;
+                        codeReviewAndCommentCounts[lang] = codeReviewAndCommentCounts[lang] || { reviews: 0, comments: 0 };
+                        codeReviewAndCommentCounts[lang].reviews++;
+                    }
+        
+                    // Count Code Comments
+                    if (node.message.author.role === 'tool' &&
+                        node.message.author.name === 'canmore.comment_textdoc' &&
+                        node.message.metadata?.canvas?.comment_ids) {
+                          codeReviewAndCommentCounts.total.comments += node.message.metadata.canvas.comment_ids.length;
+                          const lang = node.message.metadata.canvas.textdoc_type.split('/').pop() as string;
+                          codeReviewAndCommentCounts[lang] = codeReviewAndCommentCounts[lang] || { reviews: 0, comments: 0 };
+                          codeReviewAndCommentCounts[lang].comments += node.message.metadata.canvas.comment_ids.length;
+                    }
+                 }
+              
+              // Code Port
+              if (node.message.author.role === 'user' && node.message.metadata?.canvas?.accelerator_metadata?.id === 'port') {
+                  const canvasMeta = node.message.metadata.canvas;
+                  if (canvasMeta && canvasMeta.accelerator_metadata) {
+                      const prompt = canvasMeta.accelerator_metadata.prompt;
+  
+                          totalCodePortEdits++;
+  
+                          if (prompt === "Create a new document that rewrites the code in PHP") {
+                              phpEdits++;
+                          } else if (prompt === "Create a new document that rewrites the code in C++") {
+                              cppEdits++;
+                          } else if (prompt === "Create a new document that rewrites the code in Python") {
+                              pythonEdits++;
+                          } else if (prompt === "Create a new document that rewrites the code in JavaScript") {
+                              javascriptEdits++;
+                          } else if (prompt === "Create a new document that rewrites the code in TypeScript") {
+                              typescriptEdits++;
+                          } else if (prompt === "Create a new document that rewrites the code in Java") {
+                              javaEdits++;
+                          }
+                      }
+                  }
+             }
+        });
+    });
+
+    return {
+      comments: codeCommentCounts,
+      logs: codeLogCounts,
+      fixBugs: codeFixBugCounts,
+      review: codeReviewAndCommentCounts,
+      port: {
+          total: totalCodePortEdits,
+          php: phpEdits,
+          cpp: cppEdits,
+          python: pythonEdits,
+          javascript: javascriptEdits,
+          typescript: typescriptEdits,
+          java: javaEdits
+      }
+    };
+  }
+
+  // Canvas CodeBlock Count
+
+  public getCanvasCodeBlockCount(): { total: number; [lang: string]: number } {
+    const canvasCodeBlockCount: { total: number; [lang: string]: number } = { total: 0 };
+    for (const conversation of this.data) {
+        for (const node of Object.values(conversation.mapping)) {
+            if (
+                node.message?.author?.role === 'tool' &&
+                node.message.metadata?.canvas?.textdoc_type?.startsWith('code/')
+            ) {
+                canvasCodeBlockCount.total++;
+                const lang = node.message.metadata.canvas.textdoc_type.split('/').pop() as string;
+                canvasCodeBlockCount[lang] = (canvasCodeBlockCount[lang] || 0) + 1;
+            }
+        }
+    }
+    return canvasCodeBlockCount;
+  }
+
   public getDefaultAndSpecificModelMessageCount(): { defaultModelCount: number, specificModelCount: number } {
     let defaultModelCount = 0;
     let specificModelCount = 0;
