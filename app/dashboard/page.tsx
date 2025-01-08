@@ -37,6 +37,7 @@ import { TokenUsageBarChart } from '@/components/dashboard/TokenUsageBarChart';
 import { CostLineChart } from '@/components/dashboard/CostLineChart';
 import UserSystemHintsCard from '@/components/dashboard/UserSystemHintsCard';
 import LongestConversationCard from '@/components/dashboard/LongestConversationCard';
+import { CanvasStats } from '@/components/dashboard/CanvasStats'
 
 interface TokenUsage {
   userTokens: number;
@@ -124,6 +125,9 @@ export default function Dashboard() {
         systemsHintCount: newAnalysis.getUserSystemHintsCount(),
         webpageCount: newAnalysis.getWebpageCount(),
         longestConversationData: newAnalysis.getLongestConversation(),
+        documentStats: newAnalysis.getDocumentCanvasStats(),
+        codeStats: newAnalysis.getCodeCanvasStats(),
+        canvasCodeBlockCount: newAnalysis.getCanvasCodeBlockCount(),
       };
 
       setDashboardData(newDashboardData);
@@ -434,11 +438,18 @@ export default function Dashboard() {
                   <LongestConversationCard data={dashboardData.longestConversationData} />
 
                   <div className="col-span-full">
-                  <AICodeStatsCard codeBlockCount={dashboardData.codeBlockCount} />
+                  <AICodeStatsCard codeBlockCount={dashboardData.codeBlockCount} canvasCodeBlockCount={dashboardData.canvasCodeBlockCount} />
                   </div>
 
                   <div className="col-span-full">
                   <UserSystemHintsCard data={dashboardData.systemsHintCount} />
+                  </div>
+
+                  <div className="col-span-full">
+                  <CanvasStats
+                    documentStats={dashboardData.documentStats}
+                    codeStats={dashboardData.codeStats}
+                  />
                   </div>
                    
                   <div className="col-span-full">
