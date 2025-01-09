@@ -1,6 +1,13 @@
 // activityData.ts
 
 export const activityData: Record<string, { totalMessages: number; totalConversations: number }> = {
+    '2025-01-07': { totalMessages: 21, totalConversations: 3 },
+    '2025-01-06': { totalMessages: 10, totalConversations: 2 },
+    '2025-01-05': { totalMessages: 1, totalConversations: 1 },
+    '2025-01-04': { totalMessages: 12, totalConversations: 2 },
+    '2025-01-03': { totalMessages: 3, totalConversations: 1 },
+    '2025-01-02': { totalMessages: 24, totalConversations: 2 },
+    '2025-01-01': { totalMessages: 29, totalConversations: 3 },
     '2024-08-22': { totalMessages: 45, totalConversations: 3 },
     '2024-07-20': { totalMessages: 95, totalConversations: 6 },
     '2024-07-24': { totalMessages: 44, totalConversations: 4 },
