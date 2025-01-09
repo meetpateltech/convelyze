@@ -732,7 +732,7 @@ public cleanup(): void {
     return systemHintsCount;
   }
 
-  public getWebpageCount(): number {
+  /* public getWebpageCount(): number {
     let webpageCount = 0;
 
     for (const conversation of this.data) {
@@ -744,6 +744,27 @@ public cleanup(): void {
         }
     }
     return webpageCount;
+  } */
+
+    public getWebpageCount(): number {
+      let webpageCount = 0;
+  
+      for (const conversation of this.data) {
+          for (const node of Object.values(conversation.mapping)) {
+              const message = node.message;
+              // Check for the older format
+              const metadataList = message?.metadata?._cite_metadata?.metadata_list;
+              if (message?.author?.role === 'tool' && Array.isArray(metadataList)) {
+                  webpageCount += metadataList.filter(item => item?.type === 'webpage').length;
+              }
+              // Check for the newer format in content_references
+              const contentReferences = message?.metadata?.content_references;
+              if (Array.isArray(contentReferences)) {
+                  webpageCount += contentReferences.filter(ref => ref?.type === 'webpage').length;
+              }
+          }
+      }
+      return webpageCount;
   }
 
   public getLongestConversation(): { 
