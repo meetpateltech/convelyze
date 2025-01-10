@@ -38,6 +38,7 @@ import { CostLineChart } from '@/components/dashboard/CostLineChart';
 import UserSystemHintsCard from '@/components/dashboard/UserSystemHintsCard';
 import LongestConversationCard from '@/components/dashboard/LongestConversationCard';
 import { CanvasStats } from '@/components/dashboard/CanvasStats'
+import { PlanSelector } from '@/components/dashboard/PlanSelector';
 
 interface TokenUsage {
   userTokens: number;
@@ -82,6 +83,7 @@ export default function Dashboard() {
   const [totals, setTotals] = useState<Totals | null>(null);
   const [isTokenLoading, setIsTokenLoading] = useState(false);
   const [tokenDataCalculated, setTokenDataCalculated] = useState(false);
+  const [selectedPlan, setSelectedPlan] = useState('free');
 
   // const router = useRouter();
 
@@ -572,11 +574,18 @@ export default function Dashboard() {
                           <CostLineChart data={tokenUsageData} year={selectedYear} onYearChange={handleYearChange} />
                         </div>
                       </div>
+
+                      <div className="flex items-center justify-end pb-6 space-x-2">
+                          <label className="text-md font-medium text-black dark:text-gray-200">
+                            Select your current plan:
+                          </label>
+                        <PlanSelector selectedPlan={selectedPlan} onPlanChange={setSelectedPlan} />
+                      </div>
                       
                       {/* Monthly Token Usage Cards */}
                       <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
                         {Object.entries(tokenUsageData).map(([month, data]) => (
-                          <TokenUsageCard key={month} month={month} data={data} />
+                          <TokenUsageCard key={month} month={month} data={data} selectedPlan={selectedPlan} />
                         ))}
                       </div>
                     </>

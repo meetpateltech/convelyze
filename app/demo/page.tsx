@@ -26,6 +26,7 @@ import { calculateCost, getPricing } from '@/utils/pricing';
 import { TokenUsageBarChart } from '@/components/dashboard/TokenUsageBarChart';
 import { CostLineChart } from '@/components/dashboard/CostLineChart';
 import UserSystemHintsCard from '@/components/dashboard/UserSystemHintsCard';
+import { PlanSelector } from '@/components/dashboard/PlanSelector';
 
 interface TokenUsage {
   userTokens: number;
@@ -327,6 +328,8 @@ export default function Dashboard() {
 
   const [selectedYear, setSelectedYear] = useState(2024);
 
+  const [selectedPlan, setSelectedPlan] = useState('free');
+  
   return (
     <>
       <Background />
@@ -579,10 +582,21 @@ export default function Dashboard() {
                   </div>
                 </div>
 
+                {/* <div className="flex items-start justify-end pb-6">
+                      <PlanSelector selectedPlan={selectedPlan} onPlanChange={setSelectedPlan} />
+                   </div> */}
+
+            <div className="flex items-center justify-end pb-6 space-x-2">
+              <label className="text-md font-medium text-black dark:text-gray-200">
+                Select your current plan:
+              </label>
+              <PlanSelector selectedPlan={selectedPlan} onPlanChange={setSelectedPlan} />
+            </div>
+
                 {/* Monthly Token Usage Cards */}
                 <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
                   {Object.entries(tokenUsageData).map(([month, data]) => (
-                    <TokenUsageCard key={month} month={month} data={data} />
+                    <TokenUsageCard key={month} month={month} data={data} selectedPlan={selectedPlan} />
                   ))}
                 </div>
               </>
