@@ -28,6 +28,7 @@ import { CostLineChart } from '@/components/dashboard/CostLineChart';
 import UserSystemHintsCard from '@/components/dashboard/UserSystemHintsCard';
 import { PlanSelector } from '@/components/dashboard/PlanSelector';
 import AICodeStatsCard from '@/components/dashboard/CodeBlockCount';
+import { CanvasStats } from '@/components/dashboard/CanvasStats';
 
 interface TokenUsage {
   userTokens: number;
@@ -102,6 +103,89 @@ export default function Dashboard() {
       rust: 10,
       swift: 8,
       kotlin: 7
+    },
+    documentStats: {
+      emoji: {
+        total: 847,
+        words: 324,
+        sections: 156,
+        lists: 289,
+        remove: 78
+      },
+      suggestEdits: {
+        totalSuggestEdits: 456,
+        totalCommentsAdded: 892
+      },
+      polish: 234,
+      readingLevel: {
+        total: 678,
+        graduate: 145,
+        college: 234,
+        highSchool: 167,
+        middleSchool: 89,
+        kindergarten: 43
+      },
+      length: {
+        total: 567,
+        longest: 178,
+        longer: 156,
+        shorter: 145,
+        shortest: 88
+      }
+    },
+    codeStats: {
+      comments: {
+        total: 934,
+        javascript: 345,
+        python: 256,
+        typescript: 178,
+        java: 155
+      },
+      logs: {
+        total: 456,
+        javascript: 189,
+        python: 134,
+        typescript: 89,
+        java: 44
+      },
+      fixBugs: {
+        total: 345,
+        javascript: 123,
+        python: 98,
+        typescript: 76,
+        java: 48
+      },
+      review: {
+        total: {
+          reviews: 567,
+          comments: 1234
+        },
+        javascript: {
+          reviews: 234,
+          comments: 456
+        },
+        python: {
+          reviews: 156,
+          comments: 345
+        },
+        typescript: {
+          reviews: 123,
+          comments: 289
+        },
+        java: {
+          reviews: 54,
+          comments: 144
+        }
+      },
+      port: {
+        total: 789,
+        php: 145,
+        cpp: 123,
+        python: 167,
+        javascript: 178,
+        typescript: 98,
+        java: 78
+      }
     },
   };
 
@@ -530,6 +614,13 @@ export default function Dashboard() {
 
               <div className="col-span-full">
               <UserSystemHintsCard data={dashboardData.systemsHintCount} />
+              </div>
+
+              <div className="col-span-full">
+                <CanvasStats
+                  documentStats={dashboardData.documentStats}
+                  codeStats={dashboardData.codeStats}
+                />
               </div>
             
               {/* Existing usage cards */}
