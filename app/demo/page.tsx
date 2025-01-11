@@ -27,6 +27,7 @@ import { TokenUsageBarChart } from '@/components/dashboard/TokenUsageBarChart';
 import { CostLineChart } from '@/components/dashboard/CostLineChart';
 import UserSystemHintsCard from '@/components/dashboard/UserSystemHintsCard';
 import { PlanSelector } from '@/components/dashboard/PlanSelector';
+import AICodeStatsCard from '@/components/dashboard/CodeBlockCount';
 
 interface TokenUsage {
   userTokens: number;
@@ -61,6 +62,46 @@ export default function Dashboard() {
       picture: 123,
       reason: 333,
       canvas: 150,
+    },
+    codeBlockCount: {
+      total: 943,
+      javascript: 156,
+      typescript: 143,
+      python: 98,
+      java: 76,
+      sql: 65,
+      html: 54,
+      css: 48,
+      php: 42,
+      ruby: 38,
+      go: 35,
+      rust: 29,
+      swift: 27,
+      kotlin: 25,
+      csharp: 23,
+      shell: 21,
+      yaml: 19,
+      json: 17,
+      markdown: 15,
+      dockerfile: 12
+    },
+    canvasCodeBlockCount: {
+      total: 445,
+      javascript: 87,
+      typescript: 65,
+      python: 43,
+      html: 38,
+      css: 35,
+      jsx: 32,
+      tsx: 28,
+      scss: 25,
+      java: 22,
+      go: 18,
+      ruby: 15,
+      php: 12,
+      rust: 10,
+      swift: 8,
+      kotlin: 7
     },
   };
 
@@ -482,6 +523,10 @@ export default function Dashboard() {
               <UsageTimeline data={usageTimelineData} />
               <DefaultModelSlugCount data={defaultModelSlugData} />
               <AIMessageStatus data={aiMessageStatusData} />
+
+              <div className="col-span-full">
+                <AICodeStatsCard codeBlockCount={dashboardData.codeBlockCount} canvasCodeBlockCount={dashboardData.canvasCodeBlockCount} />
+              </div>
 
               <div className="col-span-full">
               <UserSystemHintsCard data={dashboardData.systemsHintCount} />
