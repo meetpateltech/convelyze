@@ -177,6 +177,27 @@ export default function Dashboard() {
   }
 
   const tokenUsageData: TokenUsageData = {
+    'Jan-25': {
+      'o1-mini': { userTokens: 460000, assistantTokens: 510000 },
+      'gpt-4o': { userTokens: 110000, assistantTokens: 115000 },
+      'o3-mini': { userTokens: 245000, assistantTokens: 240000 },
+      'o1': { userTokens: 560000, assistantTokens: 580000 },
+      'o1-pro': { userTokens: 710000, assistantTokens: 730000 }
+    },
+    'Dec-24': {
+      'o1-preview': { userTokens: 150000, assistantTokens: 180000 },
+      'o1-mini': { userTokens: 400000, assistantTokens: 450000 },
+      'gpt-4o': { userTokens: 95000, assistantTokens: 100000 },
+      'gpt-4o-mini': { userTokens: 235000, assistantTokens: 230000 },
+      'o1': { userTokens: 500000, assistantTokens: 520000 },
+      'o1-pro': { userTokens: 600000, assistantTokens: 620000 }
+    },
+    'Nov-24': {
+      'o1-preview': { userTokens: 105000, assistantTokens: 190000 },
+      'o1-mini': { userTokens: 250000, assistantTokens: 340000 },
+      'gpt-4o': { userTokens: 95000, assistantTokens: 100000 },
+      'gpt-4o-mini': { userTokens: 235000, assistantTokens: 230000 },
+    },
     'Oct-24': {
       'o1-preview': { userTokens: 101345, assistantTokens: 191824 },
       'o1-mini': { userTokens: 247382, assistantTokens: 342193 },
