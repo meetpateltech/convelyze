@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Card } from '@/components/ui/card'
 import { Smile, Edit2, Sparkles, GraduationCap, Ruler, MessageSquare, Terminal, Bug, GitPullRequest, Code, LucideIcon } from 'lucide-react'
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 
 interface ReviewStats {
   reviews: number
@@ -131,6 +132,64 @@ const renderLanguageStats = (stats: { [key: string]: number }, excludeTotal: boo
         value={value} 
       />
     ))
+}
+
+const LanguageStatRow = ({ language, stats }: { language: string, stats: ReviewStats }) => {
+  
+  const capitalizedLang = language.charAt(0).toUpperCase() + language.slice(1)
+  
+  return (
+    <div className="flex items-center justify-between py-2 border-b border-gray-100 dark:border-white/10 last:border-0">
+      <div className="flex items-center space-x-2">
+        <span className="px-3 py-1 text-sm font-medium rounded-full bg-gray-100 dark:bg-white/10 text-gray-900 dark:text-white/90">
+          {capitalizedLang}
+        </span>
+      </div>
+      <div className="flex items-center space-x-6">
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <div className="flex items-center space-x-2">
+                <GitPullRequest className="w-4 h-4 text-amber-500" />
+                <span className="text-sm font-medium">{stats.reviews}</span>
+              </div>
+            </TooltipTrigger>
+            <TooltipContent 
+              side="left"
+              align="end"
+              sideOffset={5}
+              alignOffset={5}
+              className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg border border-gray-200/50 dark:border-white/10"
+            >
+              <p className="text-sm text-gray-900 dark:text-white/90">
+                Code reviews used for {capitalizedLang}
+              </p>
+            </TooltipContent>
+          </Tooltip>
+
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <div className="flex items-center space-x-2">
+                <MessageSquare className="w-4 h-4 text-emerald-500" />
+                <span className="text-sm font-medium">{stats.comments}</span>
+              </div>
+            </TooltipTrigger>
+            <TooltipContent 
+              side="left"
+              align="end"
+              sideOffset={5}
+              alignOffset={5}
+              className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg border border-gray-200/50 dark:border-white/10"
+            >
+              <p className="text-sm text-gray-900 dark:text-white/90">
+                Review comments added for {capitalizedLang}
+              </p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+      </div>
+    </div>
+  )
 }
 
 export function CanvasStats({ documentStats, codeStats }: CanvasStatsProps) {
@@ -265,21 +324,17 @@ export function CanvasStats({ documentStats, codeStats }: CanvasStatsProps) {
               iconColor="text-purple-500"
               hoverGlow="bg-purple-500/20"
             >
-              <StatItem label="Total Comments" value={codeStats.review.total.comments} />
-              {Object.entries(codeStats.review)
-                .filter(([key]) => key !== 'total')
-                .map(([language, stats]) => (
-                  <React.Fragment key={language}>
-                    <StatItem
-                      label={`${language.charAt(0).toUpperCase() + language.slice(1)} Reviews`}
-                      value={stats.reviews}
+              <div className="space-y-1">
+                {Object.entries(codeStats.review)
+                  .filter(([key]) => key !== 'total')
+                  .map(([language, stats]) => (
+                    <LanguageStatRow 
+                      key={language}
+                      language={language}
+                      stats={stats}
                     />
-                    <StatItem
-                      label={`${language.charAt(0).toUpperCase() + language.slice(1)} Comments`}
-                      value={stats.comments}
-                    />
-                  </React.Fragment>
-                ))}
+                  ))}
+              </div>
             </StatBox>
 
             <StatBox
