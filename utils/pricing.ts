@@ -9,6 +9,7 @@ export interface ModelPricing {
     'o1': {inputCost: 15.00, outputCost: 60.00 },
     'o1-preview': {inputCost: 15.00, outputCost: 60.00 },
     'o1-mini': {inputCost: 3.00, outputCost: 12.00 },
+    'gpt-4o-canmore': { inputCost: 2.50, outputCost: 10.00 }, // gpt 4o with canvas mode model
     'gpt-4o-mini': { inputCost: 0.15, outputCost: 0.60 },
     'gpt-4o': { inputCost: 2.50, outputCost: 10.00 },
     'gpt-4-turbo': { inputCost: 10.00, outputCost: 30.00 },
