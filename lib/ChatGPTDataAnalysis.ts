@@ -761,8 +761,10 @@ public cleanup(): void {
               // Check for the newer format in content_references
               const contentReferences = message?.metadata?.content_references;
               if (Array.isArray(contentReferences)) {
-                  webpageCount += contentReferences.filter(ref => ref?.type === 'webpage').length;
-              }
+                webpageCount += contentReferences.filter(ref => 
+                    ref?.type === 'webpage' || ref?.type === 'grouped_webpages'
+                ).length;
+            }
           }
       }
       return webpageCount;
