@@ -762,7 +762,9 @@ public cleanup(): void {
               const contentReferences = message?.metadata?.content_references;
               if (Array.isArray(contentReferences)) {
                 webpageCount += contentReferences.filter(ref => 
-                    ref?.type === 'webpage' || ref?.type === 'grouped_webpages'
+                  ref?.type === 'webpage' || 
+                  ref?.type === 'grouped_webpages' ||
+                  ref?.type === 'webpage_extended'
                 ).length;
             }
           }
