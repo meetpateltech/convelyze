@@ -103,7 +103,7 @@ class OptimizedTokenCounter {
 
 public countTokens(text: string, modelSlug: string): number {
     const encoder = this.getEncoder(modelSlug);
-    return encoder.encode(text,{ allowed_special: new Set(['<|endoftext|>']) }).length;
+    return encoder.encode(text,"all").length;
 }
 
 
