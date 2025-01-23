@@ -107,10 +107,11 @@ class OptimizedTokenCounter {
     return "gpt-3.5-turbo";
   }
 
-  public countTokens(text: string, modelSlug: string): number {
+public countTokens(text: string, modelSlug: string): number {
     const encoder = this.getEncoder(modelSlug);
-    return encoder.encode(text,allowed_special={'<|endoftext|>'}).length;
-  }
+    return encoder.encode(text, { allowed_special: { '<|endoftext|>': true } }).length;
+}
+
 
   public freeEncoders(): void {
     Object.values(this.encoders).forEach(encoder => encoder.free());
