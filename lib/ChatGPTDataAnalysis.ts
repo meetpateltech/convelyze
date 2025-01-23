@@ -88,7 +88,7 @@ class OptimizedTokenCounter {
   private getEncoder(modelSlug: string): any {
     if (!this.encoders[modelSlug]) {
       const tiktokenModel = this.getMatchingTiktokenModel(modelSlug);
-      this.encoders[modelSlug] = encoding_for_model(tiktokenModel);
+      this.encoders[modelSlug] = encoding_for_model(tiktokenModel,{ '<|endoftext|>': 50256 });
     }
     return this.encoders[modelSlug];
   }
@@ -103,7 +103,7 @@ class OptimizedTokenCounter {
 
 public countTokens(text: string, modelSlug: string): number {
     const encoder = this.getEncoder(modelSlug);
-    return encoder.encode(text, { allowed_special: { '<|endoftext|>': true } }).length;
+    return encoder.encode(text,{ allowed_special: new Set(['<|endoftext|>']) }).length;
 }
 
 
