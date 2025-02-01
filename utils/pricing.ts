@@ -6,6 +6,7 @@ export interface ModelPricing {
   }
   
   export const modelPricing: { [key: string]: ModelPricing } = {
+    'o3-mini': {inputCost: 1.10, outputCost: 4.40 },
     'o1': {inputCost: 15.00, outputCost: 60.00 },
     'o1-preview': {inputCost: 15.00, outputCost: 60.00 },
     'o1-mini': {inputCost: 3.00, outputCost: 12.00 },
