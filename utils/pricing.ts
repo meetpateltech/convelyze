@@ -6,6 +6,12 @@ export interface ModelPricing {
   }
   
   export const modelPricing: { [key: string]: ModelPricing } = {
+    'o3': { inputCost: 10.00, outputCost: 40.00 },
+    'o4-mini-high': { inputCost: 1.10, outputCost: 4.40 },
+    'o4-mini': { inputCost: 1.10, outputCost: 4.40 },
+    'research': { inputCost: 10.00, outputCost: 40.00 }, // deep research uses o3 model
+    'o1-pro': { inputCost: 150.00, outputCost: 600.00 },
+    'o3-mini-high': { inputCost: 1.10, outputCost: 4.40 },
     'o3-mini': {inputCost: 1.10, outputCost: 4.40 },
     'o1': {inputCost: 15.00, outputCost: 60.00 },
     'o1-preview': {inputCost: 15.00, outputCost: 60.00 },
