@@ -94,7 +94,7 @@ class OptimizedTokenCounter {
   private getEncoder(modelSlug: string): any {
     if (!this.encoders[modelSlug]) {
       const tiktokenModel = this.getMatchingTiktokenModel(modelSlug);
-      this.encoders[modelSlug] = encoding_for_model(tiktokenModel);
+      this.encoders[modelSlug] = encoding_for_model(tiktokenModel,{ '<|endoftext|>': 50256 });
     }
     return this.encoders[modelSlug];
   }
@@ -107,10 +107,11 @@ class OptimizedTokenCounter {
     return "gpt-3.5-turbo";
   }
 
-  public countTokens(text: string, modelSlug: string): number {
+public countTokens(text: string, modelSlug: string): number {
     const encoder = this.getEncoder(modelSlug);
-    return encoder.encode(text).length;
-  }
+    return encoder.encode(text,"all").length;
+}
+
 
   public freeEncoders(): void {
     Object.values(this.encoders).forEach(encoder => encoder.free());
