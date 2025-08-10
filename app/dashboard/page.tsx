@@ -1,7 +1,8 @@
 'use client'
 
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect, useContext } from 'react';
 import { useDropzone } from 'react-dropzone';
+import { PromptContext } from '@/app/providers/PromptProvider';
 import { MessageCircle, MessageSquare, Image as ImageIcon, Mic, Calendar, Users, Archive, BarChart2, ChartColumn, FileText, Video, Brain, Code, Globe, Download, Upload, ScanSearch, CircleStop, Loader, UserCog, MessageCircleReply, LinkIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import ActivityCalendar from '@/components/dashboard/ActivityCalendar';
@@ -84,8 +85,57 @@ export default function Dashboard() {
   const [isTokenLoading, setIsTokenLoading] = useState(false);
   const [tokenDataCalculated, setTokenDataCalculated] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState('free');
+  const { setPrompts } = useContext(PromptContext);
 
   // const router = useRouter();
+
+  const parseTextToPrompts = (jsonData: unknown): string[] => {
+    try {
+      if (Array.isArray(jsonData)) {
+        if (jsonData.every(x => typeof x === "string")) return jsonData as string[];
+        const out: string[] = [];
+        for (const item of jsonData) {
+          if (!item) continue;
+          if (typeof item === "string") out.push(item);
+          else if (typeof item === "object" && item !== null && "messages" in item && Array.isArray((item as Record<string, unknown>).messages)) {
+            for (const m of (item as Record<string, unknown>).messages as unknown[]) {
+              if (typeof m === "object" && m !== null && "content" in m) {
+                if (typeof m.content === "string") out.push(m.content);
+                else if (m.content && typeof m.content === "object" && "parts" in m.content && Array.isArray(m.content.parts)) {
+                  out.push(m.content.parts.join(" "));
+                }
+              }
+            }
+          } else if (typeof item === "object" && item !== null) {
+            for (const k of ["content","text","message","prompt"]) {
+              if (k in item && typeof (item as Record<string, unknown>)[k] === "string") {
+                out.push((item as Record<string, unknown>)[k] as string);
+              }
+            }
+          }
+        }
+        return out;
+      }
+      if (typeof jsonData === "object" && jsonData !== null && "conversations" in jsonData && Array.isArray((jsonData as Record<string, unknown>).conversations)) {
+        const out: string[] = [];
+        for (const conv of (jsonData as Record<string, unknown>).conversations as unknown[]) {
+          if (!conv || typeof conv !== "object" || !("messages" in conv) || !Array.isArray((conv as Record<string, unknown>).messages)) continue;
+          for (const m of (conv as Record<string, unknown>).messages as unknown[]) {
+            if (typeof m === "object" && m !== null && "content" in m) {
+              if (typeof m.content === "string") out.push(m.content);
+              else if (m.content && typeof m.content === "object" && "parts" in m.content && Array.isArray(m.content.parts)) {
+                out.push(m.content.parts.join(" "));
+              }
+            }
+          }
+        }
+        return out;
+      }
+    } catch (e) {
+      // fall through to empty array
+    }
+    return [];
+  };
 
   const onDrop = useCallback(async (acceptedFiles: File[]) => {
     try {
@@ -93,6 +143,12 @@ export default function Dashboard() {
       const jsonData = await readJsonFile(file);
       const newAnalysis = new ChatGPTDataAnalysis(jsonData);
       setAnalysis(newAnalysis);
+
+      // Extract prompts from the JSON data and save to context
+      const extractedPrompts = parseTextToPrompts(jsonData);
+      if (extractedPrompts.length > 0) {
+        setPrompts(extractedPrompts);
+      }
 
       const newDashboardData = {
         totalConversations: newAnalysis.getTotalConversations(),
@@ -141,7 +197,7 @@ export default function Dashboard() {
       console.error('Error processing file:', error);
       toast.error('Error processing file. Please upload the correct file. If you still face issues, create an issue on GitHub.');
     }
-  }, []);
+  }, [setPrompts]);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop, accept: { 'application/json': ['.json'] },
     multiple: false, });
@@ -255,6 +311,11 @@ export default function Dashboard() {
           <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
             <Link href="/">Convelyze</Link>
           </h1>
+          <div className="flex items-center space-x-4">
+            <Link href="/prompts" className="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">
+              Prompts Analysis
+            </Link>
+          </div>
             <div className="flex items-center space-x-4">
               <ModeToggle />
               {dashboardData && (

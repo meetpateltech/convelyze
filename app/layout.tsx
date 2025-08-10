@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "sonner";
 import Script from 'next/script'
+import { PromptProvider } from "./providers/PromptProvider";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -65,7 +66,9 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            {children}
+            <PromptProvider>
+              {children}
+            </PromptProvider>
             <Toaster position="top-center" richColors />
           </ThemeProvider>
       </body>

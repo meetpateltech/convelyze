@@ -7,7 +7,7 @@ import { parseTextToPrompts } from "../lib/promptParser";
 
 describe("promptParser", () => {
   it("parses newline and JSON array", () => {
-    const txt = "one\\ntwo\\nthree";
+    const txt = "one\ntwo\nthree";
     expect(parseTextToPrompts(txt)).toEqual(["one","two","three"]);
     const arr = JSON.stringify(["a","b","c"]);
     expect(parseTextToPrompts(arr)).toEqual(["a","b","c"]);
