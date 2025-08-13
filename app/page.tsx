@@ -52,7 +52,7 @@ export default function CoolLandingPage() {
         <a href="https://github.com/meetpateltech" target="_blank" className="text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200 transition-colors">
           <Github size={20} aria-label="GitHub" />
         </a>
-        <a href="https://x.com/mn_google" target="_blank" className="text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200 transition-colors">
+        <a href="https://x.com/MeetPatelTech" target="_blank" className="text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200 transition-colors">
           <Twitter size={20} aria-label="Twitter" />
         </a>
       </div>

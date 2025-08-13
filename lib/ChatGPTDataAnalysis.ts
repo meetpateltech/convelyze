@@ -60,6 +60,15 @@ interface MonthlyUsage {
 
 // Define the model to Tiktoken models mapping
 const modelSlugToTiktokenModel: Record<string, TiktokenModel> = {
+  "gpt-5-instant": "gpt-5",
+  "gpt-5-a-t-mini": "gpt-5",
+  "gpt-5-t-mini": "gpt-5",
+  "gpt-5-pro": "gpt-5",
+  "gpt-5-thinking": "gpt-5",
+  "gpt-5-mini": "gpt-5",
+  "gpt-5": "gpt-5",
+  "o3-pro": "o1",
+  "gpt-4-1-mini": "gpt-4",
   "o3": "o1",
   "o4-mini-high": "o3-mini",
   "o4-mini": "o3-mini",

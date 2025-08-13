@@ -36,7 +36,7 @@
     "sonner": "^1.5.0",
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7",
-    "tiktoken": "1.0.20"
+    "tiktoken": "^1.0.22"
   },
   "devDependencies": {
     "typescript": "^5",
