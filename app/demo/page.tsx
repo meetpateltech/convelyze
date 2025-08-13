@@ -63,6 +63,7 @@ export default function Dashboard() {
       picture: 123,
       reason: 333,
       canvas: 150,
+      tatertot: 77,
     },
     codeBlockCount: {
       total: 943,

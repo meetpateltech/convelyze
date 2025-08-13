@@ -1,4 +1,4 @@
-import { Search, Image, BrainCircuit, FileText } from 'lucide-react';
+import { Search, Image, BrainCircuit, FileText, BookOpen } from 'lucide-react';
 import GlassCard from '../cards/GlassCard';
 
 interface UserSystemHintsData {
@@ -7,6 +7,7 @@ interface UserSystemHintsData {
   picture_v2?: number;
   reason?: number;
   canvas?: number;
+  tatertot?: number;
 }
 
 interface UserSystemHintsCardProps {
@@ -59,6 +60,17 @@ export default function UserSystemHintsCard({ data }: UserSystemHintsCardProps) 
       gradientFrom: 'from-amber-500/10',
       valueColor: 'text-amber-500/90 dark:text-amber-400/90',
       hoverGlow: 'bg-amber-500/5'
+    },
+    {
+      icon: <BookOpen className="w-7 h-7" />,
+      label: 'Study & Learn',
+      value: data.tatertot ?? 0,
+      description: 'times used study mode',
+      iconColor: 'text-indigo-500',
+      bgGlow: 'bg-indigo-500/20',
+      gradientFrom: 'from-indigo-500/10',
+      valueColor: 'text-indigo-500/90 dark:text-indigo-400/90',
+      hoverGlow: 'bg-indigo-500/5'
     }
   ];
 
@@ -69,8 +81,8 @@ export default function UserSystemHintsCard({ data }: UserSystemHintsCardProps) 
           User System Hints
         </h3>
 
-        {/* Updated grid layout: 2x2 on mobile, 4x1 on desktop */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+        {/* Grid layout: 2 columns on mobile, 5 on desktop */}
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-4 md:gap-6">
           {hints.map((hint) => (
             <div
               key={hint.label}
