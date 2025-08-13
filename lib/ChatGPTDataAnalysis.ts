@@ -486,6 +486,35 @@ export class ChatGPTDataAnalysis {
 
     return dalleImageCount;
   }
+
+  public getPictureV2ImageCount(): number {
+    const pictureV2ToolName = 't2uay3k.sj1i4kz';
+    let pictureV2ImageCount = 0;
+  
+    this.data.forEach(conversation => {
+      Object.values(conversation.mapping).forEach(node => {
+        if (node.message !== null && 
+            node.message.author.role === 'tool' && 
+            node.message.author.name === pictureV2ToolName) {
+          if (node.message.content && 
+              node.message.content.parts && 
+              Array.isArray(node.message.content.parts)) {
+            const parts = node.message.content.parts;
+            const imageParts = parts.filter(part => 
+              part && 
+              typeof part === 'object' &&
+              part.content_type === 'image_asset_pointer' &&
+              part.metadata && 
+              (part.metadata.dalle || part.metadata.generation)
+            );
+            pictureV2ImageCount += imageParts.length;
+          }
+        }
+      });
+    });
+  
+    return pictureV2ImageCount;
+  }
   
   public getUserAttachmentMimeTypeCount(): Record<string, number> {
     const mimeTypeCount: Record<string, number> = {};

@@ -4,6 +4,7 @@ import GlassCard from '../cards/GlassCard';
 interface UserSystemHintsData {
   search?: number; // Made optional
   picture?: number;
+  picture_v2?: number;
   reason?: number;
   canvas?: number;
 }
@@ -13,6 +14,7 @@ interface UserSystemHintsCardProps {
 }
 
 export default function UserSystemHintsCard({ data }: UserSystemHintsCardProps) {
+  const totalPicture = (data.picture ?? 0) + (data.picture_v2 ?? 0);
   const hints = [
     {
       icon: <Search className="w-7 h-7" />,
@@ -28,7 +30,7 @@ export default function UserSystemHintsCard({ data }: UserSystemHintsCardProps) 
     {
       icon: <Image className="w-7 h-7" />,
       label: 'Picture',
-      value: data.picture ?? 0,
+      value: totalPicture,
       description: 'times used picture hint',
       iconColor: 'text-green-500',
       bgGlow: 'bg-green-500/20',

@@ -104,7 +104,7 @@ export default function Dashboard() {
         averageDailyMessageCount: newAnalysis.getAverageDailyMessageCount(),
         totalArchivedConversations: newAnalysis.getTotalArchivedConversations(),
         totalVoiceMessages: newAnalysis.getTotalVoiceMessages(),
-        totalImagesGenerated: newAnalysis.getDALLEImageCount() + newAnalysis.getDALLEImageCountWithoutGizmo(),
+        totalImagesGenerated: newAnalysis.getDALLEImageCount() + newAnalysis.getDALLEImageCountWithoutGizmo() + newAnalysis.getPictureV2ImageCount(),
         roleBasedMessageData: {
           overall: newAnalysis.getRoleBasedMessageCount(),
           gpts: newAnalysis.getRoleBasedGPTsMessageCount(),
