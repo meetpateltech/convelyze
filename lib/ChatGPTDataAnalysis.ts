@@ -286,8 +286,27 @@ export class ChatGPTDataAnalysis {
   }
 
   public getAverageDailyMessageCount(): number {
-    const dayMessageCount = this.getMostChattyDay();
-    return this.getTotalMessages() / dayMessageCount.count;
+    const dayCount: Record<string, number> = {};
+
+    this.data.forEach(conversation => {
+      Object.values(conversation.mapping || {}).forEach(node => {
+        const createTime = node?.message?.create_time;
+
+        if (createTime != null) {
+          const date = new Date(createTime * 1000)
+            .toISOString()
+            .split('T')[0];
+          dayCount[date] = (dayCount[date] || 0) + 1;
+        }
+      });
+    });
+
+    const totalDays = Object.keys(dayCount).length;
+    if (totalDays === 0) return 0;
+
+    const totalMessagesCounted = Object.values(dayCount).reduce((sum, count) => sum + count, 0);
+
+    return totalMessagesCounted / totalDays;
   }
 
   public getModelWiseMessageCount(): Record<string, number> {

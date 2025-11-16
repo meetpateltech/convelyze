@@ -20,7 +20,7 @@ export default function CoolLandingPage() {
           </h1>
           <div className="flex flex-wrap justify-center sm:justify-end items-center space-x-2 sm:space-x-4">
             <Link href="/demo" className="mb-2 sm:mb-0">
-              <Button variant="outline" className="rounded-full">View Demo</Button>
+              <Button variant="default" className="rounded-full">View Demo</Button>
             </Link>
             <Link href="/dashboard" className="mb-2 sm:mb-0">
               <Button className="rounded-full">Dashboard</Button>
