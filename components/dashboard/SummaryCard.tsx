@@ -13,16 +13,8 @@ export const SummaryCard: React.FC<SummaryCardProps> = ({ title, data }) => {
   const tooltipContent = title === 'Tokens' 
   ? (
     <>
-      Tokens calculated are estimated using the{' '}
-      <a 
-        href="https://github.com/dqbd/tiktoken" 
-        target="_blank" 
-        rel="noopener noreferrer"
-        className="text-blue-400 hover:text-blue-300 underline"
-      >
-        tiktoken
-      </a>
-      {' '}library. Actual token count may vary.
+      Tokens are estimated using a heuristic method (approximately 4 characters per token). 
+      Actual token count may vary from OpenAI&apos;s tokenizer.
     </>
   )
   : (
