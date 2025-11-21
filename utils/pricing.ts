@@ -6,6 +6,10 @@ export interface ModelPricing {
   }
   
   export const modelPricing: { [key: string]: ModelPricing } = {
+    'gpt-5-1-pro': { inputCost: 20.00, outputCost: 80.00 }, // gpt-5-pro successor model so same pricing as gpt-5-pro
+    'gpt-5-1-thinking': { inputCost: 1.25, outputCost: 10.00 },
+    'gpt-5-1-instant': { inputCost: 1.25, outputCost: 10.00 },
+    'gpt-5-1': { inputCost: 1.25, outputCost: 10.00 },
     'gpt-5-instant': { inputCost: 1.25, outputCost: 10.00 },
     'gpt-5-pro': { inputCost: 20.00, outputCost: 80.00 }, // o3-pro successor model so same pricing as o3-pro
     'gpt-5-a-t-mini': { inputCost: 1.10, outputCost: 4.40 },
