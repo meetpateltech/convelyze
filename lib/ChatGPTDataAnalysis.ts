@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { encoding_for_model, TiktokenModel } from "tiktoken";
 
 // Type Definitions
 interface Author {
@@ -58,83 +57,26 @@ interface MonthlyUsage {
   [monthYear: string]: MonthlyModelUsage;
 }
 
-// Define the model to Tiktoken models mapping
-const modelSlugToTiktokenModel: Record<string, TiktokenModel> = {
-  "gpt-5-instant": "gpt-5",
-  "gpt-5-a-t-mini": "gpt-5",
-  "gpt-5-t-mini": "gpt-5",
-  "gpt-5-pro": "gpt-5",
-  "gpt-5-thinking": "gpt-5",
-  "gpt-5-mini": "gpt-5",
-  "gpt-5": "gpt-5",
-  "o3-pro": "o1",
-  "gpt-4-1-mini": "gpt-4",
-  "o3": "o1",
-  "o4-mini-high": "o3-mini",
-  "o4-mini": "o3-mini",
-  "o3-mini-high": "o3-mini",
-  "research": "o1",
-  "o3-mini": "o3-mini", 
-  "o1-pro": "o1-preview",
-  "o1": "o1",
-  "o1-preview": "o1-preview",
-  "o1-mini": "o1-mini",
-  "gpt-4o": "gpt-4o",
-  "gpt-4o-mini": "gpt-4o-mini",
-  "gpt-4": "gpt-4",
-  "gpt-4-turbo": "gpt-4-turbo",
-  "gpt-4-vision-preview": "gpt-4-vision-preview",
-  "gpt-3.5-turbo-16k": "gpt-3.5-turbo-16k",
-  "gpt-3.5-turbo": "gpt-3.5-turbo",
-  "text-davinci-003": "text-davinci-003",
-  "text-davinci-002": "text-davinci-002",
-  "text-davinci-001": "text-davinci-001",
-  "text-davinci-002-render": "text-davinci-002",
-  "text-davinci-002-render-sha": "text-davinci-002",
-  // Add other model slugs as needed
-};
-
 // Token Counter Implementation
-class OptimizedTokenCounter {
-  private encoders: Record<string, any> = {};
-
-  constructor(private modelSlugToTiktokenModel: Record<string, TiktokenModel>) {}
-
-  private getEncoder(modelSlug: string): any {
-    if (!this.encoders[modelSlug]) {
-      const tiktokenModel = this.getMatchingTiktokenModel(modelSlug);
-      this.encoders[modelSlug] = encoding_for_model(tiktokenModel,{ '<|endoftext|>': 50256 });
-    }
-    return this.encoders[modelSlug];
+class HeuristicTokenCounter {
+  public countTokens(text: string): number {
+    if (!text) return 0;
+    const approx = Math.ceil(text.length / 4);
+    return approx < 0 ? 0 : approx;
   }
 
-  private getMatchingTiktokenModel(modelSlug: string): TiktokenModel {
-    if (modelSlug in this.modelSlugToTiktokenModel) {
-      return this.modelSlugToTiktokenModel[modelSlug];
-    }
-    // console.warn(`Unknown model slug: ${modelSlug}. Using gpt-3.5-turbo for token counting.`);
-    return "gpt-3.5-turbo";
-  }
-
-public countTokens(text: string, modelSlug: string): number {
-    const encoder = this.getEncoder(modelSlug);
-    return encoder.encode(text,"all").length;
-}
-
-
-  public freeEncoders(): void {
-    Object.values(this.encoders).forEach(encoder => encoder.free());
-    this.encoders = {};
+  public free(): void {
+    // no-op; exists for API parity with prior implementation
   }
 }
 
 export class ChatGPTDataAnalysis {
   private data: ConversationData[];
-  private tokenCounter: OptimizedTokenCounter;
+  private tokenCounter: HeuristicTokenCounter;
 
   constructor(jsonData: ConversationData[]) {
     this.data = jsonData;
-    this.tokenCounter = new OptimizedTokenCounter(modelSlugToTiktokenModel);
+    this.tokenCounter = new HeuristicTokenCounter();
   }
 
   private isGPTsConversation(conversation: ConversationData): boolean {
@@ -693,68 +635,93 @@ private getModelSlugForUserMessage(conversation: ConversationData, userMessageId
     return assistantNode.message.metadata.model_slug || "unknown";
 }
 
-public getMonthlyModelWiseTokenUsage(): MonthlyUsage {
-  const monthlyUsage: MonthlyUsage = {};
+// Helper method to get local month from timestamp
+private getLocalMonth(timestamp: number | null): number | null {
+    if (timestamp === null) return null;
+    return new Date(timestamp * 1000).getMonth();
+}
 
-  // Move monthNames outside the loop
-  const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", 
-                      "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+// Helper method to get local full year from timestamp
+private getLocalFullYear(timestamp: number | null): number | null {
+    if (timestamp === null) return null;
+    return new Date(timestamp * 1000).getFullYear();
+}
 
-  this.data.forEach(conversation => {
-    Object.values(conversation.mapping).forEach(node => {
-      if (node.message !== null && node.message.content && Array.isArray(node.message.content.parts)) {
-        const messageText = node.message.content.parts.join(' ');
-        const messageDate = new Date(node.message.create_time! * 1000);
-
-        // Check if the date is valid
-        if (!this.isValidDate(messageDate)) {
-          // console.warn(`Invalid date detected: ${messageDate.toISOString()}. Skipping this entry.`);
-          return;
-        }
-
-        // Format the monthYear as "MMM-YY" using the pre-defined monthNames
-        const monthYear = `${monthNames[messageDate.getMonth()]}-${String(messageDate.getFullYear()).slice(-2)}`;
-        const modelSlug = node.message.metadata.model_slug || this.getModelSlugForUserMessage(conversation, node.id);
-
-        if (!monthlyUsage[monthYear]) {
-          monthlyUsage[monthYear] = {};
-        }
-
-        if (!monthlyUsage[monthYear][modelSlug]) {
-          monthlyUsage[monthYear][modelSlug] = { userTokens: 0, assistantTokens: 0 };
-        }
-
-        // Pass the correct modelSlug instead of a fixed string
-        const tokenCount = this.tokenCounter.countTokens(messageText, modelSlug);
-
-        if (node.message.author.role === 'user') {
-          monthlyUsage[monthYear][modelSlug].userTokens += tokenCount;
-        } else if (node.message.author.role === 'assistant') {
-          monthlyUsage[monthYear][modelSlug].assistantTokens += tokenCount;
-        }
-      }
-    });
-  });
-
-  // Remove entries where both userTokens and assistantTokens are 0
-  Object.keys(monthlyUsage).forEach(monthYear => {
-    Object.keys(monthlyUsage[monthYear]).forEach(modelSlug => {
-      const usage = monthlyUsage[monthYear][modelSlug];
-      if (usage.userTokens === 0 && usage.assistantTokens === 0) {
-        delete monthlyUsage[monthYear][modelSlug];
-      }
-    });
-    // Remove month if it's empty
-    if (Object.keys(monthlyUsage[monthYear]).length === 0) {
-      delete monthlyUsage[monthYear];
+// Helper method to get model slug from message, node, and mapping
+private getModelSlug(message: Message, node: ConversationNode, mapping: Record<string, ConversationNode>): string {
+    if (message.metadata?.model_slug) {
+        return message.metadata.model_slug;
     }
-  });
+    // For user messages, try to get model slug from the assistant response
+    if (message.author?.role === 'user' && node.children && node.children.length > 0) {
+        const assistantNode = mapping[node.children[0]];
+        if (assistantNode?.message?.metadata?.model_slug) {
+            return assistantNode.message.metadata.model_slug;
+        }
+    }
+    return "unknown";
+}
 
-  return monthlyUsage;
+public getMonthlyModelWiseTokenUsage(): MonthlyUsage {
+    const monthlyUsage: MonthlyUsage = {};
+    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+    for (const conversation of this.data) {
+        const mapping = conversation?.mapping ?? {};
+
+        for (const node of Object.values(mapping)) {
+            const message = node?.message;
+
+            // Guard clauses
+            if (!message?.create_time || !Array.isArray(message.content?.parts)) {
+                continue;
+            }
+
+            const role = message.author?.role;
+
+            if (role !== "user" && role !== "assistant") {
+                continue;
+            }
+
+            // Extract and count tokens
+            const messageText = message.content.parts
+                .filter((part): part is string => typeof part === "string")
+                .join(" ");
+
+            const tokenCount = this.tokenCounter.countTokens(messageText);
+            if (tokenCount === 0) {
+                continue;
+            }
+
+            // Get time and model metadata using local timezone
+            const month = this.getLocalMonth(message.create_time);
+            const year = this.getLocalFullYear(message.create_time);
+
+            if (month === null || year === null) {
+                continue;
+            }
+
+            const monthYear = `${monthNames[month]}-${year.toString().slice(-2)}`;
+            const modelSlug = this.getModelSlug(message, node, mapping);
+
+            // Initialize nested structure
+            monthlyUsage[monthYear] ??= {};
+            monthlyUsage[monthYear][modelSlug] ??= { userTokens: 0, assistantTokens: 0 };
+
+            // Accumulate tokens
+            if (role === "user") {
+                monthlyUsage[monthYear][modelSlug].userTokens += tokenCount;
+            } else {
+                monthlyUsage[monthYear][modelSlug].assistantTokens += tokenCount;
+            }
+        }
+    }
+
+    return monthlyUsage;
 }
 
 public cleanup(): void {
-    this.tokenCounter.freeEncoders();
+    this.tokenCounter.free();
 }
 
   public getCustomInstructionMessageCount(): number {
