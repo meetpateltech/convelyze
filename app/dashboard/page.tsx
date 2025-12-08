@@ -91,6 +91,22 @@ export default function Dashboard() {
     try {
       const file = acceptedFiles[0];
       const jsonData = await readJsonFile(file);
+      const isArray = Array.isArray(jsonData);
+      const length = isArray ? jsonData.length : 'n/a';
+      console.log('[upload] name:', file?.name, 'type:', file?.type, 'isArray:', isArray, 'length:', length);
+
+      if (!isArray) {
+        console.error('[upload] Expected conversations.json array, got:', jsonData && typeof jsonData === 'object' ? Object.keys(jsonData) : typeof jsonData);
+        toast.error('Please upload the extracted conversations.json (must be a JSON array).');
+        return;
+      }
+
+      if (jsonData.length === 0) {
+        console.warn('[upload] conversations.json is empty');
+        toast.error('The uploaded conversations.json is empty.');
+        return;
+      }
+
       const newAnalysis = new ChatGPTDataAnalysis(jsonData);
       setAnalysis(newAnalysis);
 
@@ -139,7 +155,7 @@ export default function Dashboard() {
       /* router.push('?success=true', { scroll: false }); */
     } catch (error) {
       console.error('Error processing file:', error);
-      toast.error('Error processing file. Please upload the correct file. If you still face issues, create an issue on GitHub.');
+      toast.error(`Error processing file: ${error instanceof Error ? error.message : 'Unknown issue'}. Please re-upload conversations.json from the export.`);
     }
   }, []);
 
