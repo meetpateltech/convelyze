@@ -317,24 +317,30 @@ export class ChatGPTDataAnalysis {
   }
 
   public getFirstAndLastUsedDate(): { firstUsed: Date, lastUsed: Date } {
-    const allTimestamps: number[] = [];
+    let minTimestamp = Infinity;
+    let maxTimestamp = -Infinity;
+    let hasTimestamp = false;
+
+    // Iterate and track min/max without spreading a large array (avoids stack overflow on big uploads)
     this.data.forEach(conversation => {
       if (!conversation?.mapping) return;
       Object.values(conversation.mapping).forEach(node => {
         const createTime = node?.message?.create_time;
-        if (createTime != null && typeof createTime === 'number') {
-          allTimestamps.push(createTime);
+        if (createTime != null && typeof createTime === 'number' && Number.isFinite(createTime)) {
+          hasTimestamp = true;
+          if (createTime < minTimestamp) minTimestamp = createTime;
+          if (createTime > maxTimestamp) maxTimestamp = createTime;
         }
       });
     });
 
-    if (allTimestamps.length === 0) {
+    if (!hasTimestamp) {
       const now = new Date();
       return { firstUsed: now, lastUsed: now };
     }
 
-    const firstUsed = new Date(Math.min(...allTimestamps) * 1000);
-    const lastUsed = new Date(Math.max(...allTimestamps) * 1000);
+    const firstUsed = new Date(minTimestamp * 1000);
+    const lastUsed = new Date(maxTimestamp * 1000);
 
     return { firstUsed, lastUsed };
   }
