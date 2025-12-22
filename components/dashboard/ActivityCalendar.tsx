@@ -86,10 +86,12 @@ const ActivityCalendar: React.FC<ActivityCalendarProps> = ({ data }) => {
                 }}
               />
             </TooltipTrigger>
-            <TooltipContent className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-md text-gray-800 dark:text-white border border-gray-200 dark:border-gray-700">
-              <p className="font-bold">{dateString}</p>
-              <p>{dayData.totalMessages} messages</p>
-              <p>{dayData.totalConversations} conversations</p>
+            <TooltipContent className="bg-white/90 dark:bg-zinc-950/90 backdrop-blur-xl p-3 rounded-xl shadow-2xl border border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-zinc-50">
+              <p className="font-bold mb-1">{dateString}</p>
+              <div className="text-xs space-y-0.5 text-zinc-600 dark:text-zinc-400">
+                <p>{dayData.totalMessages} messages</p>
+                <p>{dayData.totalConversations} conversations</p>
+              </div>
             </TooltipContent>
           </Tooltip>
         </TooltipProvider>

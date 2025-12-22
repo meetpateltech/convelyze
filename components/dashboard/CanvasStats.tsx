@@ -159,9 +159,9 @@ const LanguageStatRow = ({ language, stats }: { language: string, stats: ReviewS
               align="end"
               sideOffset={5}
               alignOffset={5}
-              className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg border border-gray-200/50 dark:border-white/10"
+              className="bg-white/90 dark:bg-zinc-950/90 backdrop-blur-xl p-3 rounded-xl shadow-2xl border border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-zinc-50"
             >
-              <p className="text-sm text-gray-900 dark:text-white/90">
+              <p className="text-sm">
                 Code reviews used for {capitalizedLang}
               </p>
             </TooltipContent>
@@ -179,9 +179,9 @@ const LanguageStatRow = ({ language, stats }: { language: string, stats: ReviewS
               align="end"
               sideOffset={5}
               alignOffset={5}
-              className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg border border-gray-200/50 dark:border-white/10"
+              className="bg-white/90 dark:bg-zinc-950/90 backdrop-blur-xl p-3 rounded-xl shadow-2xl border border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-zinc-50"
             >
-              <p className="text-sm text-gray-900 dark:text-white/90">
+              <p className="text-sm">
                 Review comments added for {capitalizedLang}
               </p>
             </TooltipContent>

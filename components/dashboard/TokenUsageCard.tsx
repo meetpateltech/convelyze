@@ -66,22 +66,32 @@ export const TokenUsageCard: React.FC<TokenUsageCardProps> = ({ month, data, sel
                 </div>
               </div>
             </TooltipTrigger>
-            <TooltipContent side="bottom" align="end" className="max-w-xs z-50">
-              <div className={`p-3 rounded-lg ${isWorthIt ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' : 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200'}`}>
+            <TooltipContent 
+              side="bottom" 
+              align="end" 
+              className="max-w-xs z-50 bg-white/90 dark:bg-zinc-950/90 backdrop-blur-xl p-4 rounded-xl shadow-2xl border border-zinc-200 dark:border-zinc-800"
+            >
+              <div className="flex items-start space-x-3">
                 {isWorthIt ? (
-                  <div className="flex items-start space-x-2">
-                    <CheckCircle className="h-5 w-5 flex-shrink-0 mt-0.5" />
-                    <p className="text-sm">
-                      Your usage justifies a {selectedPlanDetails.name} subscription. It is a worthy investment for your level of interaction!
-                    </p>
-                  </div>
+                  <>
+                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />
+                    <div className="space-y-1">
+                      <p className="text-sm font-bold text-zinc-900 dark:text-zinc-50">Worth It!</p>
+                      <p className="text-xs leading-relaxed text-zinc-600 dark:text-zinc-400">
+                        Your usage justifies a {selectedPlanDetails.name} subscription. It is a worthy investment for your level of interaction!
+                      </p>
+                    </div>
+                  </>
                 ) : (
-                  <div className="flex items-start space-x-2">
-                    <AlertCircle className="h-5 w-5 flex-shrink-0 mt-0.5" />
-                    <p className="text-sm">
-                      Your current usage is relatively low for the {selectedPlanDetails.name} plan. Consider a lower tier or exploring API options for potentially lower costs.
-                    </p>
-                  </div>
+                  <>
+                    <AlertCircle className="h-5 w-5 text-blue-500 flex-shrink-0 mt-0.5" />
+                    <div className="space-y-1">
+                      <p className="text-sm font-bold text-zinc-900 dark:text-zinc-50">Usage Tip</p>
+                      <p className="text-xs leading-relaxed text-zinc-600 dark:text-zinc-400">
+                        Your current usage is relatively low for the {selectedPlanDetails.name} plan. Consider a lower tier or exploring API options.
+                      </p>
+                    </div>
+                  </>
                 )}
               </div>
             </TooltipContent>
@@ -117,6 +127,7 @@ export const TokenUsageCard: React.FC<TokenUsageCardProps> = ({ month, data, sel
                 <TokenDisplay 
                   value={usage.userTokens + usage.assistantTokens} 
                   cost={modelTotalCost}
+                  align="end"
                 />
               </div>
             </div>

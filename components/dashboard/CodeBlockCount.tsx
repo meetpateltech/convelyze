@@ -80,7 +80,6 @@ const AICodeStatsCard: React.FC<AICodeStatsCardProps> = ({ codeBlockCount, canva
     return (
       <div className="space-y-6">
         <div className="flex items-center">
-          <Code2 className="w-6 h-6 mr-3 text-blue-400" />
           <span className="text-xl font-medium text-gray-700 dark:text-gray-300">
             Languages ({totalCount} blocks)
           </span>
@@ -99,9 +98,9 @@ const AICodeStatsCard: React.FC<AICodeStatsCardProps> = ({ codeBlockCount, canva
           >
             {showAll ? 'Show Less' : 'Show All'}
             {showAll ? (
-              <ChevronUp className="w-5 h-5 text-blue-500" />
+              <ChevronUp className="w-5 h-5 text-[#74AA9C] dark:text-[#74AA9C]" />
             ) : (
-              <ChevronDown className="w-5 h-5 text-blue-500" />
+              <ChevronDown className="w-5 h-5 text-[#74AA9C] dark:text-[#74AA9C]" />
             )}
           </button>
         )}
@@ -116,8 +115,8 @@ const AICodeStatsCard: React.FC<AICodeStatsCardProps> = ({ codeBlockCount, canva
           AI Generated Code Blocks
         </h2>
         <div className="relative">
-          <div className="absolute inset-0 bg-blue-400 blur-md opacity-50" />
-          <Code2 className="relative z-10 w-10 h-10 text-blue-500 dark:text-blue-400 animate-pulse" />
+          <div className="absolute inset-0 bg-[#74AA9C] blur-md opacity-50" />
+          <Code2 className="relative z-10 w-10 h-10 text-[#74AA9C] dark:text-[#74AA9C] animate-pulse" />
         </div>
       </div>
 

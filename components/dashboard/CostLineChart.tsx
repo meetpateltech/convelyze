@@ -34,29 +34,26 @@ const calculateCost = (tokens: number, costPerMillion: number) => {
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
     return (
-      <div style={{
-        backgroundColor: '#1f2937',
-        padding: '10px',
-        borderRadius: '8px',
-        color: '#fff',
-      }}>
-        <p>{label}</p>
-        {payload.map((entry: any, index: number) => (
-          <div key={index} style={{ display: 'flex', alignItems: 'center', marginTop: '4px' }}>
-            <div
-              style={{
-                width: '12px',
-                height: '12px',
-                backgroundColor: entry.color,
-                borderRadius: '2px',
-                marginRight: '8px',
-              }}
-            />
-            <p style={{ margin: 0 }}>
-              {entry.name}: {formatCurrency(entry.value)}
-            </p>
-          </div>
-        ))}
+      <div className="bg-white/90 dark:bg-zinc-950/90 backdrop-blur-xl p-3 rounded-xl shadow-2xl border border-zinc-200 dark:border-zinc-800 min-w-[150px]">
+        <p className="text-sm font-bold text-zinc-900 dark:text-zinc-50 mb-2">{label}</p>
+        <div className="space-y-1.5">
+          {payload.map((entry: any, index: number) => (
+            <div key={index} className="flex items-center justify-between gap-4">
+              <div className="flex items-center gap-2">
+                <div
+                  className="w-2.5 h-2.5 rounded-full"
+                  style={{ backgroundColor: entry.color }}
+                />
+                <span className="text-xs text-zinc-600 dark:text-zinc-400 font-medium">
+                  {entry.name}
+                </span>
+              </div>
+              <span className="text-xs font-bold text-zinc-900 dark:text-zinc-50">
+                {formatCurrency(entry.value)}
+              </span>
+            </div>
+          ))}
+        </div>
       </div>
     );
   }

@@ -483,7 +483,7 @@ export default function Dashboard() {
       <div className="relative z-20 min-h-screen transition-colors duration-300 p-4 sm:p-6 md:p-8">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-wrap justify-between items-center mb-8 space-y-4 sm:space-y-0">
-            <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Demo Dashboard</h1>
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Convelyze Demo</h1>
 
             <div className="flex items-center space-x-4">
             <Link href="/dashboard">
@@ -505,7 +505,7 @@ export default function Dashboard() {
                   className={`rounded-full px-3 py-1 ${mode === 'advanced' ? 'bg-white dark:bg-gray-800 text-gray-900 dark:text-white' : 'text-gray-800 dark:text-white'}`}
                   onClick={() => setMode('advanced')}
                 >
-                  Advanced {mode === 'advanced' && '🔒'}
+                  Advanced
                 </Button>
                 <Button
                   variant={mode === 'token' ? 'secondary' : 'ghost'}
@@ -575,7 +575,7 @@ export default function Dashboard() {
                         size="sm"
                         className={`rounded-full ${
                           timeUnit === unit 
-                            ? 'bg-indigo-500 text-white dark:bg-indigo-600' 
+                            ? 'bg-teal-500 text-white dark:bg-teal-600' 
                             : 'bg-white/20 dark:bg-white/5 text-gray-800 dark:text-gray-200'
                         }`}
                         onClick={() => setTimeUnit(unit)}
@@ -744,10 +744,8 @@ export default function Dashboard() {
                       <PlanSelector selectedPlan={selectedPlan} onPlanChange={setSelectedPlan} />
                    </div> */}
 
-            <div className="flex items-center justify-end pb-6 space-x-2">
-              <label className="text-md font-medium text-black dark:text-gray-200">
-                Select your current plan:
-              </label>
+            <div className="flex items-center justify-end pb-8 gap-3">
+              <span className="text-sm font-medium text-zinc-900 dark:text-zinc-200">Select your current plan:</span>
               <PlanSelector selectedPlan={selectedPlan} onPlanChange={setSelectedPlan} />
             </div>
 

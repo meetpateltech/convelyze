@@ -14,16 +14,16 @@ export default function CoolLandingPage() {
     <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-teal-100 to-sky-200 dark:from-teal-900 dark:to-sky-900">
       <Background />
       <div className="relative z-20 flex flex-col justify-between p-4 sm:p-6 md:p-8">
-        <nav className="flex flex-col sm:flex-row justify-between items-center mb-8 sticky top-0 bg-white/10 dark:bg-black/10 backdrop-filter backdrop-blur-lg z-50 py-4 px-6 rounded-full">
+        <nav className="flex flex-col sm:flex-row justify-between items-center mb-8 sticky top-0 bg-white/10 dark:bg-black/10 z-50 py-4 px-6 rounded-full">
           <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-0">
           <Link href="/">Convelyze</Link>
           </h1>
           <div className="flex flex-wrap justify-center sm:justify-end items-center space-x-2 sm:space-x-4">
             <Link href="/demo" className="mb-2 sm:mb-0">
-              <Button variant="default" className="rounded-full">View Demo</Button>
+              <Button variant="ghost" className="rounded-full">View Demo</Button>
             </Link>
             <Link href="/dashboard" className="mb-2 sm:mb-0">
-              <Button className="rounded-full">Dashboard</Button>
+              <Button variant="ghost" className="rounded-full">Dashboard</Button>
             </Link>
             <ModeToggle />
           </div>

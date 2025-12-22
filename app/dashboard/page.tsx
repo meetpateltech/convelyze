@@ -591,10 +591,8 @@ export default function Dashboard() {
                         </div>
                       </div>
 
-                      <div className="flex items-center justify-end pb-6 space-x-2">
-                          <label className="text-md font-medium text-black dark:text-gray-200">
-                            Select your current plan:
-                          </label>
+                      <div className="flex items-center justify-end pb-8 gap-3">
+                        <span className="text-sm font-medium text-zinc-900 dark:text-zinc-200">Select your current plan:</span>
                         <PlanSelector selectedPlan={selectedPlan} onPlanChange={setSelectedPlan} />
                       </div>
                       
