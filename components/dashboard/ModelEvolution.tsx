@@ -596,7 +596,7 @@ export function ModelEvolution({ analysis, selectedYear, onYearChange }: ModelEv
 
   if (timelineData.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-[400px] bg-white/10 backdrop-blur-md rounded-xl border border-white/20 p-8">
+      <div className="flex flex-col items-center justify-center min-h-[400px] bg-white/10 dark:bg-white/5 backdrop-blur-md rounded-xl border border-white/20 dark:border-white/10 p-8">
         <div className="flex items-center justify-between w-full mb-8">
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Model Evolution</h2>
           <Select 
@@ -631,7 +631,7 @@ export function ModelEvolution({ analysis, selectedYear, onYearChange }: ModelEv
   }
 
   return (
-    <div className="relative w-full min-h-[600px] overflow-hidden bg-white/10 backdrop-blur-md rounded-xl border border-white/20 flex flex-col justify-center py-12 px-6">
+    <div className="relative w-full min-h-[600px] overflow-hidden bg-white/10 dark:bg-white/5 backdrop-blur-md rounded-xl border border-white/20 dark:border-white/10 flex flex-col justify-center py-12 px-6">
       {/* Year Selection Dropdown */}
       <div className="absolute top-6 right-6 z-50">
         <Select 
