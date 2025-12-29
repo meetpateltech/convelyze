@@ -713,9 +713,102 @@ export class ChatGPTDataAnalysis {
   // Helper method to check if a date is valid
   private isValidDate(date: Date): boolean {
     return date.getFullYear() >= 2022 && date.getFullYear() <= new Date().getFullYear();
-}
+  }
 
-// Method to get model slug for user message
+  private timestampToDate(timestamp: number | null | undefined): Date | null {
+    if (timestamp === null || timestamp === undefined || typeof timestamp !== "number") return null;
+    const date = new Date(timestamp * 1000);
+    return isNaN(date.getTime()) ? null : date;
+  }
+
+  /**
+   * Gets local day of month (1-31) from timestamp
+   * Used for: getWeeklyModelUsage (needs local timezone for calendar day)
+   */
+  private getLocalDay(timestamp: number | null | undefined): number | null {
+    const date = this.timestampToDate(timestamp);
+    if (!date) return null;
+    return date.getDate();
+  }
+
+  public getWeeklyModelUsage(): Array<{
+    weekKey: string;
+    date: Date;
+    modelUsage: Record<string, number>;
+  }> {
+    if (!this.data) return [];
+
+    const weeklyUsage: Record<string, Record<string, number>> = {};
+    const weekDates: Record<string, Date> = {};
+
+    for (const conversation of this.data) {
+      const mapping = conversation?.mapping ?? {};
+
+      for (const node of Object.values(mapping)) {
+        const message = node?.message;
+
+        // Guard clauses kept in sync with getMonthlyModelWiseTokenUsage
+        if (!message?.create_time || !Array.isArray(message.content?.parts)) {
+          continue;
+        }
+
+        const role = message.author?.role;
+        if (role !== "user" && role !== "assistant") {
+          continue;
+        }
+
+        // Convert timestamp once and skip invalid dates
+        const messageDateObj = this.timestampToDate(message.create_time);
+        if (!messageDateObj) continue;
+
+        // Calculate week start (Monday) using local date
+        const dayOfWeek = messageDateObj.getDay(); // 0 = Sunday, 1 = Monday, etc.
+        const diff = dayOfWeek === 0 ? -6 : 1 - dayOfWeek; // Days to subtract to get to Monday
+
+        const weekStartDate = new Date(messageDateObj);
+        weekStartDate.setDate(weekStartDate.getDate() + diff);
+        weekStartDate.setHours(0, 0, 0, 0);
+
+        // Create week key in YYYY-MM-DD format using local date
+        const weekYear = weekStartDate.getFullYear();
+        const weekMonth = weekStartDate.getMonth() + 1;
+        const weekDay = weekStartDate.getDate();
+        const weekKey = `${weekYear}-${String(weekMonth).padStart(
+          2,
+          "0"
+        )}-${String(weekDay).padStart(2, "0")}`;
+
+        // Store the actual Date object
+        weekDates[weekKey] ??= weekStartDate;
+
+        // Extract model name for this message
+        const modelSlug = this.getModelSlug(message, node, mapping);
+
+        // Skip if model slug is unknown
+        if (modelSlug === "unknown") {
+          continue;
+        }
+
+        // Initialize nested structure
+        weeklyUsage[weekKey] ??= {};
+        weeklyUsage[weekKey][modelSlug] =
+          (weeklyUsage[weekKey][modelSlug] || 0) + 1;
+      }
+    }
+
+    // Convert aggregated data into a sorted array (using stored Date objects)
+    const result = Object.entries(weeklyUsage)
+      .map(([weekKey, modelUsage]) => ({
+        weekKey,
+        date: weekDates[weekKey],
+        modelUsage,
+      }))
+      .sort((a, b) => a.date.getTime() - b.date.getTime());
+
+    return result;
+  }
+
+  // Method to get model slug for user message
 private getModelSlugForUserMessage(conversation: ConversationData, userMessageId: string): string {
     if (!conversation?.mapping || !userMessageId) {
       return "unknown";

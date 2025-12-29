@@ -39,6 +39,7 @@ import UserSystemHintsCard from '@/components/dashboard/UserSystemHintsCard';
 import LongestConversationCard from '@/components/dashboard/LongestConversationCard';
 import { CanvasStats } from '@/components/dashboard/CanvasStats'
 import { PlanSelector } from '@/components/dashboard/PlanSelector';
+import { ModelEvolution } from '@/components/dashboard/ModelEvolution';
 
 interface TokenUsage {
   userTokens: number;
@@ -79,7 +80,7 @@ export default function Dashboard() {
   const [showConfetti, setShowConfetti] = useState(false);
   const { width, height } = useWindowSize()
   const [tokenUsageData, setTokenUsageData] = useState<TokenUsageData>({});
-  const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
+  const [selectedYear, setSelectedYear] = useState<number | null>(new Date().getFullYear());
   const [totals, setTotals] = useState<Totals | null>(null);
   const [isTokenLoading, setIsTokenLoading] = useState(false);
   const [tokenDataCalculated, setTokenDataCalculated] = useState(false);
@@ -218,7 +219,7 @@ export default function Dashboard() {
     };
   };
 
-  const handleYearChange = (year: number) => {
+  const handleYearChange = (year: number | null) => {
     setSelectedYear(year);
   };
 
@@ -302,6 +303,13 @@ export default function Dashboard() {
                       onClick={() => handleModeChange('token')}
                     >
                       Tokens
+                    </Button>
+                    <Button
+                      variant={mode === 'evolution' ? 'secondary' : 'ghost'}
+                      className={`rounded-full px-3 py-1 ${mode === 'evolution' ? 'bg-white dark:bg-gray-800 text-gray-900 dark:text-white' : 'text-gray-800 dark:text-white'}`}
+                      onClick={() => handleModeChange('evolution')}
+                    >
+                      Evolution
                     </Button>
                   </div>
                 </>
@@ -583,11 +591,11 @@ export default function Dashboard() {
                       
                       <div className="grid grid-cols-1 gap-8 md:grid-cols-2 mb-8">
                         <div>
-                          <TokenUsageBarChart data={tokenUsageData} year={selectedYear} onYearChange={handleYearChange} />
+                          <TokenUsageBarChart data={tokenUsageData} year={selectedYear ?? new Date().getFullYear()} onYearChange={handleYearChange} />
                         </div>
                         
                         <div>
-                          <CostLineChart data={tokenUsageData} year={selectedYear} onYearChange={handleYearChange} />
+                          <CostLineChart data={tokenUsageData} year={selectedYear ?? new Date().getFullYear()} onYearChange={handleYearChange} />
                         </div>
                       </div>
 
@@ -605,6 +613,14 @@ export default function Dashboard() {
                     </>
                   ) : null}
                 </>
+              )}
+
+              {mode === 'evolution' && (
+                <ModelEvolution 
+                  analysis={analysis} 
+                  selectedYear={selectedYear} 
+                  onYearChange={handleYearChange} 
+                />
               )}
             </>
           )}
