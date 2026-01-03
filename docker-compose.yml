@@ -1,0 +1,11 @@
+services:
+  convelyze:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: convelyze
+    ports:
+      - "${CONVELYZE_PORT:-3000}:3000" # Expose port 3000 on the container to port 3000 on the host (default)
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped

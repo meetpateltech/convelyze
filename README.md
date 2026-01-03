@@ -100,6 +100,36 @@ To run Convelyze locally, follow these steps:
 4. **Open the Application**:
    Once the server is running, open your browser and go to `http://localhost:3000` to see the application.
 
+## Run with Docker
+
+To run Convelyze with Docker, follow these steps:
+
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/meetpateltech/convelyze.git
+   cd convelyze
+   ```
+
+2. **Build and Start with Docker Compose**:
+   ```bash
+   docker-compose up -d
+   ```
+
+3. **Open the Application**:
+   Once the container is running, open your browser and go to `http://localhost:3000` to see the application.
+
+4. **Stop the Application**:
+   To stop the application, run:
+   ```bash
+   docker-compose down
+   ```
+
+### Docker Commands
+
+- **Build the image**: `docker-compose build`
+- **View logs**: `docker-compose logs -f`
+- **Restart**: `docker-compose restart`
+
 ## Contributing
 
 Convelyze is open source, and contributions are welcome! If you would like to contribute, follow these steps:
