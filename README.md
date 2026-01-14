@@ -112,7 +112,7 @@ To run Convelyze with Docker, follow these steps:
 
 2. **Build and Start with Docker Compose**:
    ```bash
-   docker-compose up -d
+   docker compose up -d
    ```
 
 3. **Open the Application**:
@@ -121,14 +121,14 @@ To run Convelyze with Docker, follow these steps:
 4. **Stop the Application**:
    To stop the application, run:
    ```bash
-   docker-compose down
+   docker compose down
    ```
 
 ### Docker Commands
 
-- **Build the image**: `docker-compose build`
-- **View logs**: `docker-compose logs -f`
-- **Restart**: `docker-compose restart`
+- **Build the image**: `docker compose build`
+- **View logs**: `docker compose logs -f`
+- **Restart**: `docker compose restart`
 
 ## Contributing
 
