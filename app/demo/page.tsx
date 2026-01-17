@@ -303,6 +303,97 @@ export default function Dashboard() {
   }
 
   const tokenUsageData: TokenUsageData = {
+    'Jan-26': {
+      'gpt-5-2': { userTokens: 700000, assistantTokens: 705000 },
+      'gpt-5-2-mini': { userTokens: 700000, assistantTokens: 705000 },
+      'gpt-5-2-pro': { userTokens: 700000, assistantTokens: 705000 },
+      'gpt-5-2-thinking': { userTokens: 700000, assistantTokens: 705000 },
+      'gpt-5-2-instant': { userTokens: 700000, assistantTokens: 705000 },
+    },
+    'Dec-25': {
+      'gpt-5-2': { userTokens: 600000, assistantTokens: 605000 },
+      'gpt-5-1': { userTokens: 4040000, assistantTokens: 4045000 },
+      'gpt-5-1-pro': { userTokens: 2040000, assistantTokens: 2045000 },
+      'gpt-5-2-mini': { userTokens: 600000, assistantTokens: 605000 },
+      'gpt-5-2-pro': { userTokens: 600000, assistantTokens: 605000 },
+      'gpt-5-2-thinking': { userTokens: 600000, assistantTokens: 605000 },
+      'gpt-5-2-instant': { userTokens: 600000, assistantTokens: 605000 },
+    },
+    'Nov-25': {
+      'gpt-5': { userTokens: 500000, assistantTokens: 505000 },
+      'gpt-5-1': { userTokens: 3040000, assistantTokens: 3045000 },
+      'gpt-5-1-mini': { userTokens: 545000, assistantTokens: 540000 },
+      'gpt-5-1-pro': { userTokens: 440000, assistantTokens: 445000 },
+      'gpt-5-1-thinking': { userTokens: 3640000, assistantTokens: 3645000 },
+      'gpt-5-1-instant': { userTokens: 3640000, assistantTokens: 3645000 },
+    },
+    'Oct-25': {
+      'gpt-5': { userTokens: 400000, assistantTokens: 405000 },
+      'gpt-5-1': { userTokens: 2040000, assistantTokens: 2045000 },
+      'gpt-5-1-mini': { userTokens: 545000, assistantTokens: 540000 },
+      'gpt-5-1-pro': { userTokens: 440000, assistantTokens: 445000 },
+      'gpt-5-1-thinking': { userTokens: 2640000, assistantTokens: 2645000 },
+      'gpt-5-1-instant': { userTokens: 2640000, assistantTokens: 2645000 },
+    },
+    'Sep-25': {
+      'gpt-5': { userTokens: 340000, assistantTokens: 345000 },
+      'gpt-5-1': { userTokens: 1040000, assistantTokens: 1045000 },
+      'gpt-5-1-mini': { userTokens: 445000, assistantTokens: 440000 },
+      'gpt-5-1-pro': { userTokens: 340000, assistantTokens: 345000 },
+      'gpt-5-1-thinking': { userTokens: 1640000, assistantTokens: 1645000 },
+      'gpt-5-1-instant': { userTokens: 1640000, assistantTokens: 1645000 },
+    },
+    'Aug-25': {
+      'gpt-4o': { userTokens: 240000, assistantTokens: 245000 },
+      'gpt-5': { userTokens: 340000, assistantTokens: 345000 },
+      'gpt-5-1': { userTokens: 1040000, assistantTokens: 1045000 },
+      'gpt-5-1-mini': { userTokens: 445000, assistantTokens: 440000 },
+      'gpt-5-1-pro': { userTokens: 340000, assistantTokens: 345000 },
+      'gpt-5-1-thinking': { userTokens: 1640000, assistantTokens: 1645000 },
+    },
+    'Jul-25': {
+      'gpt-4o': { userTokens: 240000, assistantTokens: 245000 },
+      'gpt-4-5': { userTokens: 1040000, assistantTokens: 1045000 },
+      'gpt-4o-mini': { userTokens: 445000, assistantTokens: 440000 },
+      'gpt-4-1-mini': { userTokens: 340000, assistantTokens: 345000 },
+      'gpt-4-1': { userTokens: 1640000, assistantTokens: 1645000 },
+    },
+    'Jun-25': {
+      'gpt-4o': { userTokens: 240000, assistantTokens: 245000 },
+      'gpt-4-5': { userTokens: 1040000, assistantTokens: 1045000 },
+      'gpt-4o-mini': { userTokens: 245000, assistantTokens: 240000 },
+      'gpt-4-1-mini': { userTokens: 240000, assistantTokens: 245000 },
+      'gpt-4-1': { userTokens: 1640000, assistantTokens: 1645000 },
+    },
+    'May-25': {
+      'gpt-4o': { userTokens: 140000, assistantTokens: 145000 },
+      'gpt-4-5': { userTokens: 540000, assistantTokens: 545000 },
+      'gpt-4o-mini': { userTokens: 245000, assistantTokens: 240000 },
+      'gpt-4-1-mini': { userTokens: 140000, assistantTokens: 145000 },
+      'gpt-4-1': { userTokens: 840000, assistantTokens: 845000 },
+    },
+    'Apr-25': {
+      'gpt-4o': { userTokens: 140000, assistantTokens: 145000 },
+      'gpt-4-5': { userTokens: 540000, assistantTokens: 545000 },
+      'gpt-4o-mini': { userTokens: 245000, assistantTokens: 240000 },
+      'gpt-4-1-mini': { userTokens: 140000, assistantTokens: 145000 },
+    },
+    'Mar-25': {
+      'gpt-4o': { userTokens: 140000, assistantTokens: 145000 },
+      'gpt-4-5': { userTokens: 140000, assistantTokens: 145000 },
+      'gpt-4o-mini': { userTokens: 245000, assistantTokens: 240000 },
+      'o1-preview': { userTokens: 520000, assistantTokens: 530000 },
+      'o1-mini': { userTokens: 700000, assistantTokens: 710000 },
+      'o1': { userTokens: 520000, assistantTokens: 530000 },
+      'o1-pro': { userTokens: 700000, assistantTokens: 710000 }
+    },
+    'Feb-25': {
+      'o1-mini': { userTokens: 360000, assistantTokens: 310000 },
+      'gpt-4o': { userTokens: 140000, assistantTokens: 145000 },
+      'o3-mini': { userTokens: 245000, assistantTokens: 240000 },
+      'o1': { userTokens: 520000, assistantTokens: 530000 },
+      'o1-pro': { userTokens: 700000, assistantTokens: 710000 }
+    },
     'Jan-25': {
       'o1-mini': { userTokens: 460000, assistantTokens: 510000 },
       'gpt-4o': { userTokens: 110000, assistantTokens: 115000 },
@@ -473,7 +564,7 @@ export default function Dashboard() {
 
   const totals = calculateTotals(tokenUsageData);
 
-  const [selectedYear, setSelectedYear] = useState(2024);
+  const [selectedYear, setSelectedYear] = useState(2025);
 
   const [selectedPlan, setSelectedPlan] = useState('free');
   

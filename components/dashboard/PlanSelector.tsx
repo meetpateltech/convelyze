@@ -10,6 +10,7 @@ export interface Plan {
 
 export const plans: Plan[] = [
   { name: "Free", value: "free", price: 0, releaseDate: "Nov-22" },
+  { name: "Go", value: "go", price: 8, releaseDate: "Jan-26" },
   { name: "Plus", value: "plus", price: 20, releaseDate: "Feb-23" },
   { name: "Team", value: "team", price: 25, releaseDate: "Jan-24" },
   { name: "Pro", value: "pro", price: 200, releaseDate: "Dec-24" },
@@ -17,6 +18,7 @@ export const plans: Plan[] = [
 
 const planColors: Record<string, string> = {
   free: "bg-blue-100 text-blue-700 border-blue-200 dark:bg-blue-500/10 dark:text-blue-400 dark:border-blue-500/20",
+  go: "bg-green-100 text-green-700 border-green-200 dark:bg-green-500/10 dark:text-green-400 dark:border-green-500/20",
   plus: "bg-purple-100 text-purple-700 border-purple-200 dark:bg-purple-500/10 dark:text-purple-400 dark:border-purple-500/20",
   team: "bg-teal-100 text-teal-700 border-teal-200 dark:bg-teal-500/10 dark:text-teal-400 dark:border-teal-500/20",
   pro: "bg-amber-100 text-amber-700 border-amber-200 dark:bg-amber-500/10 dark:text-amber-400 dark:border-amber-500/20",
