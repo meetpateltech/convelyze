@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint .",
     "pages:build": "bunx @cloudflare/next-on-pages"
   },
   "dependencies": {
@@ -25,11 +25,11 @@
     "embla-carousel-react": "^8.3.0",
     "html2canvas": "^1.4.1",
     "lucide-react": "^0.441.0",
-    "next": "14.2.35",
+    "next": "15.5.10",
     "next-themes": "^0.3.0",
-    "react": "^18",
+    "react": "19.2.4",
     "react-confetti": "^6.1.0",
-    "react-dom": "^18",
+    "react-dom": "19.2.4",
     "react-dropzone": "^14.2.3",
     "react-use": "^17.5.1",
     "recharts": "^2.12.7",
@@ -40,14 +40,16 @@
   "devDependencies": {
     "typescript": "^5",
     "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
-    "eslint": "^8",
-    "eslint-config-next": "14.2.11"
+    "eslint": "^9",
+    "eslint-config-next": "15.5.10"
   },
   "resolutions": {
-    "string-width": "4.2.3"
+    "string-width": "4.2.3",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3"
   }
 }
