@@ -137,7 +137,7 @@ const ShiftWiseMessageCount: React.FC<ShiftWiseMessageCountProps> = ({ data }) =
     }
   }, [shiftData]);
 
-  const shiftIcons: Record<string, JSX.Element> = {
+  const shiftIcons: Record<string, React.ReactElement> = {
     morning: <Sunrise className="w-5 h-5" style={{ color: SHIFT_COLORS.morning }} />,
     afternoon: <Sun className="w-5 h-5" style={{ color: SHIFT_COLORS.afternoon }} />,
     evening: <Sunset className="w-5 h-5" style={{ color: SHIFT_COLORS.evening }} />,

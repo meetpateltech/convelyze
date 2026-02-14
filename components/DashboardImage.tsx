@@ -22,7 +22,7 @@ const MetricCard: React.FC<{ title: string; value: string | number; icon: React.
       <p className="text-3xl font-bold text-white tracking-tight">{value}</p>
     </div>
     <div className="p-3 bg-white/5 rounded-xl">
-      {React.cloneElement(icon as React.ReactElement, { size: 28 })}
+    {React.cloneElement(icon as React.ReactElement<{ size?: number }>, { size: 28 })}
     </div>
   </div>
 );
