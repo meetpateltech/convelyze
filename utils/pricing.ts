@@ -6,6 +6,14 @@ export interface ModelPricing {
   }
   
   export const modelPricing: { [key: string]: ModelPricing } = {
+    'gpt-5-4-pro': { inputCost: 30.00, outputCost: 180.00 },
+    'gpt-5-4-t-mini': { inputCost: 0.75, outputCost: 4.50 },
+    'gpt-5-4-thinking': { inputCost: 2.50, outputCost: 20.00 },
+    'gpt-5-4-mini': { inputCost: 0.75, outputCost: 4.50 },
+    'gpt-5-4-instant': { inputCost: 2.50, outputCost: 20.00 },
+    'gpt-5-4': { inputCost: 2.50, outputCost: 20.00 },
+    'gpt-5-3': { inputCost: 1.75, outputCost: 14.00 },
+    'gpt-5-3-instant': { inputCost: 1.75, outputCost: 14.00 },
     'gpt-5-2-pro': { inputCost: 21.00, outputCost: 168.00 },
     'gpt-5-2-thinking': { inputCost: 1.75, outputCost: 14.00 },
     'gpt-5-2-instant': { inputCost: 1.75, outputCost: 14.00 },
