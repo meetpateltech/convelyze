@@ -6,6 +6,7 @@ export interface ModelPricing {
   }
   
   export const modelPricing: { [key: string]: ModelPricing } = {
+    'gpt-6-astra': { inputCost: 10.00, outputCost: 50.00 },
     'gpt-5-6-luna': { inputCost: 1.00, outputCost: 6.00 },
     'gpt-5-6-terra': { inputCost: 2.50, outputCost: 15.00 },
     'gpt-5-6-sol': { inputCost: 5.00, outputCost: 30.00 },
