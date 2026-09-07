@@ -21,7 +21,7 @@ import ToolUsageCard from '@/components/dashboard/ToolUsageCard';
 import Background from '@/components/ui/background';
 import { ModeToggle } from '@/components/ModeToggle';
 import { ChatGPTDataAnalysis } from '@/lib/ChatGPTDataAnalysis';
-import { readJsonFile } from '@/utils/fileProcessor';
+import { mergeConversationExports, readJsonFiles } from '@/utils/fileProcessor';
 import html2canvas from 'html2canvas';
 import DashboardImage from '@/components/DashboardImage';
 import Link from 'next/link';
@@ -90,26 +90,59 @@ export default function Dashboard() {
 
   const onDrop = useCallback(async (acceptedFiles: File[]) => {
     try {
-      const file = acceptedFiles[0];
-      const jsonData = await readJsonFile(file);
-      const isArray = Array.isArray(jsonData);
-      const length = isArray ? jsonData.length : 'n/a';
-      console.log('[upload] name:', file?.name, 'type:', file?.type, 'isArray:', isArray, 'length:', length);
-
-      if (!isArray) {
-        console.error('[upload] Expected conversations.json array, got:', jsonData && typeof jsonData === 'object' ? Object.keys(jsonData) : typeof jsonData);
-        toast.error('Please upload the extracted conversations.json (must be a JSON array).');
+      if (acceptedFiles.length === 0) {
+        toast.error('Select at least one exported conversations JSON file.');
         return;
       }
 
-      if (jsonData.length === 0) {
-        console.warn('[upload] conversations.json is empty');
-        toast.error('The uploaded conversations.json is empty.');
+      const parsedFiles = await readJsonFiles(acceptedFiles);
+      parsedFiles.forEach(({ file, json }) => {
+        const isArray = Array.isArray(json);
+        const length = isArray ? json.length : 'n/a';
+        console.log('[upload] name:', file.name, 'type:', file.type, 'isArray:', isArray, 'length:', length);
+      });
+
+      const invalidFiles = parsedFiles.filter(({ json }) => !Array.isArray(json));
+      if (invalidFiles.length > 0) {
+        console.error(
+          '[upload] Expected ChatGPT export arrays, got invalid files:',
+          invalidFiles.map(({ file, json }) => ({
+            name: file.name,
+            keys: json && typeof json === 'object' ? Object.keys(json) : typeof json,
+          }))
+        );
+        toast.error(
+          `Invalid export format in: ${invalidFiles.map(({ file }) => file.name).join(', ')}. Upload extracted conversations.json files only.`
+        );
         return;
       }
 
-      const newAnalysis = new ChatGPTDataAnalysis(jsonData);
+      const nonEmptyExports = parsedFiles.reduce((exports, { json }) => {
+        if (Array.isArray(json) && json.length > 0) {
+          exports.push(json);
+        }
+
+        return exports;
+      }, [] as any[][]);
+
+      if (nonEmptyExports.length === 0) {
+        console.warn('[upload] all uploaded conversations exports are empty');
+        toast.error('All uploaded conversations.json files are empty.');
+        return;
+      }
+
+      const mergedJsonData = mergeConversationExports(nonEmptyExports);
+
+      if (mergedJsonData.length === 0) {
+        toast.error('No conversations were found in the uploaded exports.');
+        return;
+      }
+
+      const newAnalysis = new ChatGPTDataAnalysis(mergedJsonData);
       setAnalysis(newAnalysis);
+      setTokenUsageData({});
+      setTotals(null);
+      setTokenDataCalculated(false);
 
       const newDashboardData = {
         totalConversations: newAnalysis.getTotalConversations(),
@@ -156,12 +189,12 @@ export default function Dashboard() {
       /* router.push('?success=true', { scroll: false }); */
     } catch (error) {
       console.error('Error processing file:', error);
-      toast.error(`Error processing file: ${error instanceof Error ? error.message : 'Unknown issue'}. Please re-upload conversations.json from the export.`);
+      toast.error(`Error processing file: ${error instanceof Error ? error.message : 'Unknown issue'}. Please re-upload the extracted conversations.json exports.`);
     }
   }, []);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop, accept: { 'application/json': ['.json'] },
-    multiple: false, });
+    multiple: true, });
 
   const getTimeSpentValue = () => {
     if (!dashboardData) return '';
@@ -355,17 +388,17 @@ export default function Dashboard() {
                   ) : (
                     <>
                       <p className="text-lg font-semibold text-black dark:text-white">
-                        Drag &apos;n&apos; drop your file here
+                        Drag &apos;n&apos; drop your export files here
                       </p>
                       <p className="mt-1 text-sm text-black/70 dark:text-white/70">
-                        or click to select a file
+                        or click to select one or more files
                       </p>
                     </>
                   )}
                 </div>
                 <FileText size={24} className="text-black/70 dark:text-white/70" />
                 <p className="text-xs text-black/70 dark:text-white/70">
-                  Accepts conversation.json files
+                  Accepts one or more conversations.json files
                 </p>
               </div>
             </div>

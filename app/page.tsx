@@ -209,7 +209,7 @@ function HowToUseSection() {
         <StepCard 
           number={3}
           title="Upload and Analyze"
-          description="Extract the zip file, then upload conversations.json to our dashboard to see your analysis."
+          description="Extract the zip file, then upload one or more conversations.json files to our dashboard to see your analysis."
           imageSrc="https://cdn.jsdelivr.net/gh/meetpateltech/convelyze@main/public/step-3.png"
         />
       </div>

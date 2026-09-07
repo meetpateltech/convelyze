@@ -57,7 +57,7 @@ Convelyze is a powerful web application that visualizes your ChatGPT usage, prov
 
 3. **Upload and Analyze**:
    - Extract the zip file from the email
-   - Upload the `conversations.json` file to the Convelyze dashboard
+   - Upload one or more extracted `conversations.json` files to the Convelyze dashboard
    - View your personalized ChatGPT usage analysis
 
 ## Tech Stack
